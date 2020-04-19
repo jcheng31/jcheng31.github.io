@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta property="fb:admins" content="jerome.cheng">
+  <title>Hello, Hugo. - ayulin.net</title>
+
+  <link href="https://fonts.googleapis.com/css?family=Lato:400,900" rel="stylesheet">
+  <link href="/css/typography.css" rel="stylesheet">
+  <link href="/css/common.css" rel="stylesheet">
+  <link href="/css/blog.css" rel="stylesheet">
+
+  <link rel="alternate" type="application/rss+xml" href="/blog/index.xml" title="ayulin.net" />
+
+  <link rel="shortcut icon" href="/profile.jpg">
+</head>
+
+<body>
+  <div class="wrapper">
+    <div class="header">
+  <div class="profile-pic">
+    <a href="/">
+      <img src="/profile.jpg" />
+    </a>
+  </div>
+
+  <div class="contact">
+    <p class="author">
+      <a href="/">ayulin.net</a>
+    </p>
+
+    <p>
+      <a href="/about"><small>About</small></a>
+
+      
+      <a href="https://twitter.com/Ayulin"><small>Twitter</small></a>
+      
+
+      
+      <a href="https://github.com/jcheng31"><small>GitHub</small></a>
+      
+    </p>
+  </div>
+</div>
+
+    <div class="post-header">
+  <h5 class="subtle">19 April 2020</h5>
+  <h1><strong>Hello, Hugo.</strong></h1>
+  <h2 class="subtitle">A clean slate.</h2>
+</div>
+
+    <div class="post-body">
+      <p>I&rsquo;ve been wanting to revamp this whole site for quite a while now, and it&rsquo;s finally happened. The
+first commit for this iteration was made on September 24, 2018 and after an initial few days&rsquo; worth
+of work it basically stagnated until today.</p>
+<p>So here&rsquo;s what we have now: <a href="https://gohugo.io">Hugo</a> hosted on GitHub Pages, replacing
+<a href="https://jekyllrb.com">Jekyll</a> hosted on a DigitalOcean box. Deploying is running a script locally,
+whereas previously it was pushing to a repository and having a Git hook fire off to trigger Jekyll
+on the VPS to rebuild. I didn&rsquo;t have a good way of reproducing that set-up if it ever went down
+permanently since I&rsquo;d set it up all manually, and I didn&rsquo;t like how Jekyll made my website feel like
+an entire Ruby project - I had to track <code>.ruby-version</code> and Gemfile just to be able to set it up
+again reliably.</p>
+<p>(And go through an entire install <code>rbenv</code>, <code>rbenv install</code>, <code>bundle install</code> cycle first as well.)</p>
+<p>This time around deploying is just running a script (provided in the Hugo docs, even) locally, and
+it fits in source control alongside the content. There isn&rsquo;t anything to worry about
+dependency-wise, too, since Hugo&rsquo;s just a single binary.</p>
+<p>It&rsquo;s kind of fitting that, just as I started with Ruby and eventually transitioned to Go while at
+work, my personal site&rsquo;s done the same.</p>
+<p>There&rsquo;s also no analytics of my own (I&rsquo;m not sure what if anything GitHub has on their side), and
+hence no JavaScript of any sort. The CSS for this is a whole lot simpler too, since we&rsquo;re not doing
+the adaptive sidebar thing any more.</p>
+<p>Let&rsquo;s see how this goes.</p>
+
+    </div>
+  </div>
+</body>
+
+</html>

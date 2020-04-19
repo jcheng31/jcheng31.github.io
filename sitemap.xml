@@ -4,16 +4,21 @@
   
   <url>
     <loc>https://www.ayulin.net/</loc>
-    <lastmod>2017-06-17T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://www.ayulin.net/categories/.net-core/</loc>
-    <lastmod>2017-06-17T00:00:00+00:00</lastmod>
+    <lastmod>2020-04-19T13:38:00+08:00</lastmod>
   </url>
   
   <url>
     <loc>https://www.ayulin.net/blog/</loc>
+    <lastmod>2020-04-19T13:38:00+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.ayulin.net/blog/2020/hello-hugo./</loc>
+    <lastmod>2020-04-19T13:38:00+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.ayulin.net/categories/.net-core/</loc>
     <lastmod>2017-06-17T00:00:00+00:00</lastmod>
   </url>
   
