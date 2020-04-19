@@ -40,6 +40,11 @@ blockquote {
   overflow: auto;
 }
 
+.wrapper {
+  margin-top: 24px;
+  margin-bottom: 48px;
+}
+
 .header p {
   margin: 0;
   line-height: 1.2;
