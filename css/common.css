@@ -1,0 +1,73 @@
+.no-link-effect {
+  text-decoration: inherit;
+  color: inherit;
+}
+
+.no-link-effect:hover, .no-link-effect:active {
+  text-decoration: inherit;
+  color: inherit;
+}
+
+.wrapper {
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+hr {
+  border: 0;
+  border-top: 1px solid #eee;
+}
+
+.pagination {
+  padding: 0;
+}
+
+.pagination li {
+  list-style-type: none;
+  display: inline;
+}
+
+blockquote {
+  color: #444;
+  border-left: 4px solid #eee;
+  padding-left: 6px;
+}
+
+.highlight {
+  border-left: 8px solid #eee;
+  padding-left: 6px;
+  overflow: auto;
+}
+
+.header p {
+  margin: 0;
+  line-height: 1.2;
+}
+
+.header .contact {
+  height: 36px;
+}
+
+.header .contact a:hover {
+  text-decoration: underline;
+}
+
+.header .author {
+  font-size: 110%;
+}
+
+.header .author a {
+  color: black;
+}
+
+.header .profile-pic {
+  float: left;
+  height: 36px;
+  margin-right: 6px;
+}
+
+.header .profile-pic img {
+  height: 100%;
+  border-radius: 24px;
+}

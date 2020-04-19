@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta property="fb:admins" content="jerome.cheng">
+  <title>Windows Phone 8.1 - ayulin.net</title>
+
+  <link href="https://fonts.googleapis.com/css?family=Lato:400,900" rel="stylesheet">
+  <link href="/css/typography.css" rel="stylesheet">
+  <link href="/css/common.css" rel="stylesheet">
+  <link href="/css/blog.css" rel="stylesheet">
+
+  <link rel="alternate" type="application/rss+xml" href="/blog/index.xml" title="ayulin.net" />
+
+  <link rel="shortcut icon" href="/profile.jpg">
+</head>
+
+<body>
+  <div class="wrapper">
+    <div class="header">
+  <div class="profile-pic">
+    <a href="/">
+      <img src="/profile.jpg" />
+    </a>
+  </div>
+
+  <div class="contact">
+    <p class="author">
+      <a href="/">ayulin.net</a>
+    </p>
+
+    <p>
+      <a href="/about"><small>About</small></a>
+
+      
+      <a href="https://twitter.com/Ayulin"><small>Twitter</small></a>
+      
+
+      
+      <a href="https://github.com/jcheng31"><small>GitHub</small></a>
+      
+    </p>
+  </div>
+</div>
+
+    <div class="post-header">
+  <h5 class="subtle">8 May 2014</h5>
+  <h1><strong>Windows Phone 8.1</strong></h1>
+  <h2 class="subtitle">Thoughts about an OS.</h2>
+</div>
+
+    <div class="post-body">
+      <p>Windows Phone 8.1&rsquo;s been out in near-final state through the <a href="https://dev.windowsphone.com/en-us/develop/devpreview">Preview for
+Developers</a> program for
+about three weeks now. Though there&rsquo;re a lot of new features and changes, I&rsquo;m
+not going to go over all of them in detail; by now there are loads of other
+articles and posts available which would do a much better job. These are just my
+thoughts on things I came across.</p>
+<p>I&rsquo;m not well-versed in the subtleties of either Android or iOS in their current
+state. The last version of Android I used was either 2.1 or 2.2 in
+unofficial-ROM form (on a device which was a flagship phone before the Nexus One
+dumped it into the mid-to-low-end category), and I haven&rsquo;t used iOS on a phone
+at all. Many of the things that are new in WP8.1 may very well have been
+introduced to them a while ago; I wouldn&rsquo;t know, and I&rsquo;m not claiming any
+platform is better or worse than the others.</p>
+<hr>
+<p>Let&rsquo;s talk about the developer preview program first. It uses the regular (I
+believe) Windows Update-based mechanism to actually deliver the update, but it&rsquo;s
+not the same as the version you&rsquo;d get with a new device or by waiting for
+manufacturers to officially release it. It&rsquo;s near-final code, and it&rsquo;s just the
+OS update alone without any hardware-specific firmware updates that
+manufacturers might include.</p>
+<p>It seems most people who tried did manage to update without any issues, though
+it didn&rsquo;t work out as well for me. Wi-Fi and mobile data didn&rsquo;t work afterwards,
+which was only resolved by hard-resetting the phone, wiping everything from it.
+Signing back in automatically restored my apps and text messages from <em>the
+cloud</em>, though apps didn&rsquo;t have their data backed up and I had to redo my Start
+screen layout.</p>
+<p>Funnily enough, app data and Start screen layouts are now both backed up to <em>the
+cloud</em> in WP8.1.</p>
+<p>Once everything was back up and running, my first impression was that it felt
+kind of strange. It&rsquo;s not like changing platforms and having to get used to
+moving to an entirely new device and OS: the core look and feel hasn&rsquo;t changed,
+and most things work the way they used to. Having new features be simultaneously
+familiar but foreign caused a kind of disconnect - they weren&rsquo;t things I had
+before and so they seemed out of place, but they didn&rsquo;t look or feel like they
+didn&rsquo;t belong.</p>
+<p>There was one thing that did require relearning, which contributed to the
+&ldquo;familiar but foreign&rdquo; feel. Previously, notifications could be told apart by
+the way in which the phone vibrated when they triggered: SMS used a single, long
+pulse, emails triggered two short pulses, and apps fired off a medium-length
+pulse followed by two quicker ones. When my phone was on silent, I used to
+determine if something was worth checking based on that vibration pattern: SMS,
+apps, then email, in decreasing order of priority. Everything now uses the
+medium-quick-quick pattern, so there&rsquo;s no longer a way to tell things apart by
+feel alone.</p>
+<p>The reason for this change is probably the unification of notifications into the
+new and long-awaited notification centre. It shares the name - Action Centre -
+with its closest equivalent feature in Windows, though its namesake there is
+only really for certain system messages. It&rsquo;s essentially the same &ldquo;window
+shade&rdquo; that Android pioneered, listing all notifications after being dragged
+down from the top of the screen. This was the only real thing I missed from
+Android, so it&rsquo;s really nice to finally have once more.</p>
+<figure>
+    <img src="./images/1.png"
+         alt="Screenshot of the Windows Phone 8.1 notification pane."/> 
+</figure>
+
+<p>I like that the battery percentage is displayed when
+you start to bring it down, which let me do away with an app I had pinned to
+Start just to display that. I can also see it without having to unlock the
+phone, which is great.</p>
+<p>A nice side-effect of all notifications being unified is that any notification
+at all, regardless of source - individual apps, email accounts, or SMS - can
+now be customised from within the OS&rsquo; settings. That means the ability to toggle
+the pop-over toast notifications, vibration, and sound on a per-<em>thing</em> basis.
+Even better is the ability to choose custom notification tones for everything
+from one place, which I really like: I&rsquo;ve got different tones for each email
+account now, and it&rsquo;s finally possible to audibly tell which app has triggered a
+notification.</p>
+<p>The last update to WP8, Update 3, gave developers the ability to specify custom
+notification tones, which in theory would allow the same thing to be done from
+within the app itself; in reality, few apps bothered at all. Out of all the ones
+I use, only the Facebook app (made by Microsoft themselves) used a custom
+notification tone, and didn&rsquo;t let users customise it. That&rsquo;s no longer an issue
+now, and it also removes the need for developers to spend time on custom
+notification pickers.</p>
+<p>Though as mentioned, it&rsquo;s not like much time was spent on it before.</p>
+<p>The Action Centre was easily the thing I was most looking forward to in this
+update, and it did thankfully live up to expectations. Though there are APIs for
+apps to write and remove entries silently, out of the box any toast notification
+just gets stuck there under an app&rsquo;s own header; it works without the need for
+apps to specifically support it, as it should.</p>
+<p>Something else I was looking forward to was the ability to display more tiles on
+the Start screen. When WP8 Update 3 came out, it brought support for phones with
+bigger screens: if your phone had a screen larger than a certain size, a third
+column of tiles would be displayed on Start, making it three medium tiles (six
+small, or two-and-a-half large) wide. That meant things wouldn&rsquo;t look huge as
+they would with the standard two-wide layout, and you&rsquo;d be able to have more
+tiles available at once.</p>
+<p>WP8.1 lets you turn this feature on and off on smaller devices like mine, though
+it can&rsquo;t be disabled on the larger ones. In a previous draft I&rsquo;d written about
+how I found things too small and ended up leaving it off; I&rsquo;ve since tried
+putting a little more thought into laying things out, and came up with something
+which I think works well.</p>
+<figure>
+    <img src="./images/2.png"
+         alt="Extended screenshot of my Windows Phone Start screen layout."/> 
+</figure>
+
+<p>(The Battery Saver and Data Sense tiles actually do display the actual
+battery level and signal strength - I just didn&rsquo;t take that screenshot at the
+same time as the top-most one.)</p>
+<p>I&rsquo;m still kind of on the fence about this one, but it&rsquo;s definitely growing on me
+now that I&rsquo;ve found a layout I like. At the very least, it&rsquo;s nice to have the
+option available.</p>
+<hr>
+<p>As an aside: it&rsquo;s kind of ridiculous how large some phones are getting these
+days. When I got my Lumia 920 (with a nowadays &ldquo;small&rdquo; 4.5-inch screen) the
+first thing I thought was &ldquo;wow, this thing is huge&rdquo;.</p>
+<p>Times change and all, but still. There&rsquo;re also ridiculous screen resolutions on
+some devices too: full-on 1440p. On a phone. 600+ DPI. <em><strong>Seriously?</strong></em></p>
+<p>I&rsquo;m almost convinced things like that are just so manufacturers can show off,
+and less about there being any tangible benefits for users.</p>
+<hr>
+<p>I didn&rsquo;t initially understand the fuss over being able to set a background image
+that displays &ldquo;behind&rdquo; the tiles - the tiles act akin to window panes looking
+in on the picture you chose, with a parallax effect when you scroll through them -
+though it really is quite slick. It goes a long way towards making things
+feel fresh again after having all the tiles be just a single colour for so long.</p>
+<p>I also didn&rsquo;t really think Cortana was going to be as useful as it turned out to
+be. It&rsquo;s only officially available in the US, though changing the phone&rsquo;s region
+and language will enable it. A whole lot of things fall under its purview, which
+turned out to include my second most-anticipated feature: Quiet Hours. It&rsquo;s
+essentially Do Not Disturb from iOS, and disables any and all notifications -
+incoming calls included - while active. You can also specify an &ldquo;inner circle&rdquo;
+of contacts who get let through any time they call or SMS when it&rsquo;s enabled, and
+optionally have it automatically SMS anyone who gets rejected to let them know
+you&rsquo;re &ldquo;busy&rdquo;. I think it&rsquo;s better to leave that abstracted away from anyone
+trying to contact me, so I left it off.</p>
+<p>I also manage to constantly forget I have it set to automatically trigger at
+night: I&rsquo;ll be sitting at the computer just after it turns on and wonder why I
+stopped receiving email or Facebook message notifications. You can also have it
+trigger during calendar events marked as &ldquo;busy&rdquo;, though I opted out of this
+after it lead to inadvertently ignoring a classmate during a lecture. This
+wouldn&rsquo;t be an issue if everyone still used SMS (since inner circle contacts
+could break through), but chat apps like WhatsApp or Facebook Messenger don&rsquo;t
+have that option and get blocked entirely. That&rsquo;s one place I&rsquo;d like to see
+improved, though it&rsquo;d require both the ability for apps to hook deeper into the
+OS&rsquo; contacts system and for developers to actually bother to do so.</p>
+<p>Cortana also does something rather subtle which I thought was pretty cool:
+things which look like a date or time in SMS or emails get underlined, and
+tapping on them brings up the ability to add them as a calendar appointment.
+It&rsquo;s fairly good at detecting timings, with explicit date/time combinations
+working as you&rsquo;d expect, but also picking out things like &ldquo;tmr 8pm&rdquo; and even
+named events like &ldquo;Mother&rsquo;s Day&rdquo;.</p>
+<p>Reminders (and in particular, the location-based ones) are something I found
+really useful, and which I actually use the voice recognition for. It&rsquo;s really
+convenient to use voice, and though it might not necessarily be quicker than
+doing it manually, it does need a lot less effort.</p>
+<video loop="loop" autoplay="autoplay" muted="muted">
+  <source src="./images/3.mp4" type="video/mp4" />
+</video>
+<p>Voice is a little awkward to use in public, though, so I end up just typing out
+the same thing instead - anything that can be done by voice can be done by
+typing, which is nice. Since the keyboard now has gesture/shape-writing (or
+whatever it&rsquo;s called) too, that&rsquo;s fairly quick as well.</p>
+<p>I remember installing the Swype beta when it first came out onto my HTC Hero,
+and not being convinced that it was any faster than typing. My conclusion back
+then was that it was definitely superior if you were only able to use one hand,
+but if you had both hands available typing normally would beat it. Now that I&rsquo;ve
+tried swiping a little longer, I&rsquo;m not so sure.</p>
+<p>Swiping does seem much quicker than tapping things out character-by-character,
+but it also means you&rsquo;re entirely reliant on autocorrect. When it works (which,
+granted, is most of the time) it works really well, but it&rsquo;s not as easy to
+recover from mistakes as when you&rsquo;re typing. If it&rsquo;s a simple incorrect
+prediction it&rsquo;s fairly easy to resolve - tap and choose the correct word -
+but the &ldquo;false start&rdquo; where I realise I started off swiping the wrong letters
+brings everything to a crashing halt. There&rsquo;s a pause when the realisation sets
+in, then the time taken to delete the entered characters. I&rsquo;ve started to just
+&ldquo;blindly&rdquo; swipe the entire sentence out and correct mistakes afterwards, which
+has helped a lot there.</p>
+<p>Two other changes to the keyboard I thought were worth mentioning: you can
+select a word then tap shift to rotate through capitalisation (lower, Upper,
+ALL) which is very nice, and autocorrect now suggests emoji, which is kind of
+amusing.</p>
+<hr>
+<p>New features weren&rsquo;t the only thing WP8.1 brought, though: there are also a
+couple of ecosystem-related changes which I thought were interesting. The first
+was the introduction of so-called Universal Apps. The Windows Runtime introduced
+with Windows 8 is now also available for the phone, which lets developers easily
+build apps for the two platforms. That was possible before, but not exactly in
+the same way or to the same extent as Universal Apps allow.</p>
+<p>You could package common code that would run on any platform into libraries that
+could be reused, but that was basically it. Universal Apps let you share assets
+like images and even entire pages of the UI. Instead of having two entirely
+separate projects which depend on some common libraries, you can now have a
+single project that targets both platforms, with a shared common core base. <sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup></p>
+<p>It&rsquo;s not quite &ldquo;write once, run anywhere&rdquo; (nor should it be, with there being
+platform-specific traits that should be handled) - but it is &ldquo;buy once, run
+anywhere&rdquo;. Users can buy (where here &ldquo;buy&rdquo; also refers to free apps) an app on
+their phone and get a license to the version which runs on their PC, or vice
+versa. And that&rsquo;s really, really cool; I&rsquo;ve always liked the idea of being able
+to do something on your computer and pick up where you left off on your tablet
+or phone. <sup id="fnref:2"><a href="#fn:2" class="footnote-ref" role="doc-noteref">2</a></sup></p>
+<p>A perhaps less-mentioned change was the relaxation of the platform&rsquo;s hardware
+requirements. When &ldquo;Windows Phone 7 Series&rdquo; was first announced years ago, one
+of the larger pull factors it had (to me) was the idea of a standardised
+hardware base: a set of strict, minimum requirements that all devices had to
+meet.</p>
+<p>I really liked the idea. It seemed to be a good blend between the uniform
+experience that Apple offered and the large hardware diversity Android had: pick
+from a selection of devices (like Android) and get a guaranteed baseline
+experience (like the iPhone) regardless of your choice. Apps would run on
+anything, and they&rsquo;d run with decent performance - something which wasn&rsquo;t the
+case with my Android phone - and this was true for quite a while.</p>
+<hr>
+<p>There are a number of reasons to relax hardware requirements. One would be to
+allow new types of devices - the low-RAM spec introduced with WP7.5 is a great
+example of this. Though it introduced tangible restrictions to the user
+experience (apps couldn&rsquo;t run background agents, and memory restrictions meant
+some wouldn&rsquo;t run and were hence prevented from even installing), it also opened
+up the low-end market to the platform. Even today, low-end devices are the
+best-selling Windows Phones globally. <sup id="fnref:3"><a href="#fn:3" class="footnote-ref" role="doc-noteref">3</a></sup></p>
+<p>Another is linked closely with the previous reason, but is also likely to be the
+relevant one for our current situation: to court manufacturers and make it
+easier for them to build Windows Phones, with the underlying premise being &ldquo;if
+it&rsquo;s easy they will come.&rdquo; The latest change to the hardware requirements drops
+almost all the buttons: Start, Back, and Search can now be provided by the OS
+the same way Android does, as soft buttons displayed on the screen, and so they
+aren&rsquo;t required to be done in hardware (either physical or capacitive). The
+camera button on the side is also made optional, leaving power and volume
+up/down left as the only hardware button requirements.</p>
+<p>Taking all the buttons which were unique to the platform and making them
+optional makes it easier for manufacturers to take their Android-running
+hardware and stick Windows Phone on it instead <sup id="fnref:4"><a href="#fn:4" class="footnote-ref" role="doc-noteref">4</a></sup>, which is probably what Microsoft&rsquo;s going for - the more
+hardware choices the better, right? Losing the camera button kind of stings,
+though; I&rsquo;m sure any phone which wants to tout imagery as a key feature (like,
+say, the Lumia 1020&rsquo;s hypothetical successor) will include one, but it&rsquo;s not
+guaranteed any longer. It also means losing the ability to wake the phone
+straight to the camera, which is really handy.</p>
+<p>The bar&rsquo;s been lowered, but I&rsquo;m curious as to how many will try jumping.</p>
+<section class="footnotes" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn:1" role="doc-endnote">
+<p>To be more accurate, it&rsquo;s actually a
+single Visual Studio solution with three projects: one targeting Windows, one
+targeting the phone, and the shared common project. <a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:2" role="doc-endnote">
+<p>This is something web apps purport to
+do, but I don&rsquo;t think any have really achieved it yet. (I also have other issues
+with relying too much on the web, which is perhaps a better topic for another
+time.) <a href="#fnref:2" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:3" role="doc-endnote">
+<p>The low-end experience also isn&rsquo;t as
+tough today. Windows Phone 8 bumped the minimum spec to 512MB of RAM (the same
+amount which was &ldquo;high end&rdquo; for Windows Phone 7), dropped the ban on background
+agents, and lowered (but kept) the memory restrictions. I think some games still
+won&rsquo;t install or run on low-end phones, but having background agents is a huge
+win since you aren&rsquo;t losing functionality from the things you can run. <a href="#fnref:3" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:4" role="doc-endnote">
+<p>Okay, it&rsquo;s not exactly that easy.
+You&rsquo;ve got drivers to write and many other things to do and test, though it is
+theoretically possible now. <a href="#fnref:4" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+</ol>
+</section>
+
+    </div>
+  </div>
+</body>
+
+</html>

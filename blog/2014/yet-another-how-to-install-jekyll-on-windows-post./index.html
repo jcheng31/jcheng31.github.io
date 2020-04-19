@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta property="fb:admins" content="jerome.cheng">
+  <title>Yet Another &#34;How To Install Jekyll on Windows&#34; Post. - ayulin.net</title>
+
+  <link href="https://fonts.googleapis.com/css?family=Lato:400,900" rel="stylesheet">
+  <link href="/css/typography.css" rel="stylesheet">
+  <link href="/css/common.css" rel="stylesheet">
+  <link href="/css/blog.css" rel="stylesheet">
+
+  <link rel="alternate" type="application/rss+xml" href="/blog/index.xml" title="ayulin.net" />
+
+  <link rel="shortcut icon" href="/profile.jpg">
+</head>
+
+<body>
+  <div class="wrapper">
+    <div class="header">
+  <div class="profile-pic">
+    <a href="/">
+      <img src="/profile.jpg" />
+    </a>
+  </div>
+
+  <div class="contact">
+    <p class="author">
+      <a href="/">ayulin.net</a>
+    </p>
+
+    <p>
+      <a href="/about"><small>About</small></a>
+
+      
+      <a href="https://twitter.com/Ayulin"><small>Twitter</small></a>
+      
+
+      
+      <a href="https://github.com/jcheng31"><small>GitHub</small></a>
+      
+    </p>
+  </div>
+</div>
+
+    <div class="post-header">
+  <h5 class="subtle">9 March 2014</h5>
+  <h1><strong>Yet Another &#34;How To Install Jekyll on Windows&#34; Post.</strong></h1>
+  <h2 class="subtitle"></h2>
+</div>
+
+    <div class="post-body">
+      <p><strong>Update (1st Feb 2015):</strong> Jekyll 3 beta 1 is out - if you&rsquo;re interested in running that instead,
+check out <a href="https://www.ayulin.net/blog/2015/jekyll-3-beta-on-windows/">this post.</a></p>
+<p><strong>Update (12th May 2014):</strong> I came across <a href="http://jekyll-windows.juthilo.com/">this</a> linked from within an issue on Jekyll&rsquo;s GitHub repository, which is much more up to date (and well-maintained) than this post.</p>
+<hr>
+<p>It seems there&rsquo;s no shortage of these. (I guess this doesn&rsquo;t help in that respect either.)</p>
+<p>I noticed a bunch of other guides (including <a href="http://www.madhur.co.in/blog/2011/09/01/runningjekyllwindows.html">the one</a> linked from Jekyll&rsquo;s site itself) were fairly out of date, so here&rsquo;s my no-nonsense take on how to get <a href="http://www.jekyllrb.com">Jekyll</a> up and running on Windows as quickly as possible.</p>
+<blockquote>
+<p>Well, okay, maybe with some nonsense. I&rsquo;ve included some side comments in blockquotes like this. They aren&rsquo;t really part of the instructions, so feel free to skip them if you&rsquo;re in a rush.</p>
+</blockquote>
+<blockquote>
+<p>The motivation for writing this was because I had to do this twice recently: once on a new computer, and once on my existing one after clearing out the <a href="http://www.madhur.co.in/blog/2013/07/20/buildportablejekyll.html">PortableJekyll</a> bundle.</p>
+</blockquote>
+<blockquote>
+<p>The bundle worked for the most part, though I ran into issues when trying to get Nokogiri installed. So I decided to just nuke it and start from scratch.</p>
+</blockquote>
+<hr>
+<h2 id="1-install-ruby">1. Install Ruby</h2>
+<p>Grab Ruby and the Development Kit from <a href="http://rubyinstaller.org/downloads/">here</a>. The site recommends Ruby 1.9.3, so I went with that; I&rsquo;d tried 2.0.0 previously and ran into some issues.</p>
+<p>In the Ruby installer, tick both <strong>Add Ruby executables to your PATH</strong> and <strong>Associate .rb and .rbw files with this Ruby installation</strong>. (The latter may not strictly speaking be necessary for Jekyll, but I suppose it&rsquo;s useful if you want to do Ruby development in the future.)</p>
+<p>I left the installation path as <code>C:\Ruby193</code>. Wherever you put it, <strong>make sure there&rsquo;re no spaces in the name.</strong></p>
+<h2 id="2-install-rubys-development-kit">2. Install Ruby&rsquo;s Development Kit</h2>
+<p>The Ruby DevKit installer&rsquo;s actually just an archive extractor. The files it extracts need to be saved somewhere permanent, though: I created a <code>DevKit</code> folder inside <code>C:\Ruby193</code> and extracted them there.</p>
+<p>To actually install it, just open up Command Prompt or PowerShell, use <code>cd</code> to navigate to the folder it&rsquo;s extracted to, then run <code>ruby dk.rb init</code> and <code>ruby dk.rb install</code>.</p>
+<h2 id="3-install-jekyll">3. Install Jekyll</h2>
+<p><a href="https://github.com/jekyll/jekyll/issues/1948"><strong>Jekyll 1.4.3 is broken on Windows.</strong></a> So we&rsquo;ll have to install 1.4.2.</p>
+<p>Again in the shell of your choice (in any folder), run <code>gem install jekyll -v 1.4.2</code>.</p>
+<blockquote>
+<p>If you&rsquo;re reading this from <em>The Future!</em> where a newer version of Jekyll is out, <code>gem install jekyll</code> should work instead. The rest of the instructions here assume 1.4.2, though, so other things may not work.</p>
+</blockquote>
+<blockquote>
+<p>Sadface.</p>
+</blockquote>
+<h2 id="4-fix-jekyll-serve---watch">4. Fix <code>jekyll serve --watch</code></h2>
+<p>I&rsquo;m pretty sure this is broken out of the box for everyone, though most guides seem to treat it as an issue that only affects a few.</p>
+<p>Thankfully, it&rsquo;s fairly simple to fix. Run <code>gem install wdm</code> and you&rsquo;re set.</p>
+<blockquote>
+<p>Some other guides say you have to edit a gemfile somewhere, but that doesn&rsquo;t seem to be necessary any more.</p>
+</blockquote>
+<p><strong>If you&rsquo;re just interested in a simple blog or site, you&rsquo;re basically all set.</strong> If you want code syntax-highlighting, though, read on.</p>
+<h2 id="5-install-python">5. Install Python</h2>
+<p>Grab Python 2.7.6 <a href="http://www.python.org/downloads/">here.</a> I left the default installation options as is.</p>
+<p><strong>And now you&rsquo;re done.</strong></p>
+<blockquote>
+<p>A number of guides go on to guide you through installing Pygments using Python&rsquo;s package manager, though this too seems to no longer be necessary. It appears that installing Jekyll now installs it as well, so Python&rsquo;s the only thing you need.</p>
+</blockquote>
+<h2 id="one-last-error">One Last Error</h2>
+<p>It seems there&rsquo;s a <code>warning: cannot close fd before spawn</code> error that comes up after running <code>jekyll build</code> or <code>jekyll serve</code>, followed by <code>'which' is not recognized as an internal or external command,</code> <code>operable program or batch file.</code></p>
+<p>I don&rsquo;t have a solution for this, but it also doesn&rsquo;t seem to cause any problems - everything still builds and works properly. Other guides seem to indicate it&rsquo;s caused by an issue with Pygments, though the errors there also involve a <code>Liquid Exception</code> (which doesn&rsquo;t happen now.)</p>
+
+    </div>
+  </div>
+</body>
+
+</html>

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta property="fb:admins" content="jerome.cheng">
+  <title>Working with WSL - ayulin.net</title>
+
+  <link href="https://fonts.googleapis.com/css?family=Lato:400,900" rel="stylesheet">
+  <link href="/css/typography.css" rel="stylesheet">
+  <link href="/css/common.css" rel="stylesheet">
+  <link href="/css/blog.css" rel="stylesheet">
+
+  <link rel="alternate" type="application/rss+xml" href="/blog/index.xml" title="ayulin.net" />
+
+  <link rel="shortcut icon" href="/profile.jpg">
+</head>
+
+<body>
+  <div class="wrapper">
+    <div class="header">
+  <div class="profile-pic">
+    <a href="/">
+      <img src="/profile.jpg" />
+    </a>
+  </div>
+
+  <div class="contact">
+    <p class="author">
+      <a href="/">ayulin.net</a>
+    </p>
+
+    <p>
+      <a href="/about"><small>About</small></a>
+
+      
+      <a href="https://twitter.com/Ayulin"><small>Twitter</small></a>
+      
+
+      
+      <a href="https://github.com/jcheng31"><small>GitHub</small></a>
+      
+    </p>
+  </div>
+</div>
+
+    <div class="post-header">
+  <h5 class="subtle">10 May 2017</h5>
+  <h1><strong>Working with WSL</strong></h1>
+  <h2 class="subtitle">Not there yet, but so promising.</h2>
+</div>
+
+    <div class="post-body">
+      <p>Bash on Ubuntu on Windows, or the Windows Subsystem for Linux (or WSL), is a little over one year
+old now, and still a mouthful to say. When it was announced, I tweeted:</p>
+<blockquote class="twitter-tweet"><p lang="en" dir="ltr">If this Bash thing means I don&#39;t need to actually use OS X/Linux to do the things I use OS X/Linux for, that&#39;d be awesome.</p>&mdash; Ayulin (@Ayulin) <a href="https://twitter.com/Ayulin/status/715219838243905536?ref_src=twsrc%5Etfw">March 30, 2016</a></blockquote>
+<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+<p>Are we there yet? No. Not quite. It&rsquo;s still quite impressive, though, and we&rsquo;re a lot closer to it now than at launch.</p>
+<hr>
+<p>We use macOS at work, with the exception of one guy who&rsquo;s rocking Ubuntu instead - there was another, but he recently left. It works.</p>
+<p>I like Windows better. (Surprise.)</p>
+<p>After WSL was announced, I grabbed the first Insider Preview build that included it, and tried replicating my work setup using it. It didn&rsquo;t work out - some things installed, but other things wouldn&rsquo;t. That there were rough edges was to be expected: it was the first beta release.</p>
+<p>But it&rsquo;s been a year, and I&rsquo;ve been wanting to give things another try. I installed the newest Insider Preview build again - the latest WSL improvements can only be found there - and gave it a shot. It&rsquo;s still in beta, but how had things changed?</p>
+<blockquote>
+<p>At the time I started, the Creators Update hadn&rsquo;t been released yet. The build I was using became the final one, and I&rsquo;m still using it right now; I&rsquo;ve not installed any Insider builds since.</p>
+</blockquote>
+<h2 id="shells-and-terminal-emulators">Shells and Terminal Emulators.</h2>
+<p>I use zsh with oh-my-zsh, and they both installed just fine. One thing that doesn&rsquo;t seem to work is oh-my-zsh&rsquo;s vi_mode status display in powerlevel9k. It just doesn&rsquo;t show up at all, and I&rsquo;m not sure why. The rbenv display <em>does</em> work, though, and it doesn&rsquo;t for me on macOS. You win some, you lose some.</p>
+<p>Other things that I haven&rsquo;t gotten working are getting custom fonts (so I can have a powerlevel9k-compatible font) and colour schemes (i.e. Solarized). You have to edit the registry (yes, really) to get custom fonts working in the stock Windows console, though the few that I tried didn&rsquo;t work. Custom colours also seems to be most easily done through the registry, though the <a href="https://github.com/neilpa/cmd-colors-solarized">Solarized variant I found</a> isn&rsquo;t the best; it&rsquo;s mostly there, though there&rsquo;re some differences from what I have in iTerm 2 on macOS.</p>
+<p>I originally used ConEmu, which <em>does</em> have built-in custom font support and colour schemes, though it also comes with its own set of trade-offs. Its built-in Solarized themes aren&rsquo;t the same either, and I didn&rsquo;t poke at the settings enough to get mouse support for things like tmux working. I&rsquo;ve not fully decided on whether to stick with the default console or use ConEmu, though I&rsquo;m leaning towards the latter.</p>
+<h2 id="getting-things-running">Getting things running.</h2>
+<p>The stack we use is mostly Ruby, some Golang, and a smattering of CoffeeScript. Postgres is our DB, Redis is used here and there as a cache (or a DB, too), and RabbitMQ is used to glue things together and get information to where it needs to be. I&rsquo;d need all of these running locally to be able to get work done.</p>
+<p>Most of the services I touch right now are in Ruby, so that&rsquo;s what I tried first. I installed rbenv and ruby-install without issue, and was able to download and compile the Ruby versions I needed. This was one of the things that didn&rsquo;t work at launch, since there was a very low RAM limit on the WSL environment - evidently, it&rsquo;s been fixed since. Bundler installs fine, and I didn&rsquo;t have any issues <code>bundle install</code>ing anything.</p>
+<p>By which I mean none that couldn&rsquo;t be resolved by some searching, and following the instructions as if I were actually using Ubuntu. Par for the course.</p>
+<p>Next up was Postgres. I followed the <a href="https://www.postgresql.org/download/linux/ubuntu/">instructions</a> to add its apt repository, then <code>apt install</code>ed it. It took some time to figure out how to actually start and run it (<code>pg_clusterctl</code> instead of just <code>pg_ctl</code> like I was used to on macOS), and some more fiddling with users, but it works.</p>
+<p>RabbitMQ was easy: <code>sudo apt install rabbitmq-server</code>. Done. Unlike when I installed it with homebrew on macOS, though, I had to run <code>rabbitmq-plugins enable rabbitmq_management</code> to get the web interface working, but that worked too.</p>
+<p>Redis was fairly straightforward, too. <code>git clone</code> the repository, and <code>make</code>. There were some <code>apt install</code>s to get the actual build tools, though I&rsquo;d done those a while ago - <code>build-essential</code> is probably one. Everything compiles and runs just fine.</p>
+<p>So all the dependencies are there, and I can run everything. Cool.</p>
+<h2 id="editors">Editors?</h2>
+<p>I use Visual Studio Code for its plugin support, and for its better performance compared to Atom; Sublime still beats both of them easily in the performance department, but its plugins aren&rsquo;t as nice.</p>
+<p>There&rsquo;s something I call the &ldquo;Vagrant problem&rdquo;, which WSL suffered from at the start. I tried using Vagrant a while ago, since it promised a lot of what WSL does: use your Windows-based tools, with the ability to run your code (and other dependencies) in Linux. It sounded great, and almost lives up to the promise. The issue is that although your host OS tools can edit files in the guest VM through a shared folder (or some other mechanism), they usually can&rsquo;t execute anything in the VM without fiddling. That means your Windows-based editor plugins can&rsquo;t talk to your Linux-based linters, and so on.</p>
+<p>It&rsquo;s a similar story now with WSL. There&rsquo;s greater interop as part of the Creators Update in that you can run Windows programs from within the WSL environment and Linux binaries from outside too, though you still have the same issue with the editor plugins: out of the box, without tooling around, your editor&rsquo;s not going to talk to the tools in &ldquo;Linux&rdquo;. In this case it&rsquo;s more an issue of support than a technical limitation - the editor and plugins recognise that they&rsquo;re running on Windows, and aren&rsquo;t aware of the WSL environment. In an ideal world, there would be a &ldquo;WSL mode&rdquo; in the editor which would automagically hook into WSL and get everything working, or at the very least the plugins would have support for WSL. I&rsquo;m not familiar enough with the way VS Code (or any editor) works to know how hard this would be.</p>
+<p>So. The situation&rsquo;s good enough for things like maintaining this site - there aren&rsquo;t any plugins I use for this which need to talk to tools inside WSL - but not good enough for work.</p>
+<p>What can we do? Well, if we run an X Server in Windows, we can try to just run the Linux version of the editor. I did that with <a href="https://sourceforge.net/projects/vcxsrv/">VcXsrv</a>, and it works fairly well&hellip; with Sublime. Both VS Code and Atom fail to launch with some dbus issue which I couldn&rsquo;t get around. To be fair, running GUI apps <strong>is not</strong> what WSL was designed or intended to do - that it kind of works is a nice bonus, but also one that would be unnecessary (for me) if the aforementioned editor support were there.</p>
+<p>I had to add some arguments to the VcXsrv shortcut to get Colemak working (<code>xkbmodel pc105 -xkblayout us -xkbvariant colemak</code>), and DPI scaling is an issue I haven&rsquo;t figured out yet. Windows handles the scaling by default, which makes everything the correct size but pixelated. Disabling scaling makes the text clear, but everything becomes tiny. I can bump the editor font size up in Sublime so code itself looks okay, but the UI remains way too small. Apart from that, it works great: all the plugins work out of the box, with no further hacking needed.</p>
+<p>(This also wouldn&rsquo;t be an issue if my laptop didn&rsquo;t have a hiDPI screen.)</p>
+<h2 id="concluding-performance">Concluding Performance</h2>
+<p>It could be better. A lot better.</p>
+<p>It&rsquo;s not terrible for things like Jekyll, and it&rsquo;s so much easier to get that up and running in WSL than it is on actual Windows that I&rsquo;ve switched over to it entirely for this site. Actual work stuff runs significantly slower, though - running the test suite for one of our services takes about a minute or so in an Ubuntu VM (or on my work iMac), but upwards of ten in WSL.</p>
+<p>Yikes.</p>
+<p>I&rsquo;m not really sure what the exact bottleneck is. The tests involve Postgres/Redis/RabbitMQ as well, so it&rsquo;s not solely Ruby executing, but even things which <em>are</em> just Ruby running are slower - think half a minute instead of ten seconds.</p>
+<p>In all, everything <em>works</em>, but slower than it would in a native environment. It&rsquo;s quicker to spin up a WSL terminal than a full VM, and it&rsquo;s way more battery-friendly, but running things takes more time.</p>
+<p>That&rsquo;s the main reason I don&rsquo;t bother using it more for actual coding at work. I can SSH into our servers to fix things if they break, since that&rsquo;s fast enough, but the &ldquo;test&rdquo; part of the code-test cycle takes too long to feel practical. It could just be the combination of things we use in our stack, but it&rsquo;s still a problem. For now.</p>
+<p>Hopefully one day it&rsquo;ll be just as good as native.</p>
+    </div>
+  </div>
+</body>
+
+</html>

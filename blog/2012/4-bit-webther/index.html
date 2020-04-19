@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta property="fb:admins" content="jerome.cheng">
+  <title>4-bit Webther - ayulin.net</title>
+
+  <link href="https://fonts.googleapis.com/css?family=Lato:400,900" rel="stylesheet">
+  <link href="/css/typography.css" rel="stylesheet">
+  <link href="/css/common.css" rel="stylesheet">
+  <link href="/css/blog.css" rel="stylesheet">
+
+  <link rel="alternate" type="application/rss+xml" href="/blog/index.xml" title="ayulin.net" />
+
+  <link rel="shortcut icon" href="/profile.jpg">
+</head>
+
+<body>
+  <div class="wrapper">
+    <div class="header">
+  <div class="profile-pic">
+    <a href="/">
+      <img src="/profile.jpg" />
+    </a>
+  </div>
+
+  <div class="contact">
+    <p class="author">
+      <a href="/">ayulin.net</a>
+    </p>
+
+    <p>
+      <a href="/about"><small>About</small></a>
+
+      
+      <a href="https://twitter.com/Ayulin"><small>Twitter</small></a>
+      
+
+      
+      <a href="https://github.com/jcheng31"><small>GitHub</small></a>
+      
+    </p>
+  </div>
+</div>
+
+    <div class="post-header">
+  <h5 class="subtle">15 May 2012</h5>
+  <h1><strong>4-bit Webther</strong></h1>
+  <h2 class="subtitle"></h2>
+</div>
+
+    <div class="post-body">
+      <blockquote>
+<p><strong>Update (2020-04-19):</strong> 4-bit Webther is no longer available; the Yahoo! Weather API is no more.
+The links to it here have been removed, but the remainder of the post&rsquo;s text has been left
+untouched.</p>
+</blockquote>
+<p>4-bit Weather was something I started last semester break for fun - it was a simple .NET application that took in a <a href="http://developer.yahoo.com/geo/geoplanet/guide/concepts.html">Yahoo! WOEID</a> and spat out four indicators of the weather conditions at that location: hot/cold, rainy/sunny, windy/still, and humid/arid.</p>
+<p>While the basic (and let&rsquo;s face it, it is pretty basic) functionality was there, I didn&rsquo;t get around to developing it to a state where I&rsquo;d consider it complete. You had to manually look up your WOEID somewhere else if you didn&rsquo;t know it, then plug it in (though thankfully once that was done the application would remember it for you) - ideally, you&rsquo;d just type in a location, and the application would figure everything out on its own.</p>
+<p>Anyway.</p>
+<p><a href="./">4-bit Webther</a> is the same concept, rebuilt for an entirely different platform: the web. It took significantly less time to write (one and a half days, on and off) than 4-bit Weather did, in part because I&rsquo;d used the Yahoo! Weather API before (which, as it returns an RSS feed, required some parsing) but switched to using <a href="http://developer.yahoo.com/yql/">YQL</a> this time (which returns JSON instead: perfect and easy to work with in a JavaScript application.)</p>
+<p>It&rsquo;s also a lot easier to use - if you allow it to (and your browser supports it), it uses HTML5 Geolocation to get your location. If not, just type the place you want a weather forecast for, and it&rsquo;ll look it up.</p>
+<p>That&rsquo;s pretty much it. 4-bit Webther gives a glance-able overview of the weather: nothing more, nothing less. The only thing left would be to add a way to save preferences - the starting location, units (km/h and C versus mi/h and F), and the various thresholds used to determine what value each &ldquo;bit&rdquo; should have.</p>
+
+    </div>
+  </div>
+</body>
+
+</html>

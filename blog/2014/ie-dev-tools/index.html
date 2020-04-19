@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta property="fb:admins" content="jerome.cheng">
+  <title>Thanks, IE. - ayulin.net</title>
+
+  <link href="https://fonts.googleapis.com/css?family=Lato:400,900" rel="stylesheet">
+  <link href="/css/typography.css" rel="stylesheet">
+  <link href="/css/common.css" rel="stylesheet">
+  <link href="/css/blog.css" rel="stylesheet">
+
+  <link rel="alternate" type="application/rss+xml" href="/blog/index.xml" title="ayulin.net" />
+
+  <link rel="shortcut icon" href="/profile.jpg">
+</head>
+
+<body>
+  <div class="wrapper">
+    <div class="header">
+  <div class="profile-pic">
+    <a href="/">
+      <img src="/profile.jpg" />
+    </a>
+  </div>
+
+  <div class="contact">
+    <p class="author">
+      <a href="/">ayulin.net</a>
+    </p>
+
+    <p>
+      <a href="/about"><small>About</small></a>
+
+      
+      <a href="https://twitter.com/Ayulin"><small>Twitter</small></a>
+      
+
+      
+      <a href="https://github.com/jcheng31"><small>GitHub</small></a>
+      
+    </p>
+  </div>
+</div>
+
+    <div class="post-header">
+  <h5 class="subtle">18 August 2014</h5>
+  <h1><strong>Thanks, IE.</strong></h1>
+  <h2 class="subtitle">Cross-Origin fun.</h2>
+</div>
+
+    <div class="post-body">
+      <p>While updating <a href="https://jcheng31.github.io/isitonspotify/">Is it on Spotify?</a> to use the new(ish)
+Spotify Web API, I ran into an issue when testing things out locally.</p>
+<figure>
+    <img src="./images/ie-dev-tools-1.png"
+         alt="Screenshot of Firefox Aurora JS Console showing a Cross-Origin Request Blocked error."/> 
+</figure>
+
+<p>The good old <em>Cross-Origin Request Blocked</em>. I seemed to remember having the same issue when first writing the app, though it was solved by just throwing jQuery at the problem. So why was it back now?</p>
+<p>Even stranger, the problem only occurred when running locally. Everything worked fine when the app was served from GitHub Pages, which was the opposite of what I found when I searched online: everyone else seemed to only have issues after deploying to their server, despite things working locally.</p>
+<p>I thought it had might somehow have something to do with the way I was hosting it locally - just using Python&rsquo;s <code>SimpleHTTPServer</code> - though switching to <code>node-serve</code> or even Jekyll&rsquo;s <code>serve</code> (heh) didn&rsquo;t make a difference.</p>
+<p>After some more fruitless searching, I decided on a whim to fire up Internet Explorer 11 and check out the F12 Developer Tools (which <del>are, funnily enough, no longer</del> <a href="https://twitter.com/Ayulin/status/501527510471827456">totally are</a> bound to the actual F12 key). That gave an interesting series of messages, instead of just the one that Firefox Aurora did:</p>
+<figure>
+    <img src="./images/ie-dev-tools-2.png"
+         alt="Screenshot of IE11 F12 Developer Tools showing CORS errors."/> 
+</figure>
+
+<p>The second message - <code>Redirect was blocked for CORS request.</code> - was a little puzzling. Clicking on the <code>SEC7127</code> error code lead to <a href="http://msdn.microsoft.com/en-us/library/ie/dn423949">this page</a>, which had a pretty big hint:</p>
+<figure>
+    <img src="./images/ie-dev-tools-3.png"
+         alt="Screenshot of MSDN documentation showing an explanation of error code SEC7127 - &#34;The path to the CORS resource contained a redirect that violated security rules.&#34;"/> 
+</figure>
+
+<p>That was the light-bulb moment: when I&rsquo;d updated the API endpoint URL in the code, I&rsquo;d left out the protocol (just as I did when using the old Metadata API), and so the request would just end up using whatever the app had been loaded over: HTTPS when on GitHub Pages, and plain HTTP locally. It turns out that the Spotify API is served through HTTPS, though making a request to it over HTTP results in a &ldquo;correction&rdquo; by means of a redirect.</p>
+<p>A redirect that ended up being blocked for security reasons by the browser.</p>
+<p>And so everything worked fine when deployed, but not locally.</p>
+<p>The fix was simple - just changing the URL in the code to include HTTPS at the start.</p>
+<p>Thanks, IE.</p>
+    </div>
+  </div>
+</body>
+
+</html>

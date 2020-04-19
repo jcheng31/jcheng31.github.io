@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta property="fb:admins" content="jerome.cheng">
+  <title>Installing Jekyll 3 Beta on Windows - ayulin.net</title>
+
+  <link href="https://fonts.googleapis.com/css?family=Lato:400,900" rel="stylesheet">
+  <link href="/css/typography.css" rel="stylesheet">
+  <link href="/css/common.css" rel="stylesheet">
+  <link href="/css/blog.css" rel="stylesheet">
+
+  <link rel="alternate" type="application/rss+xml" href="/blog/index.xml" title="ayulin.net" />
+
+  <link rel="shortcut icon" href="/profile.jpg">
+</head>
+
+<body>
+  <div class="wrapper">
+    <div class="header">
+  <div class="profile-pic">
+    <a href="/">
+      <img src="/profile.jpg" />
+    </a>
+  </div>
+
+  <div class="contact">
+    <p class="author">
+      <a href="/">ayulin.net</a>
+    </p>
+
+    <p>
+      <a href="/about"><small>About</small></a>
+
+      
+      <a href="https://twitter.com/Ayulin"><small>Twitter</small></a>
+      
+
+      
+      <a href="https://github.com/jcheng31"><small>GitHub</small></a>
+      
+    </p>
+  </div>
+</div>
+
+    <div class="post-header">
+  <h5 class="subtle">1 February 2015</h5>
+  <h1><strong>Installing Jekyll 3 Beta on Windows</strong></h1>
+  <h2 class="subtitle">A little more effort for the bleeding edge.</h2>
+</div>
+
+    <div class="post-body">
+      <p>In a <a href="https://www.ayulin.net/blog/2014/yet-another-how-to-install-jekyll-on-windows-post./">previous post</a> I wrote about installing Jekyll 1.4.2 on Windows - at the time, the guide linked from the Jekyll site itself was way out of date. Happily, they&rsquo;ve since updated to link to a <a href="http://jekyll-windows.juthilo.com/">much better guide</a>.</p>
+<p>Still, Jekyll 3&rsquo;s first beta has just come out, and I wanted to give that a shot. I also couldn&rsquo;t get things working exactly according to the above guide, and had to fall back to Ruby 1.9.3 (instead of 2.0.0 like it recommends).</p>
+<p>So, from scratch, here&rsquo;s how to get Jekyll 3 (beta 1) up and running on Windows. Steps 1 and 2 are pretty much the same as in the old guide, except we&rsquo;re using a newer version of Ruby.</p>
+<h2 id="1-install-ruby-215">1. Install Ruby (2.1.5)</h2>
+<p>Once again, we need to grab both Ruby and the Development Kit from <a href="http://rubyinstaller.org/downloads/">here</a>. <strong>Jekyll 3 has dropped support for Ruby &lt; 2</strong>, so I went with the 64-bit Ruby 2.1.5 installer, as well as its DevKit.</p>
+<p>I ticked just <strong>Add Ruby executables to your PATH</strong> this time. The default installation path is <code>C:\Ruby21-x64</code>, which I left untouched as well.</p>
+<h2 id="2-install-the-ruby-development-kit">2. Install the Ruby Development Kit</h2>
+<p>The Ruby DevKit installer just extracts the development kit files, but they need to be kept somewhere permanent. I extracted them to <code>C:\Ruby21-x64\devkit</code> (creating the <code>devkit</code> folder in the process).</p>
+<p>To actually install the development kit, open up Command Prompt or PowerShell, <code>cd</code> to the folder it&rsquo;s extracted to, then run <code>ruby dk.rb init</code> and <code>ruby dk.rb install</code>.</p>
+<h2 id="3-fix-ssl-the-right-way">3. Fix SSL, the right way.</h2>
+<p>Out of the box, RubyGems runs into some SSL issues when you try to install anything:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">ERROR: While executing gem ... <span style="color:#000;font-weight:bold">(</span>Gem::RemoteFetcher::FetchError<span style="color:#000;font-weight:bold">)</span>
+    SSL_connect <span style="color:#008080">returned</span><span style="color:#000;font-weight:bold">=</span><span style="color:#099">1</span> <span style="color:#008080">errno</span><span style="color:#000;font-weight:bold">=</span><span style="color:#099">0</span> <span style="color:#008080">state</span><span style="color:#000;font-weight:bold">=</span>SSLv3 <span style="color:#0086b3">read</span> server certificate B: certificate verify failed <span style="color:#000;font-weight:bold">(</span>https://api.rubygems.org/specs.4.8.gz<span style="color:#000;font-weight:bold">)</span>
+</code></pre></div><p>According to various StackOverflow answers (the best source), this is because Ruby can&rsquo;t find a root certificate to trust. We can fix that by grabbing the same certificate bundle Mozilla uses, conveniently found <a href="http://curl.haxx.se/ca/cacert.pem">here</a>. I saved it in <code>C:\Ruby21-x64</code> as well.</p>
+<p>We also need make sure Ruby knows about it. To do that, go to <code>Advanced system settings</code> (on Windows 8 and above, hit <code>Win + X</code> then <code>y</code>, then click the link on the left), click <code>Environment Variables</code>, and add a System Variable with <code>SSL_CERT_FILE</code> as the name and the path to the saved bundle file as the value (<code>C:\Ruby21-x64\cacert.pem</code> if you&rsquo;re like me.)</p>
+<p>Why &ldquo;the right way&rdquo;? There were some &ldquo;solutions&rdquo; here and there that involved making RubyGems use HTTP instead of HTTPS. Just, no.</p>
+<h2 id="4-install-jekyll">4. Install Jekyll</h2>
+<p>It took a little longer, but we can now install Jekyll itself. Run <code>gem install jekyll --pre</code>, which will pull down the Jekyll beta.</p>
+<h2 id="5-install-python">5. Install Python</h2>
+<p>Just as before, this step is mainly for code syntax highlighting - however, since <code>jekyll new</code> now uses it, I don&rsquo;t really think it&rsquo;s &ldquo;optional&rdquo; as it was before. We can get Python <a href="http://www.python.org/downloads/">here.</a> I used Python 2.7.8, and left the default installation options.</p>
+<p><strong>Alternatively</strong>, you can choose to use rouge for syntax highlighting (which <a href="https://github.com/jekyll/jekyll/pull/3323">seems to be the way forward</a>, but doesn&rsquo;t seem to be the case out of the box right now.) Just add <code>highlighter: rouge</code> to your site&rsquo;s <code>config.yml</code>, and run <code>gem install rouge</code>.</p>
+<h2 id="6-optional-stop-jekyll-serve-complaining">6. (Optional) Stop <code>jekyll serve</code> complaining</h2>
+<p>At this point, Jekyll works just fine, but it&rsquo;ll complain when you run <code>jekyll serve</code>, saying to add <code>wdm</code> to your Gemfile to avoid polling for changes. We can just run <code>gem install wdm</code> instead, which fixes this globally.</p>
+<p><strong>Whew.</strong> It&rsquo;s a bit more involved than before, but at this point we&rsquo;re good to go.</p>
+<p>There&rsquo;s a follow-up <a href="https://www.ayulin.net/blog/2015/installing-nokogiri/">here</a> which deals with installing Nokogiri, which I had to do since my existing site - this one - somehow needs it. It&rsquo;s not really part of what you need for a plain Jekyll install, though, so I&rsquo;m not including it here.</p>
+
+    </div>
+  </div>
+</body>
+
+</html>

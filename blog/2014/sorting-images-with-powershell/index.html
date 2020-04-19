@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta property="fb:admins" content="jerome.cheng">
+  <title>Sorting Images with PowerShell - ayulin.net</title>
+
+  <link href="https://fonts.googleapis.com/css?family=Lato:400,900" rel="stylesheet">
+  <link href="/css/typography.css" rel="stylesheet">
+  <link href="/css/common.css" rel="stylesheet">
+  <link href="/css/blog.css" rel="stylesheet">
+
+  <link rel="alternate" type="application/rss+xml" href="/blog/index.xml" title="ayulin.net" />
+
+  <link rel="shortcut icon" href="/profile.jpg">
+</head>
+
+<body>
+  <div class="wrapper">
+    <div class="header">
+  <div class="profile-pic">
+    <a href="/">
+      <img src="/profile.jpg" />
+    </a>
+  </div>
+
+  <div class="contact">
+    <p class="author">
+      <a href="/">ayulin.net</a>
+    </p>
+
+    <p>
+      <a href="/about"><small>About</small></a>
+
+      
+      <a href="https://twitter.com/Ayulin"><small>Twitter</small></a>
+      
+
+      
+      <a href="https://github.com/jcheng31"><small>GitHub</small></a>
+      
+    </p>
+  </div>
+</div>
+
+    <div class="post-header">
+  <h5 class="subtle">1 March 2014</h5>
+  <h1><strong>Sorting Images with PowerShell</strong></h1>
+  <h2 class="subtitle">An incremental journey.</h2>
+</div>
+
+    <div class="post-body">
+      <p>I&rsquo;ve accumulated quite a number of wallpapers over the last few years; close to two thousand images totalling almost 3.5 GB and counting, in fact. They came from a whole hodgepodge of places online, in various sizes and aspect ratios, and I have them in my <del>Sky</del>OneDrive folder so they get synced across my desktop and laptop.</p>
+<p>My old desktop monitor had a resolution of 1680 by 1050, a 16:10 aspect ratio. My recent laptops have had 1080p (16:9) screens. Eventually, I ended up getting a 16:9 screen for my desktop as well.</p>
+<p>I wrote some PowerShell scripts to go through my wallpaper collection and grab higher resolution replacements where they were available, though that still left me with a large number of images that weren&rsquo;t replaced. Those scripts also only targeted one particular wallpaper site, too - everything else was left untouched.</p>
+<p>And so the image displayed on my desktop would, depending on its size and aspect ratio, fall into one of a few categories:</p>
+<ol>
+<li>A 16:9 image that would display nicely.</li>
+<li>An image at an odd aspect ratio close enough to 16:9 to display well.</li>
+<li>An image at 16:10 that would be pillarboxed.</li>
+<li>An image at some other squarish resolution that would be pretty much centred on the screen.</li>
+</ol>
+<p>This lasted until today, when I decided that instead of revising or working on assignments, I&rsquo;d sort this minor irritation out.</p>
+<p>Priorities.</p>
+<hr>
+<p>The train of thought that lead to writing this script went roughly as follows:</p>
+<ol>
+<li>I need to figure out which images aren&rsquo;t 16:9, then move them into a folder so I can archive them.</li>
+<li>I should use PowerShell to do it! Because that&rsquo;d be cool, right?</li>
+<li>Hang on, there&rsquo;s probably a program that does this kind of thing already, in much less time than it&rsquo;d take to figure these things out.</li>
+<li>But that wouldn&rsquo;t be much fun.</li>
+</ol>
+<p>Again: priorities. &gt;.&gt;</p>
+<hr>
+<h1 id="initial-commit">Initial Commit.</h1>
+<p>So let&rsquo;s do it.</p>
+<p>The first version is pretty simple - more of a proof of concept. I&rsquo;m using the full cmdlet names here, whereas you&rsquo;d probably use an alias instead if you were to actually type things out in the shell (for example, <code>Get-ChildItem</code> becomes <code>gci</code>, the DOS-style <code>dir</code>, or the UNIX-friendly <code>ls</code>.)</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell"><span style="color:#000;font-weight:bold">foreach</span> (<span style="color:#008080">$item</span> <span style="color:#000;font-weight:bold">in</span> <span style="color:#0086b3">Get-ChildItem</span> | <span style="color:#0086b3">Where-Object</span> Extension -In <span style="color:#d14">&#34;.jpg&#34;</span>, <span style="color:#d14">&#34;.bmp&#34;</span>, <span style="color:#d14">&#34;.png&#34;</span>) {
+	<span style="color:#008080">$image</span> = <span style="color:#0086b3">New-Object</span> System.Drawing.Bitmap <span style="color:#008080">$item</span>.FullName
+	<span style="color:#008080">$aspectRatio</span> = <span style="color:#008080">$image</span>.Width / <span style="color:#008080">$image</span>.Height
+	
+	<span style="color:#000;font-weight:bold">if</span> (<span style="color:#008080">$aspectRatio</span> <span style="color:#000;font-weight:bold">-ne</span> 16/9) {
+		<span style="color:#0086b3">Write-Host</span> <span style="color:#008080">$item</span>.Name
+	}
+}</code></pre></div>
+<p>Or, in English:</p>
+<blockquote>
+<p>For each file in the current directory which has a .jpg, .bmp, or .png extension (i.e. images),</p>
+</blockquote>
+<blockquote>
+<ol>
+<li>Create a .NET <code>Bitmap</code> object to represent the image file,</li>
+</ol>
+</blockquote>
+<ol>
+<li>Use that object&rsquo;s properties to calculate the aspect ratio of the image,</li>
+<li>And if the aspect ratio is not 16:9, write the name of the file.</li>
+</ol>
+<p>And it works! So far so good.</p>
+<hr>
+<h1 id="category-2">Category 2</h1>
+<p>So this catches stuff that falls into categories 2, 3, and 4 above. But category 2 images still display fairly well - what if we added some tolerance?</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell"><span style="color:#008080">$upperLimit</span> = 16/9 + 0.05
+<span style="color:#008080">$lowerLimit</span> = 16/9 - 0.05
+
+<span style="color:#000;font-weight:bold">foreach</span> (<span style="color:#008080">$item</span> <span style="color:#000;font-weight:bold">in</span> <span style="color:#0086b3">Get-ChildItem</span> | <span style="color:#0086b3">Where-Object</span> Extension -In <span style="color:#d14">&#34;.jpg&#34;</span>, <span style="color:#d14">&#34;.bmp&#34;</span>, <span style="color:#d14">&#34;.png&#34;</span>) {
+    <span style="color:#008080">$image</span> = <span style="color:#0086b3">New-Object</span> System.Drawing.Bitmap <span style="color:#008080">$item</span>.FullName
+    <span style="color:#008080">$aspectRatio</span> = <span style="color:#008080">$image</span>.Width / <span style="color:#008080">$image</span>.Height
+
+    <span style="color:#000;font-weight:bold">if</span> (<span style="color:#008080">$aspectRatio</span> <span style="color:#000;font-weight:bold">-gt</span> <span style="color:#008080">$upperLimit</span> <span style="color:#000;font-weight:bold">-or</span> <span style="color:#008080">$aspectRatio</span> <span style="color:#000;font-weight:bold">-lt</span> <span style="color:#008080">$lowerLimit</span>) {
+        <span style="color:#0086b3">Write-Host</span> <span style="color:#008080">$item</span>.Name
+    }
+}</code></pre></div>
+<p>So instead of checking for strict equality with 16:9, we allow for a little bit of leeway on either side. We can tweak the amount of tolerance later if needed (0.05 was picked just because it&rsquo;d let some images I already know look decent slip through.)</p>
+<hr>
+<h1 id="drip-drip">Drip. Drip.</h1>
+<p>At this point, I switched working directories from my root wallpaper folder containing just ninety-one files to one of the subfolders which had just over ten times that amount. The script worked fine, though the rate at which file names were displayed very obviously started to decrease after some time.</p>
+<p>While trying to figure out why, I noticed PowerShell was now using over three hundred MB of memory.</p>
+<p>Oops.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell"><span style="color:#008080">$upperLimit</span> = 16/9 + 0.05
+<span style="color:#008080">$lowerLimit</span> = 16/9 - 0.05
+
+<span style="color:#000;font-weight:bold">foreach</span> (<span style="color:#008080">$item</span> <span style="color:#000;font-weight:bold">in</span> <span style="color:#0086b3">Get-ChildItem</span> | <span style="color:#0086b3">Where-Object</span> Extension -In <span style="color:#d14">&#34;.jpg&#34;</span>, <span style="color:#d14">&#34;.bmp&#34;</span>, <span style="color:#d14">&#34;.png&#34;</span>) {
+    <span style="color:#000;font-weight:bold">try</span> {
+        <span style="color:#008080">$image</span> = <span style="color:#0086b3">New-Object</span> System.Drawing.Bitmap <span style="color:#008080">$item</span>.FullName
+        <span style="color:#008080">$aspectRatio</span> = <span style="color:#008080">$image</span>.Width / <span style="color:#008080">$image</span>.Height
+
+        <span style="color:#000;font-weight:bold">if</span> (<span style="color:#008080">$aspectRatio</span> <span style="color:#000;font-weight:bold">-gt</span> <span style="color:#008080">$upperLimit</span> <span style="color:#000;font-weight:bold">-or</span> <span style="color:#008080">$aspectRatio</span> <span style="color:#000;font-weight:bold">-lt</span> <span style="color:#008080">$lowerLimit</span>) {
+            <span style="color:#0086b3">Write-Host</span> <span style="color:#008080">$item</span>.Name
+        }
+    } <span style="color:#000;font-weight:bold">finally</span> {
+        <span style="color:#008080">$image</span>.Dispose()
+    }
+}</code></pre></div>
+<p><em>Try-finally</em>? Now we&rsquo;re looking even more like a program! (I think that&rsquo;s pretty cool.)</p>
+<p>All we&rsquo;re doing now is just releasing the image object at the end of each iteration, once we&rsquo;re done with it. Using the <code>finally</code> block just ensures it&rsquo;ll always get released, even if something messes up (though nothing should (fingers crossed)).</p>
+<p>That killed the memory leak, but didn&rsquo;t fix the slowdown. Some more investigation revealed one of the causes, which wasn&rsquo;t a bug or issue: the further &ldquo;in&rdquo; to the folder, the less files there were that got rejected. Still, even after modifying the script to output files that were acceptable, the rate of display still slowed down as time went on.</p>
+<p>I decided to just ignore it.</p>
+<hr>
+<h1 id="grab-everything">Grab everything.</h1>
+<p>It&rsquo;d be nice if I could run this from the root wallpaper directory, instead of having to go inside each individual subfolder. It&rsquo;d also be great if the script would automatically move the &ldquo;rejected&rdquo; images into an appropriate subfolder, instead of just spitting out their names.</p>
+<p>That means I need to recursively go through all the subfolders, and I need to know the folder of each rejected image. Both turned out to be pretty easy to do.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell"><span style="color:#008080">$upperLimit</span> = 16/9 + 0.05
+<span style="color:#008080">$lowerLimit</span> = 16/9 - 0.05
+
+<span style="color:#000;font-weight:bold">foreach</span> (<span style="color:#008080">$item</span> <span style="color:#000;font-weight:bold">in</span> <span style="color:#0086b3">Get-ChildItem</span> -Recurse | <span style="color:#0086b3">Where-Object</span> Extension -In <span style="color:#d14">&#34;.jpg&#34;</span>, <span style="color:#d14">&#34;.bmp&#34;</span>, <span style="color:#d14">&#34;.png&#34;</span>) {
+    <span style="color:#000;font-weight:bold">try</span> {
+        <span style="color:#008080">$image</span> = <span style="color:#0086b3">New-Object</span> System.Drawing.Bitmap <span style="color:#008080">$item</span>.FullName
+        <span style="color:#008080">$aspectRatio</span> = <span style="color:#008080">$image</span>.Width / <span style="color:#008080">$image</span>.Height
+
+        <span style="color:#000;font-weight:bold">if</span> (<span style="color:#008080">$aspectRatio</span> <span style="color:#000;font-weight:bold">-gt</span> <span style="color:#008080">$upperLimit</span> <span style="color:#000;font-weight:bold">-or</span> <span style="color:#008080">$aspectRatio</span> <span style="color:#000;font-weight:bold">-lt</span> <span style="color:#008080">$lowerLimit</span>) {
+            <span style="color:#0086b3">Write-Host</span> <span style="color:#008080">$item</span>.Name <span style="color:#d14">&#34;in&#34;</span> <span style="color:#008080">$item</span>.Directory.Name
+        }
+    } <span style="color:#000;font-weight:bold">finally</span> {
+        <span style="color:#008080">$image</span>.Dispose()
+    }
+}</code></pre></div>
+<p>As the name implies, adding the <code>-Recurse</code> parameter tells <code>Get-ChildItem</code> to go through all subfolders as well. File objects also conveniently have a <code>Directory</code> property, which (of course) has a <code>Name</code> property.</p>
+<p>Almost there.</p>
+<hr>
+<h1 id="move-it">Move it.</h1>
+<p>Now that we can get all the files we want, it&rsquo;s just a matter of moving them to the appropriate folder. The desktop seems like a good place to put things.</p>
+<p>Well, maybe not. It&rsquo;s convenient, though.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell"><span style="color:#008080">$upperLimit</span> = 16/9 + 0.05
+<span style="color:#008080">$lowerLimit</span> = 16/9 - 0.05
+
+<span style="color:#000;font-weight:bold">foreach</span> (<span style="color:#008080">$item</span> <span style="color:#000;font-weight:bold">in</span> <span style="color:#0086b3">Get-ChildItem</span> -Recurse | <span style="color:#0086b3">Where-Object</span> Extension -In <span style="color:#d14">&#34;.jpg&#34;</span>, <span style="color:#d14">&#34;.bmp&#34;</span>, <span style="color:#d14">&#34;.png&#34;</span>) {
+    <span style="color:#000;font-weight:bold">try</span> {
+        <span style="color:#008080">$image</span> = <span style="color:#0086b3">New-Object</span> System.Drawing.Bitmap <span style="color:#008080">$item</span>.FullName
+        <span style="color:#008080">$aspectRatio</span> = <span style="color:#008080">$image</span>.Width / <span style="color:#008080">$image</span>.Height
+
+        <span style="color:#000;font-weight:bold">if</span> (<span style="color:#008080">$aspectRatio</span> <span style="color:#000;font-weight:bold">-gt</span> <span style="color:#008080">$upperLimit</span> <span style="color:#000;font-weight:bold">-or</span> <span style="color:#008080">$aspectRatio</span> <span style="color:#000;font-weight:bold">-lt</span> <span style="color:#008080">$lowerLimit</span>) {
+            <span style="color:#008080">$destinationFolder</span> = <span style="color:#008080">$HOME</span> + <span style="color:#d14">&#34;\Desktop\Archive\&#34;</span> + <span style="color:#008080">$item</span>.Directory.Name
+            <span style="color:#000;font-weight:bold">if</span> (!(<span style="color:#0086b3">Test-Path</span> <span style="color:#008080">$destinationFolder</span>)) {
+                <span style="color:#0086b3">New-Item</span> <span style="color:#008080">$destinationFolder</span> -ItemType Directory -WhatIf
+            }
+            <span style="color:#0086b3">Move-Item</span> <span style="color:#008080">$item</span>.FullName <span style="color:#008080">$destinationFolder</span> -WhatIf
+        }
+    } <span style="color:#000;font-weight:bold">finally</span> {
+        <span style="color:#008080">$image</span>.Dispose()
+    }
+}</code></pre></div>
+<p>So now we construct the path to the desired folder (stored in <code>destinationFolder</code>), check if it exists, and create it if it doesn&rsquo;t. We then move the image to that folder.</p>
+<p>That&rsquo;s the plan, anyway: with the <code>-WhatIf</code>s in place, all this does is tell us what operations would be carried out. A risk-free trial run of sorts.</p>
+<hr>
+<h1 id="bzzt">Bzzt.</h1>
+<p>Except that didn&rsquo;t quite work. Removing the <code>-WhatIf</code>s and running the script resulted in a whole bunch of errors appearing: <em>The process cannot access the file because it is being used by another process.</em></p>
+<p>Oh.</p>
+<p>At first I thought it might have been because of the <code>foreach</code>-loop, though searching online for solutions didn&rsquo;t reveal anything.</p>
+<p>Then I realised it might just be because of the <code>Bitmap</code> object. To test it out, I moved the if-statement outside the <code>try-finally</code> block:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell"><span style="color:#008080">$upperLimit</span> = 16/9 + 0.05
+<span style="color:#008080">$lowerLimit</span> = 16/9 - 0.05
+
+<span style="color:#000;font-weight:bold">foreach</span> (<span style="color:#008080">$item</span> <span style="color:#000;font-weight:bold">in</span> <span style="color:#0086b3">Get-ChildItem</span> -Recurse | <span style="color:#0086b3">Where-Object</span> Extension -In <span style="color:#d14">&#34;.jpg&#34;</span>, <span style="color:#d14">&#34;.bmp&#34;</span>, <span style="color:#d14">&#34;.png&#34;</span>) {
+    <span style="color:#000;font-weight:bold">try</span> {
+        <span style="color:#008080">$image</span> = <span style="color:#0086b3">New-Object</span> System.Drawing.Bitmap <span style="color:#008080">$item</span>.FullName
+        <span style="color:#008080">$aspectRatio</span> = <span style="color:#008080">$image</span>.Width / <span style="color:#008080">$image</span>.Height
+    } <span style="color:#000;font-weight:bold">finally</span> {
+        <span style="color:#008080">$image</span>.Dispose()
+    }
+
+    <span style="color:#000;font-weight:bold">if</span> (<span style="color:#008080">$aspectRatio</span> <span style="color:#000;font-weight:bold">-gt</span> <span style="color:#008080">$upperLimit</span> <span style="color:#000;font-weight:bold">-or</span> <span style="color:#008080">$aspectRatio</span> <span style="color:#000;font-weight:bold">-lt</span> <span style="color:#008080">$lowerLimit</span>) {
+        <span style="color:#008080">$destinationFolder</span> = <span style="color:#008080">$HOME</span> + <span style="color:#d14">&#34;\Desktop\Archive\&#34;</span> + <span style="color:#008080">$item</span>.Directory.Name
+        <span style="color:#000;font-weight:bold">if</span> (!(<span style="color:#0086b3">Test-Path</span> <span style="color:#008080">$destinationFolder</span>)) {
+            <span style="color:#0086b3">New-Item</span> <span style="color:#008080">$destinationFolder</span> -ItemType Directory
+        }
+        <span style="color:#0086b3">Move-Item</span> <span style="color:#008080">$item</span>.FullName <span style="color:#008080">$destinationFolder</span>
+    }
+}</code></pre></div>
+<p>It worked.</p>
+<p>Sweet.</p>
+
+    </div>
+  </div>
+</body>
+
+</html>

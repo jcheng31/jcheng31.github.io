@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta property="fb:admins" content="jerome.cheng">
+  <title>A Two-Line, Prettier PowerShell Prompt with posh-git - ayulin.net</title>
+
+  <link href="https://fonts.googleapis.com/css?family=Lato:400,900" rel="stylesheet">
+  <link href="/css/typography.css" rel="stylesheet">
+  <link href="/css/common.css" rel="stylesheet">
+  <link href="/css/blog.css" rel="stylesheet">
+
+  <link rel="alternate" type="application/rss+xml" href="/blog/index.xml" title="ayulin.net" />
+
+  <link rel="shortcut icon" href="/profile.jpg">
+</head>
+
+<body>
+  <div class="wrapper">
+    <div class="header">
+  <div class="profile-pic">
+    <a href="/">
+      <img src="/profile.jpg" />
+    </a>
+  </div>
+
+  <div class="contact">
+    <p class="author">
+      <a href="/">ayulin.net</a>
+    </p>
+
+    <p>
+      <a href="/about"><small>About</small></a>
+
+      
+      <a href="https://twitter.com/Ayulin"><small>Twitter</small></a>
+      
+
+      
+      <a href="https://github.com/jcheng31"><small>GitHub</small></a>
+      
+    </p>
+  </div>
+</div>
+
+    <div class="post-header">
+  <h5 class="subtle">28 December 2013</h5>
+  <h1><strong>A Two-Line, Prettier PowerShell Prompt with posh-git</strong></h1>
+  <h2 class="subtitle">Wrapping be gone. (For the most part.)</h2>
+</div>
+
+    <div class="post-body">
+      <p>One day, some time ago, a friend commented on how lengthy my PowerShell prompt line was. I hadn&rsquo;t
+noticed it until that point, but he was completely right.</p>
+<p>Check this out:</p>
+<figure>
+    <img src="./images/1.png"
+         alt="Shrunken screenshot of Powershell within Cmder, showing a very long prompt line."/> 
+</figure>
+
+<p>That&rsquo;s a 1296-pixel wide window there (scaled down to fit here.) The prompt line is just over a thousand pixels long.</p>
+<p>Yow.</p>
+<p>The real cause of it is my preference for descriptive directory names - for example, including a module&rsquo;s full name instead of just its code. In any case, it&rsquo;d be pretty nice if we could get the directory path on one line, with input going on the next.</p>
+<p>In other words, what <a href="http://bliker.github.io/cmder/">cmder</a> does for the Command Prompt, but for PowerShell. And while we&rsquo;re at it, why not get the same colours cmder uses as well?</p>
+<p>(At the time of this writing, cmder doesn&rsquo;t include any tweaks for PowerShell. It seems the only thing blocking some from being included is their needing to be signed in order to run without needing to change PowerShell&rsquo;s Execution Policy.)</p>
+<hr>
+<p>This is assuming we&rsquo;re working with PowerShell with <a href="http://dahlbyk.github.io/posh-git/">posh-git</a> installed, in cmder. The steps are largely the same even if you aren&rsquo;t using cmder (since it just wraps the normal PowerShell prompt anyway), though they&rsquo;re a lot simpler if you don&rsquo;t have posh-git.</p>
+<p><strong>There could be a better way to do this.</strong> I&rsquo;m not a PowerShell expert (or even &ldquo;intermediate&rdquo;, if we misuse English a little), so this is pretty naive. I&rsquo;m just mashing up <a href="https://github.com/Shoozza/cmder/commit/73082c1ca15d18a003a751aca151a577035597de">this</a> with posh-git&rsquo;s default prompt.</p>
+<p>Incidentally, if you&rsquo;re not using posh-git, the stuff in the <code>prompt</code> function of that link is pretty much all you need.</p>
+<p>Firstly, let&rsquo;s open up our PowerShell profile. Its location can be found by entering <code>$PROFILE</code> into the prompt and hitting enter, though it should be in <code>&lt;Your User Name&gt;\Documents\WindowsPowerShell\</code> by default.</p>
+<p>Assuming you haven&rsquo;t changed anything, posh-git&rsquo;s default profile should be loaded near the top.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell"><span style="color:#998;font-style:italic"># Load posh-git example profile</span>
+. <span style="color:#d14">&#39;C:\tools\poshgit\dahlbyk-posh-git-8aecd99\profile.example.ps1&#39;</span></code></pre></div>
+<p>Take note of the path (which may be different on your system), then comment or remove the lines - they won&rsquo;t be necessary, since we&rsquo;ll be initialising posh-git from within the main profile. Here&rsquo;s what we need to do that:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell"><span style="color:#998;font-style:italic"># Load posh-git module. INSERT YOUR POSH-GIT PATH HERE.</span>
+<span style="color:#0086b3">Import-Module</span> <span style="color:#d14">&#39;POSH-GIT-PATH-HERE\posh-git&#39;</span>
+
+<span style="color:#998;font-style:italic"># Set up our prompt.</span>
+<span style="color:#000;font-weight:bold">function</span> <span style="color:#000;font-weight:bold">global:</span>prompt {
+    <span style="color:#008080">$realLASTEXITCODE</span> = <span style="color:#008080">$LASTEXITCODE</span>
+
+    <span style="color:#998;font-style:italic"># Reset color, which can be messed up by Enable-GitColors</span>
+    <span style="color:#008080">$Host</span>.UI.RawUI.ForegroundColor = <span style="color:#008080">$GitPromptSettings</span>.DefaultForegroundColor
+
+    <span style="color:#0086b3">Write-Host</span>(<span style="color:#008080">$pwd</span>.ProviderPath) -nonewline -ForegroundColor Green
+
+    <span style="color:#0086b3">Write-VcsStatus</span>
+
+    <span style="color:#998;font-style:italic"># Prompt on newline, with cmder colours.</span>
+    <span style="color:#0086b3">Write-Host</span>
+    <span style="color:#0086b3">Write-Host</span> <span style="color:#d14">&#34;&gt;&#34;</span> -nonewline -ForegroundColor DarkGray
+
+    <span style="color:#008080">$global:LASTEXITCODE</span> = <span style="color:#008080">$realLASTEXITCODE</span>
+    <span style="color:#000;font-weight:bold">return</span> <span style="color:#d14">&#34; &#34;</span>
+}
+
+<span style="color:#998;font-style:italic"># More posh-git init.</span>
+<span style="color:#0086b3">Enable-GitColors</span>
+<span style="color:#0086b3">Start-SshAgent</span> -Quiet</code></pre></div>
+<hr>
+<p>Let&rsquo;s break it down.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell"><span style="color:#998;font-style:italic"># Load posh-git module. INSERT YOUR POSH-GIT PATH HERE.</span>
+<span style="color:#0086b3">Import-Module</span> <span style="color:#d14">&#39;POSH-GIT-PATH-HERE\posh-git&#39;</span></code></pre></div>
+<p>As the comment says, this imports posh-git. Replace <code>POSH-GIT-PATH-HERE</code> with the actual path to the folder containing posh-git - in my case, it was <code>C:\tools\poshgit\dahlbyk-posh-git-8aecd99</code>.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell"><span style="color:#998;font-style:italic"># Set up our prompt.</span>
+<span style="color:#000;font-weight:bold">function</span> <span style="color:#000;font-weight:bold">global:</span>prompt {
+    <span style="color:#008080">$realLASTEXITCODE</span> = <span style="color:#008080">$LASTEXITCODE</span>
+
+    <span style="color:#998;font-style:italic"># Reset color, which can be messed up by Enable-GitColors</span>
+    <span style="color:#008080">$Host</span>.UI.RawUI.ForegroundColor = <span style="color:#008080">$GitPromptSettings</span>.DefaultForegroundColor
+
+    <span style="color:#0086b3">Write-Host</span>(<span style="color:#008080">$pwd</span>.ProviderPath) -nonewline -ForegroundColor Green
+
+    <span style="color:#0086b3">Write-VcsStatus</span></code></pre></div>
+<p>Standard posh-git initialization, but with one change: <code>-ForegroundColor Green</code> outputs the directory path in green.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">    <span style="color:#998;font-style:italic"># Prompt on newline, with cmder colours.</span>
+    <span style="color:#0086b3">Write-Host</span>
+    <span style="color:#0086b3">Write-Host</span> <span style="color:#d14">&#34;&gt;&#34;</span> -nonewline -ForegroundColor DarkGray</code></pre></div>
+<p>This is what actually moves the input to the next line. Feel free to replace the standard <code>&gt;</code> prompt character with your own (cmder uses a lambda, but I like the &gt;). We&rsquo;re also changing the colours to dark gray for the character.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">	<span style="color:#008080">$global:LASTEXITCODE</span> = <span style="color:#008080">$realLASTEXITCODE</span>
+    <span style="color:#000;font-weight:bold">return</span> <span style="color:#d14">&#34; &#34;</span>
+}
+
+<span style="color:#998;font-style:italic"># More posh-git init.</span>
+<span style="color:#0086b3">Enable-GitColors</span>
+<span style="color:#0086b3">Start-SshAgent</span> -Quiet</code></pre></div>
+<p>This was unchanged from the stock posh-git profile. You might have <code>Start-SshAgent</code> commented out in yours, though - I have it here so I just need to enter my SSH key&rsquo;s password once after booting (instead of every time I want to push to a remote.)</p>
+<hr>
+<p>And that&rsquo;s it.</p>
+<figure>
+    <img src="./images/2.png"
+         alt="Screenshot of Powershell within Cmder, showing the results of the code above."/> 
+</figure>
+
+<p>It&rsquo;s not any shorter, but it does look a little more pleasing. The path can still wrap onto the next
+line if it gets <em>really</em> long, but having input separate does make it a little cleaner.</p>
+    </div>
+  </div>
+</body>
+
+</html>

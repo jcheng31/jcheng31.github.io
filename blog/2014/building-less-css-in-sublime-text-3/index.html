@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta property="fb:admins" content="jerome.cheng">
+  <title>Building Less (CSS) in Sublime Text 3 - ayulin.net</title>
+
+  <link href="https://fonts.googleapis.com/css?family=Lato:400,900" rel="stylesheet">
+  <link href="/css/typography.css" rel="stylesheet">
+  <link href="/css/common.css" rel="stylesheet">
+  <link href="/css/blog.css" rel="stylesheet">
+
+  <link rel="alternate" type="application/rss+xml" href="/blog/index.xml" title="ayulin.net" />
+
+  <link rel="shortcut icon" href="/profile.jpg">
+</head>
+
+<body>
+  <div class="wrapper">
+    <div class="header">
+  <div class="profile-pic">
+    <a href="/">
+      <img src="/profile.jpg" />
+    </a>
+  </div>
+
+  <div class="contact">
+    <p class="author">
+      <a href="/">ayulin.net</a>
+    </p>
+
+    <p>
+      <a href="/about"><small>About</small></a>
+
+      
+      <a href="https://twitter.com/Ayulin"><small>Twitter</small></a>
+      
+
+      
+      <a href="https://github.com/jcheng31"><small>GitHub</small></a>
+      
+    </p>
+  </div>
+</div>
+
+    <div class="post-header">
+  <h5 class="subtle">23 December 2014</h5>
+  <h1><strong>Building Less (CSS) in Sublime Text 3</strong></h1>
+  <h2 class="subtitle">A quick hack.</h2>
+</div>
+
+    <div class="post-body">
+      <p><a href="http://lesscss.org/">Less</a> is great. Having to manually compile it isn&rsquo;t.</p>
+<p>In lieu of using something like <a href="http://gruntjs.com/">Grunt</a> (which is probably a much better long-term solution), I came up with a quick Sublime Text <a href="http://www.sublimetext.com/docs/build">Build System</a> to just stick in my project file and use. Triggering it from within a <code>.less</code> file passes that file to <code>lessc</code> and saves the result as a <code>.css</code> file in the same directory as the original.</p>
+<p>Here it is:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-JSON" data-lang="JSON">        {
+            <span style="color:#000080">&#34;shell_cmd&#34;</span>: <span style="color:#d14">&#34;lessc \&#34;$file\&#34; &gt; \&#34;${file/\\.less/\\.css/}\&#34;&#34;</span>,
+            <span style="color:#000080">&#34;selector&#34;</span>: <span style="color:#d14">&#34;source.less&#34;</span>,
+            <span style="color:#000080">&#34;name&#34;</span>: <span style="color:#d14">&#34;LESS CSS&#34;</span>
+        }
+</code></pre></div><p>Sticking that in the <code>build_systems</code> array in <code>.sublime-project</code> causes it to show up under <code>Tools -&gt; Build System</code>, and choosing Automatic should cause it to only trigger from within a <code>.less</code> file.</p>
+<p>However:</p>
+<ul>
+<li>I only tested it on Windows. It doesn&rsquo;t seem like there would be any issues on other OSes, but I don&rsquo;t know that for sure either.
+<ul>
+<li>&ldquo;Tested&rdquo; means I ran it from within a <code>.less</code> file of mine and it correctly compiled and saved it as <code>.css</code>. So a pretty loose definition of &ldquo;tested&rdquo; here.</li>
+</ul>
+</li>
+<li>It assumes your Less files are saved with <code>.less</code> as the extension. If they&rsquo;re saved as <code>.css.less</code> it&rsquo;ll (probably) still work, but&hellip;</li>
+<li>It outputs to the same directory, and just does a simple replacement of &ldquo;.less&rdquo; with &ldquo;.css&rdquo; in the file name.
+<ul>
+<li>If you have <code>.css.less</code> files, they&rsquo;ll end up as <code>.css.css</code> files.
+<ul>
+<li>Probably.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>I should just use Grunt. Or something.</p>
+    </div>
+  </div>
+</body>
+
+</html>

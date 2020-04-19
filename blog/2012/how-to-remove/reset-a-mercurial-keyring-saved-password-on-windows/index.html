@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta property="fb:admins" content="jerome.cheng">
+  <title>How To: Remove/Reset a Mercurial Keyring-saved Password on Windows - ayulin.net</title>
+
+  <link href="https://fonts.googleapis.com/css?family=Lato:400,900" rel="stylesheet">
+  <link href="/css/typography.css" rel="stylesheet">
+  <link href="/css/common.css" rel="stylesheet">
+  <link href="/css/blog.css" rel="stylesheet">
+
+  <link rel="alternate" type="application/rss+xml" href="/blog/index.xml" title="ayulin.net" />
+
+  <link rel="shortcut icon" href="/profile.jpg">
+</head>
+
+<body>
+  <div class="wrapper">
+    <div class="header">
+  <div class="profile-pic">
+    <a href="/">
+      <img src="/profile.jpg" />
+    </a>
+  </div>
+
+  <div class="contact">
+    <p class="author">
+      <a href="/">ayulin.net</a>
+    </p>
+
+    <p>
+      <a href="/about"><small>About</small></a>
+
+      
+      <a href="https://twitter.com/Ayulin"><small>Twitter</small></a>
+      
+
+      
+      <a href="https://github.com/jcheng31"><small>GitHub</small></a>
+      
+    </p>
+  </div>
+</div>
+
+    <div class="post-header">
+  <h5 class="subtle">31 October 2012</h5>
+  <h1><strong>How To: Remove/Reset a Mercurial Keyring-saved Password on Windows</strong></h1>
+  <h2 class="subtitle"></h2>
+</div>
+
+    <div class="post-body">
+      <p>Because I couldn&rsquo;t find this ANYWHERE, and only figured it out after stumbling across a post on how
+<code>mercurial_keyring</code> is bugged on Windows (and only stores one password).</p>
+<p>So, if you&rsquo;re like me and accidentally typed the wrong repository password into Mercurial (again, on Windows, and with the keyring extension) only to have it seemingly permanently etched into stone&hellip;</p>
+<ol>
+<li>Open Credential Manager (Control Panel -&gt; User Accounts and Family Safety -&gt; Credential Manager; or just search for it.)</li>
+<li>Click Windows Credentials.</li>
+<li>Under Generic Credentials, look for Mercurial.</li>
+<li>Expand, and edit or remove as desired.</li>
+</ol>
+<p>Done.</p>
+    </div>
+  </div>
+</body>
+
+</html>

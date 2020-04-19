@@ -1,0 +1,44 @@
+.listing-item {
+  margin-top: 32px;
+  margin-bottom: 32px;
+}
+
+.post-header {
+  margin-top: 32px;
+}
+
+.post-body figure {
+  margin-left: auto;
+  margin-right: auto;
+
+  max-width: 100%;
+}
+
+.post-body figure img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+
+  max-width: 100%;
+  height: auto;
+}
+
+.post-body {
+  margin-bottom: 68px;
+}
+
+.post-body video {
+  display: block;
+
+  margin-left: auto;
+  margin-right: auto;
+
+  max-width: 100%;
+}
+
+.post-body hr {
+  max-width: 80%;
+
+  margin-top: 36px;
+  margin-bottom: 36px;
+}

@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta property="fb:admins" content="jerome.cheng">
+  <title>Introducing ISAAC - ayulin.net</title>
+
+  <link href="https://fonts.googleapis.com/css?family=Lato:400,900" rel="stylesheet">
+  <link href="/css/typography.css" rel="stylesheet">
+  <link href="/css/common.css" rel="stylesheet">
+  <link href="/css/blog.css" rel="stylesheet">
+
+  <link rel="alternate" type="application/rss+xml" href="/blog/index.xml" title="ayulin.net" />
+
+  <link rel="shortcut icon" href="/profile.jpg">
+</head>
+
+<body>
+  <div class="wrapper">
+    <div class="header">
+  <div class="profile-pic">
+    <a href="/">
+      <img src="/profile.jpg" />
+    </a>
+  </div>
+
+  <div class="contact">
+    <p class="author">
+      <a href="/">ayulin.net</a>
+    </p>
+
+    <p>
+      <a href="/about"><small>About</small></a>
+
+      
+      <a href="https://twitter.com/Ayulin"><small>Twitter</small></a>
+      
+
+      
+      <a href="https://github.com/jcheng31"><small>GitHub</small></a>
+      
+    </p>
+  </div>
+</div>
+
+    <div class="post-header">
+  <h5 class="subtle">19 April 2012</h5>
+  <h1><strong>Introducing ISAAC</strong></h1>
+  <h2 class="subtitle"></h2>
+</div>
+
+    <div class="post-body">
+      <blockquote>
+<p><strong>Update:</strong> As of September 27, 2018, ISAAC is no longer available on this domain. The links to
+to it have been removed from the post below, though the remainder of the content has
+been left unchanged.</p>
+<p>ISAAC&rsquo;s code is still <a href="https://github.com/isaacjs/ISAAC">available on GitHub</a>.</p>
+</blockquote>
+<p>Four months ago, the very first commit to ISAAC&rsquo;s repository was made. None of the code from that commit has made it into the application we&rsquo;re launching today.</p>
+<p>(This post is going to contain much of what&rsquo;s on <a href="./">ISAAC&rsquo;s landing page</a>,
+though that only covers the user-facing half of what ISAAC is. The other half is here.)</p>
+<h1 id="where-weve-been">Where We&rsquo;ve Been</h1>
+<p>ISAAC started as an almost entirely different project: an educational tool to teach basic Newtonian mechanics from within a web browser. We began with the intention of using Google&rsquo;s <a href="http://en.wikipedia.org/wiki/O3D">O3D</a> libraries for graphics, and came up with several scenarios to include in the final result.</p>
+<p>We soon realised that our original concept wouldn&rsquo;t be very useful. The scenarios we proposed were simulations of experiments that can already be done in the real world, the results of which could also be better seen in the real world (and not on a computer screen).</p>
+<p>While forces, collisions, and momentum are easily demonstrated in simple, everyday experiments, the orbits and movements of bodies in a star system are not so easily visualised. From that realisation, ISAAC as it exists today was born.</p>
+<h1 id="where-we-are">Where We Are</h1>
+<p>ISAAC is a star system simulator, written in JavaScript, with graphics powered by <a href="http://mrdoob.github.com/three.js/">Three.js</a>. ISAAC does full n-body calculations for gravity, so each and every body in the simulation is affected by the gravity of the others. ISAAC allows you to play with the Gravitational Constant, as well as the masses of each body, to see how orbits are affected.</p>
+<h2 id="several-things-in-one">Several Things In One</h2>
+<p>The name ISAAC really belongs to two things, and is used interchangeably here to refer to them.</p>
+<p>It refers to the front-end, user-visible part: the interactive Solar System simulation that you can play with right now.</p>
+<p>It refers to the back-end, star system simulator: the mesh of Three.js with our (simple) physics engine, allowing custom star systems to be simulated with no additional code required.</p>
+<p>We think of the physics components alone as ISAAC Core: the elements running the simulation that can be ripped out from everything else and transplanted into a completely different application. We may be moving ISAAC Core to a separate repository in the future, to make it easier to use in your own apps.</p>
+<h2 id="using-isaac">Using ISAAC</h2>
+<h3 id="playing-with-planets">Playing With Planets</h3>
+<p>We&rsquo;ve launched ISAAC with a model of our own Solar System – all eight planets, the Sun, and Pluto. As mentioned above, you can adjust the Gravitational Constant or the masses of each planet to see how the orbits change and are affected.</p>
+<p>The camera starts locked to the Sun, but can be moved between planets by clicking directly on them, or using the drop-down menu on the right. Clicking and dragging the mouse in space pans the camera around, while holding the middle-mouse button and moving the mouse adjusts the zoom level; if your mouse has no middle button, the zoom level can also be adjusted using the slider on the right.</p>
+<p>By default, one second in real time is one day in the simulation. If you want to see things move at a quicker rate, open the Simulation Settings menu and adjust the Days Per Second slider there.</p>
+<p>ISAAC uses HTML5&rsquo;s requestAnimationFrame and Page Visibility APIs to pause simulation and rendering when it isn&rsquo;t the active tab, and resume when it becomes visible again.</p>
+<h3 id="a-word-about-browsers">A Word About Browsers</h3>
+<p>In theory, ISAAC should work on any browser which supports a few things: HTML5 Web Workers, the Canvas element, and (optionally) WebGL. In practice, things unfortunately aren&rsquo;t that simple.</p>
+<p>For the optimal experience, we recommend using Google Chrome to view ISAAC, on a computer which supports WebGL. Because we&rsquo;re using Three.js, we can fallback to its Canvas renderer if your computer doesn&rsquo;t have WebGL support. However, graphical performance is extremely poor with the Canvas renderer – we&rsquo;ll be looking into making optimisations to resolve this.</p>
+<p>We&rsquo;ve tested ISAAC on Firefox 11, and found that there&rsquo;s an issue causing the simulation to halt when Days Per Second is above 50. We&rsquo;ll be looking into ways to resolve this, and will update this post when a solution is found.</p>
+<p>ISAAC loads on Internet Explorer 10 Consumer Preview, but does not function in a state we consider usable.</p>
+<h2 id="building-worlds">Building Worlds</h2>
+<p>ISAAC is not limited to any one star system. Though we use our Solar System here, ISAAC can easily simulate any other system without the need to change any of the underlying code: just provide some basic specifications, and ISAAC will handle the rest.</p>
+<p>Step by step, here&rsquo;s what you need to do (after <a href="https://github.com/isaacjs/ISAAC">grabbing the source code</a> – ISAAC is released under the MIT License.)</p>
+<ol>
+<li>Open <code>isaac_simulation.js</code>, and take a look at the <code>startISAAC()</code> function there.</li>
+<li>Make a JSON object, with two objects inside it. These two objects should be keyed <code>config</code> and <code>bodies</code>.</li>
+<li>Create a key <code>graphicsEnabled</code> in the <code>config</code> object.
+<ul>
+<li>If you&rsquo;re using ISAAC as a whole, without any changes to the way graphics are handled, set this key to true.</li>
+<li>If you&rsquo;re including ISAAC as part of your own application and don&rsquo;t want Three.js to be involved (for any reason), set this key to false. This means you&rsquo;ll be on your own for graphics.</li>
+<li>Optionally, create a key <code>scaling</code> in the <code>config</code> object.
+<ul>
+<li>There are three values you can choose to determine how ISAAC will render the bodies you specify.
+<ol>
+<li><code>default</code>: Produces reasonably-sized but not accurately-scaled models. The size of each body is calculated using our own formula (found in the source.)</li>
+<li><code>linear</code>: Each body appears 50 times larger than it does in real life. Produces accurate relative sizes, but distances appear shortened as a result – the best balance between realistic and good-looking.</li>
+<li><code>realistic</code>: Each body appears at the size it does in real life. Produces accurate sizes and distances, but at the cost of visibility: everything appears very small. (Space is big!)</li>
+</ol>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Add JSON objects for each orbital body to the <code>bodies</code> object. Key each object with the name of the body.
+<ul>
+<li>ISAAC uses these objects to create the planets and stars of your system. Here&rsquo;s the data we use to do so.
+<ol>
+<li><code>texture</code>: A String pointing to the texture to be used for the body. If left blank, a random colour will be chosen and used.</li>
+<li><code>name</code>: The name of the body. If left out, the body will appear as &ldquo;Default Orbital Body Name&rdquo; in ISAAC.</li>
+<li><code>isStar</code>: Whether or not the body is a Star. We&rsquo;ll make it a light source if it is.</li>
+<li><code>mass</code>: The mass of the body in gigagrams. A gigagram is a million kilograms.</li>
+<li><code>radius</code>: The radius of the body, in kilometres.</li>
+<li><code>position</code>: The X, Y, and Z starting coordinates of the body. We use a right-handed Cartesian coordinate system (Z is up, Y is to the left).</li>
+<li><code>velocity</code>: The X, Y, and Z velocity vector components of the body. Again, right-handed coordinates.</li>
+</ol>
+</li>
+</ul>
+</li>
+<li>Call <code>ISAAC.Simulation.init</code> from within <code>startISAAC()</code>, with the main JSON object as a parameter.</li>
+</ol>
+<p>That&rsquo;s it. There&rsquo;re a few more things that you can include, though these are the key bits we need.</p>
+<p>To illustrate, here&rsquo;s a snippet of the specifications used to create the Solar System; the full set
+is in <code>isaac_simulation.js</code>. Note that ISAAC populates its interface with bodies in the order that
+they are defined in the specification, and starts the camera centred on the first body.</p>
+<figure>
+    <img src="./images/example.png"
+         alt="Screenshot of ISAAC configuration for the Solar System"/> 
+</figure>
+
+<h1 id="where-were-going">Where We&rsquo;re Going</h1>
+<p>For now, there&rsquo;re two concrete things we&rsquo;d like to do (that is, on top of normal maintenance and bug-fixing).</p>
+<p>Firstly, we&rsquo;ll be making another scenario: a way to visualise the <a href="http://en.wikipedia.org/wiki/Analemma">Analemma</a> from any planet in the Solar System. This may end up as a separate application built on top of ISAAC, instead of being a part of it.</p>
+<p>Secondly, we&rsquo;d like to overhaul the way ISAAC looks and feels. Things can be prettier and smoother, and we&rsquo;ll be looking into ways to make that happen.</p>
+<h1 id="wrapping-up-for-now">Wrapping Up (For Now)</h1>
+<p>We hope ISAAC proves to be useful, be it for educational purposes or to satisfy curiosities. Development is by no means complete – we&rsquo;ll continue adding new features and refining what&rsquo;s already there.</p>
+<p>(If you missed it earlier, <a href="./">ISAAC can be accessed here.</a>)</p>
+<h1 id="acknowledgements">Acknowledgements</h1>
+<p>ISAAC began as a project for CS1010R Programming Methodology, a project-based module at the National University of Singapore. We&rsquo;d like to thank our project co-ordinators, Professor Martin Henz, and Srikumar Subramanian, for their support and guidance.</p>
+<p>Other credits can be found on ISAAC&rsquo;s <a href="./">Behind The Scenes page</a>.</p>
+<p>ISAAC was created by Jerome Cheng and Pallav Shinghal, and is <a href="https://github.com/isaacjs/ISAAC">available under the MIT License</a>.</p>
+
+    </div>
+  </div>
+</body>
+
+</html>

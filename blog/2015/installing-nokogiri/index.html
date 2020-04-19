@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta property="fb:admins" content="jerome.cheng">
+  <title>Installing Nokogiri on Windows, with Ruby 2.1.5 - ayulin.net</title>
+
+  <link href="https://fonts.googleapis.com/css?family=Lato:400,900" rel="stylesheet">
+  <link href="/css/typography.css" rel="stylesheet">
+  <link href="/css/common.css" rel="stylesheet">
+  <link href="/css/blog.css" rel="stylesheet">
+
+  <link rel="alternate" type="application/rss+xml" href="/blog/index.xml" title="ayulin.net" />
+
+  <link rel="shortcut icon" href="/profile.jpg">
+</head>
+
+<body>
+  <div class="wrapper">
+    <div class="header">
+  <div class="profile-pic">
+    <a href="/">
+      <img src="/profile.jpg" />
+    </a>
+  </div>
+
+  <div class="contact">
+    <p class="author">
+      <a href="/">ayulin.net</a>
+    </p>
+
+    <p>
+      <a href="/about"><small>About</small></a>
+
+      
+      <a href="https://twitter.com/Ayulin"><small>Twitter</small></a>
+      
+
+      
+      <a href="https://github.com/jcheng31"><small>GitHub</small></a>
+      
+    </p>
+  </div>
+</div>
+
+    <div class="post-header">
+  <h5 class="subtle">1 February 2015</h5>
+  <h1><strong>Installing Nokogiri on Windows, with Ruby 2.1.5</strong></h1>
+  <h2 class="subtitle">TL;DR: update RubyGems.</h2>
+</div>
+
+    <div class="post-body">
+      <p>This is a quasi-follow-up to my <a href="https://www.ayulin.net/blog/2015/jekyll-3-beta-on-windows/">previous post</a>, where we looked at installing the new Jekyll 3 beta on Windows. I had to install the Nokogiri gem to get this site working again once that was done, and came across an issue.</p>
+<p>It wasn&rsquo;t a crash or anything: after running <code>gem install nokogiri</code>, the installation seemed to go fine. It would, however, just sit at the following stage forever:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">&gt; gem install nokogiri
+Fetching<span style="color:#a61717;background-color:#e3d2d2">:</span> mini_portile-0.6.2.gem (100%)
+Successfully installed mini_portile-0.6.2
+Temporarily enhancing PATH to include DevKit...
+Building native extensions.  This could take a <span style="color:#000;font-weight:bold">while</span>...
+</code></pre></div><p>It turns out that the version of RubyGems that comes with the Ruby 2.1.5 installer is actually pretty old! It ships with version 2.2.2, while (at the time of this writing) the latest version is 2.4.5.</p>
+<p>From Command Prompt or Powershell, just run <code>gem update --system</code> to update it. Once that&rsquo;s done, <code>gem install nokogiri</code> should complete pretty quickly.</p>
+
+    </div>
+  </div>
+</body>
+
+</html>

@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta property="fb:admins" content="jerome.cheng">
+  <title>Is it on Spotify? - ayulin.net</title>
+
+  <link href="https://fonts.googleapis.com/css?family=Lato:400,900" rel="stylesheet">
+  <link href="/css/typography.css" rel="stylesheet">
+  <link href="/css/common.css" rel="stylesheet">
+  <link href="/css/blog.css" rel="stylesheet">
+
+  <link rel="alternate" type="application/rss+xml" href="/blog/index.xml" title="ayulin.net" />
+
+  <link rel="shortcut icon" href="/profile.jpg">
+</head>
+
+<body>
+  <div class="wrapper">
+    <div class="header">
+  <div class="profile-pic">
+    <a href="/">
+      <img src="/profile.jpg" />
+    </a>
+  </div>
+
+  <div class="contact">
+    <p class="author">
+      <a href="/">ayulin.net</a>
+    </p>
+
+    <p>
+      <a href="/about"><small>About</small></a>
+
+      
+      <a href="https://twitter.com/Ayulin"><small>Twitter</small></a>
+      
+
+      
+      <a href="https://github.com/jcheng31"><small>GitHub</small></a>
+      
+    </p>
+  </div>
+</div>
+
+    <div class="post-header">
+  <h5 class="subtle">15 April 2014</h5>
+  <h1><strong>Is it on Spotify?</strong></h1>
+  <h2 class="subtitle">A simple answer for a simple question.</h2>
+</div>
+
+    <div class="post-body">
+      <blockquote>
+<p><strong>Update (2020-04-19):</strong> Is it on Spotify? is still online, though it no longer works. All of the
+links to it here have been left intact regardless.</p>
+</blockquote>
+<p>While at a café with some friends, I heard bits and pieces of a song over the stereo - <a href="https://www.youtube.com/watch?v=-bmp4QWzHak">this
+song</a>. It sounded pretty nice, so after finding out
+what it was (in a roundabout manner<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup>) I starred it on Spotify.</p>
+<p>This probably won&rsquo;t come as a surprise, given the title of this piece: a week or so later, it disappeared from the service.</p>
+<p>I was wondering if it&rsquo;d been completely pulled from the catalogue (unlikely, since the same artist had other tracks which were still up), and if not, where in the world it was still available. I also knew that the Spotify <a href="https://developer.spotify.com/technologies/web-api/">Metadata API</a> let you look up a track&rsquo;s information, which also included its availability.</p>
+<p>I searched around for a bit, but couldn&rsquo;t find anything which would just take a track name, and tell you where it could be heard. I did come across this <a href="https://www.quora.com/Spotify/What-website-lists-Spotify-music-availability-per-country?">Quora post</a> from 2012 which suggested calling the API directly in the browser:</p>
+<figure>
+    <img src="./images/1.png"
+         alt="Screenshot of a Quora answer describing how to call the Spotify web API."/> 
+</figure>
+
+<p>Which definitely works, but eh. It&rsquo;s not the most convenient thing to do.</p>
+<p>So, one Saturday later, here we are: a website to do just that.
+<sup id="fnref:2"><a href="#fn:2" class="footnote-ref" role="doc-noteref">2</a></sup></p>
+<figure>
+    <img src="./images/2.png"
+         alt="Screenshot of Is it on Spotify?"/> 
+</figure>
+
+<p>Type in a track, hit Enter, and get an answer.</p>
+<figure>
+    <img src="./images/3.png"
+         alt="Screenshot sequence showing the usage of Is it on Spotify?, where the input track was found."/> 
+</figure>
+
+<hr>
+<figure>
+    <img src="./images/4.png"
+         alt="Screenshot sequence showing the usage of Is it o Spotify?, where the input track was not found."/> 
+</figure>
+
+<p>You can also change tracks if the first search result wasn&rsquo;t the one you were looking for by clicking on the name (if it&rsquo;s underlined), and see the exact regions by clicking on the number.</p>
+<p>It&rsquo;s not the prettiest, but at least it beats JSON ;)</p>
+<p>Check it out <a href="https://jcheng31.github.io/isitonspotify/">here</a>, and (if you want) poke around the code <a href="https://github.com/jcheng31/isitonspotify">here.</a></p>
+<hr>
+<p>My initial guess was correct: the song hadn&rsquo;t actually been removed entirely, though it&rsquo;s only available in the US, Canada, and Australia. Other tracks are available in many more regions, though.</p>
+<p>Wish I knew how these licensing things work.</p>
+<section class="footnotes" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn:1" role="doc-endnote">
+<p>We were far away enough and the ambient sound was loud enough that I wasn&rsquo;t confident that my phone would be able to identify it. I asked a friend if he happened to know what it was, and he walked over and asked someone he knew who worked there. <a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:2" role="doc-endnote">
+<p>I&rsquo;d also been looking for an excuse to try
+<a href="http://knockoutjs.com/">knockout.js</a> - MVVM on the web? Sign me up. <a href="#fnref:2" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+</ol>
+</section>
+    </div>
+  </div>
+</body>
+
+</html>

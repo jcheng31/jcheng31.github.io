@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta property="fb:admins" content="jerome.cheng">
+  <title>Setting the Pace - ayulin.net</title>
+
+  <link href="https://fonts.googleapis.com/css?family=Lato:400,900" rel="stylesheet">
+  <link href="/css/typography.css" rel="stylesheet">
+  <link href="/css/common.css" rel="stylesheet">
+  <link href="/css/blog.css" rel="stylesheet">
+
+  <link rel="alternate" type="application/rss+xml" href="/blog/index.xml" title="ayulin.net" />
+
+  <link rel="shortcut icon" href="/profile.jpg">
+</head>
+
+<body>
+  <div class="wrapper">
+    <div class="header">
+  <div class="profile-pic">
+    <a href="/">
+      <img src="/profile.jpg" />
+    </a>
+  </div>
+
+  <div class="contact">
+    <p class="author">
+      <a href="/">ayulin.net</a>
+    </p>
+
+    <p>
+      <a href="/about"><small>About</small></a>
+
+      
+      <a href="https://twitter.com/Ayulin"><small>Twitter</small></a>
+      
+
+      
+      <a href="https://github.com/jcheng31"><small>GitHub</small></a>
+      
+    </p>
+  </div>
+</div>
+
+    <div class="post-header">
+  <h5 class="subtle">27 April 2014</h5>
+  <h1><strong>Setting the Pace</strong></h1>
+  <h2 class="subtitle">Custom speeds for IVLE&#39;s Silverlight-based webcasts.</h2>
+</div>
+
+    <div class="post-body">
+      <p>For one reason or another (read: I have no idea why, but&hellip;), the few webcasts I&rsquo;ve watched recently seem to work better when viewed faster than real-time. I’d download the MP4 version, open it up in VLC, and use the playback speed controls to speed things up anywhere from 1.1 to, on one occasion, 1.3 times the normal rate.</p>
+<p>One course, however, doesn’t work well with this plan: the MP4 version opens up in a new window instead of downloading, and the audio plays while the image remains black. There’s probably a way to fix and/or work around this, but I’m not really interested enough to find it. :|</p>
+<p>The Silverlight-based version works just fine, and it does let you customise the playback rate, though the default increments aren’t very fine-grained:</p>
+<figure>
+    <img src="./images/1.png"
+         alt="Image of a video player showing a dropdown of playback speed options."/> 
+</figure>
+
+<p>That got me wondering how the speed was being set, and if I could simply change the values in the dropdown to ones which worked better.</p>
+<figure>
+    <img src="./images/2.png"
+         alt="Screenshot of HTML source code showing playback rate options."/> 
+</figure>
+
+<p>Essentially, yes, you can. Changing the <code>value</code> attribute of an option to anything you want does actually change the playback rate, though anything above 2 times real-time breaks the audio - I&rsquo;m reasonably sure this won&rsquo;t affect a whole lot of people.</p>
+<p>I went and adjusted the values (and labels for ease of use) to more comfortable ones:</p>
+<figure>
+    <img src="./images/3.png"
+         alt="Screenshot of the same HTML source code as above, with edited custom playback options."/> 
+</figure>
+
+<p>Perhaps a browser extension or bookmarklet to do this automatically would be useful for heavy
+webcast users (if it doesn’t already exist).</p>
+
+    </div>
+  </div>
+</body>
+
+</html>

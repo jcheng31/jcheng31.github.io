@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta property="fb:admins" content="jerome.cheng">
+  <title>Designing 4-bit Webther: A Retrospective - ayulin.net</title>
+
+  <link href="https://fonts.googleapis.com/css?family=Lato:400,900" rel="stylesheet">
+  <link href="/css/typography.css" rel="stylesheet">
+  <link href="/css/common.css" rel="stylesheet">
+  <link href="/css/blog.css" rel="stylesheet">
+
+  <link rel="alternate" type="application/rss+xml" href="/blog/index.xml" title="ayulin.net" />
+
+  <link rel="shortcut icon" href="/profile.jpg">
+</head>
+
+<body>
+  <div class="wrapper">
+    <div class="header">
+  <div class="profile-pic">
+    <a href="/">
+      <img src="/profile.jpg" />
+    </a>
+  </div>
+
+  <div class="contact">
+    <p class="author">
+      <a href="/">ayulin.net</a>
+    </p>
+
+    <p>
+      <a href="/about"><small>About</small></a>
+
+      
+      <a href="https://twitter.com/Ayulin"><small>Twitter</small></a>
+      
+
+      
+      <a href="https://github.com/jcheng31"><small>GitHub</small></a>
+      
+    </p>
+  </div>
+</div>
+
+    <div class="post-header">
+  <h5 class="subtle">24 May 2012</h5>
+  <h1><strong>Designing 4-bit Webther: A Retrospective</strong></h1>
+  <h2 class="subtitle"></h2>
+</div>
+
+    <div class="post-body">
+      <blockquote>
+<p><strong>Update (2020-04-19):</strong> 4-bit Webther is no longer available; the Yahoo! Weather API is no more.
+The links to it here have been removed, but the remainder of the post&rsquo;s text has been left
+untouched, as self-indulgent as it is.</p>
+</blockquote>
+<p>This is basically my attempt at rationalising why <a href="./">4-bit Webther</a> looks and works the way it does - I have no experience with web or UI design, so this is pretty much just for fun (and highly subjective – &ldquo;this looks terrible; kill it with fire&rdquo; is an entirely valid response.)</p>
+<h1 id="introduction">Introduction</h1>
+<h2 id="because-headings-are-cool">Because Headings Are Cool</h2>
+<p>4-bit Webther was built for a few reasons. I&rsquo;d already done most of the background code for it in C#, though none of that ended up being used – this left me with a mostly functional application that wasn&rsquo;t really useful (as I don&rsquo;t think a whole lot of people would bother downloading an actual application just to check the weather.)</p>
+<p>Still, I liked the idea and wanted to complete it. I also wanted to fiddle with HTML and CSS; ISAAC is currently using dat.GUI for its user interface, which is functional but not necessarily the best UI for that application. Building a better UI with HTML is something I wanted to explore.</p>
+<p>The main idea behind 4-bit Webther is the &ldquo;glanceable&rdquo; forecast – an idea that originates with a classmate of mine. The weather is broken down into four key components: temperature, whether it&rsquo;s rainy out, if it&rsquo;s rainy, and if it&rsquo;s humid. The original concept has these components as simple binary bits: hot/cold, rain/shine, windy/still, humid/arid – these are still around, though rain/shine has grown to become a 5-bit field in itself.</p>
+<p>Rain/Shine can currently take on one of five values: Rain, Snow, Shine, &ldquo;Rain&rdquo;, or &ldquo;Shine&rdquo;.</p>
+<h3 id="a-wild-table-appears">A Wild Table Appears</h3>
+<table>
+<thead>
+<tr>
+<th>Value</th>
+<th align="center">Displays During</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Rain</td>
+<td align="center">Rain, Thunderstorms</td>
+</tr>
+<tr>
+<td>Snow</td>
+<td align="center">Snow, Sleet</td>
+</tr>
+<tr>
+<td>Shine</td>
+<td align="center">Clear skies in the day</td>
+</tr>
+<tr>
+<td>&ldquo;Rain&rdquo;</td>
+<td align="center">Hurricanes, Tropical Storms, Freezing Rain, Hail</td>
+</tr>
+<tr>
+<td>&ldquo;Shine&rdquo;</td>
+<td align="center">Tornados, Dusty/Foggy/Cloudy skies, Clear skies at night</td>
+</tr>
+</tbody>
+</table>
+<p>The original idea boiled down to &ldquo;rain&rdquo; or &ldquo;not rain&rdquo;. The current implementation gives a little more variety, and attempts to be a little more accurate without overcomplicating (defeating the purpose of the application.)</p>
+<h1 id="main-page-the-forecast">Main Page: The Forecast</h1>
+<p>I&rsquo;m a big fan of Microsoft&rsquo;s Metro design language, though 4-bit Webther doesn&rsquo;t really follow it; I didn&rsquo;t look up any of the principles or guidelines, though I did follow the mantra of &ldquo;content not chrome&rdquo;. Originally there were rounded corners on all elements, but they didn&rsquo;t really add anything and were hence dropped. The UI as a whole is rather basic (mainly because I have virtually no experience with HTML), which I suppose suits the application: a fairly basic, gimmicky type of thing.</p>
+<figure>
+    <img src="./images/1.png"
+         alt="Screenshot of the 4-bit Webther UI"/> 
+</figure>
+
+<p>From top to bottom, there are five main components on the main page: the settings bar, location bar, weather forecast elements, forecast time, and the Change Location button. Not shown here is the page footer, which attributes weather data to Yahoo! Weather.</p>
+<p>Originally, the settings bar was a fixed element at the top right of the page – the vertical mirror opposite of the page footer. It seemed natural to stick it there (copying the Reddit Enhancement Suite&rsquo;s bar) at first, though I realised it was a bit out of the way and easily overlooked (especially since unlike reddit, 4-bit Webther has absolutely nothing at the top of the screen.) It ended up where it is (with bigger icons than the original implementation) so it&rsquo;d be more accessible and visible to users – being right-aligned and kind of sticking out would hopefully catch people&rsquo;s attention.</p>
+<p>The location bar serves the purpose of letting people know just what location they&rsquo;re viewing the weather for. Straightforward and simple enough.</p>
+<p>The weather forecast elements originally had a solid grey background to them, with no gaps. The gaps were added in (thanks to the <a href="http://960.gs">960 Grid System</a>, which made layout a lot easier) to make things look a little less monotonous (and also I suppose to emphasise the idea of there being four parts to the forecast.)</p>
+<p>(As an aside, I just realised &ldquo;Fourcast&rdquo; could actually be an alternative name for this thing, though it&rsquo;s kind of lame. Moving on…)</p>
+<p>I wanted there to be an easy way to tell what time the weather data was generated (according to the Yahoo! Weather feed), as well as a way to update it. The forecast time bar serves this purpose, though it&rsquo;s admittedly not as good as it could be – it shows when the feed data was generated, but not when it was retrieved (and hence the user has no idea if, after they&rsquo;ve clicked to refresh the weather data, the refresh went through.) I couldn&rsquo;t figure out how to include both the forecast time and retrieval time without overcrowding.</p>
+<p>I didn&rsquo;t want a separate refresh button, since it seemed like it might clutter things up. Having the user click on the forecast time to refresh the weather seemed logical.</p>
+<p>The Change Location button was originally another bar underneath the forecast location. That seemed to break the flow from top to bottom: you&rsquo;d read where the weather was, then see that you could click a bar to refresh it, then see the actual weather. Moving it to the bottom and making it a standalone button draws attention to it without getting in the way. (A possible alternative would be to make clicking the forecast location bar serve the same purpose, but that might again break the flow if there was text to explain it.)</p>
+<p>The UI as a whole is centred in the page horizontally, and offset from the top vertically. Being left-aligned made it feel weird, and placing it in the centre of the page also felt off: even though it was exactly in the centre it looked like it was too low down. Visual illusions are strange like that.</p>
+<h1 id="settings-pane">Settings Pane</h1>
+<figure>
+    <img src="./images/2.png"
+         alt="Screenshot of 4-bit Webther&#39;s settings page."/> 
+</figure>
+
+<p>The layout of the settings pane was supposed to directly mimic and map to the layout of the forecast pane – the idea being that if you wanted to change a setting that affected an element on the forecast pane, that setting should be in the same position as that element.</p>
+<p>This worked fine for the &ldquo;remember this location&rdquo; checkbox, but not so much for the various thresholds: there are four forecast elements but only three configurable thresholds (Rain/Shine being a component that can&rsquo;t be adjusted). Still, the location of the three threshold &ldquo;configurators&rdquo; are in roughly the same position on the screen, and appear in the same order that the actual elements do.</p>
+<p>The Save Changes and Cancel buttons were originally centred below everything else (just as the Change Location button on the forecast pane was), but that had to change with the addition of the Reset Settings button. Reset Settings basically nukes the localStorage object used to store settings, resetting them to the defaults, before refreshing the page – there&rsquo;s a confirmation prompt that appears before it does this, but I wanted it to be very clear that this was a pretty different button than the other two (hence the red colour and it being way off there on the right.)</p>
+<p>The gap between the three buttons and the elements above them is also bigger than usual; the idea being to make it clear that these are buttons that will get you off of this screen, and also to try draw attention to them. With a smaller gap the buttons risk blending in to the mass of grey that makes up the rest of the pane (though the bright red Reset button does still stand out.)</p>
+<h1 id="change-location-pane">Change Location Pane</h1>
+<figure>
+    <img src="./images/3.png"
+         alt="Screenshot of 4-bit Webther&#39;s Change Location page."/> 
+</figure>
+
+<p>Really not too much going on here, as this pane needs to do only one thing. I didn&rsquo;t include a &ldquo;Cancel&rdquo; button since I kind of cheated here: this pane is displayed when the user wishes to change location, and also when they either deny or ignore the web browser&rsquo;s request to access their location (i.e. when HTML5 Geolocation fails.) The ability to cancel out of this page makes sense for the former, but wouldn&rsquo;t in the latter – there&rsquo;s no usable state that we could go to.</p>
+<p>(The Settings Pane has some logic to return the user to the last visible pane they were on, precisely to avoid sending them to an unusable state: if it were to simply send them to the forecast pane after they toggled out of settings, it would be possible to have geolocation fail, click into the settings pane, then click out and be sent to a blank forecast.)</p>
+<p>It&rsquo;s definitely possible to determine the condition under which this pane is being displayed (because the user clicked the button, or because geolocation failed) and show or hide a Cancel button depending on which, but that seemed like it would add complexity that isn&rsquo;t overly beneficial. Little things like that do make the user experience better, though, so I suppose it&rsquo;s still worth the effort.</p>
+<h1 id="conclusion">Conclusion</h1>
+<p>4-bit Webther was fun to work on, even if the end result has little practical use – there are full-fledged weather sites with better data, and I still prefer the method of finding a window and looking outside (though I still like the &ldquo;glanceable forecast&rdquo; concept). Ultimately it served as an experiment to learn from: it let me play with things like HTML5 Geolocation and Local Storage, and try creating some sort of a UI with HTML, CSS, and JavaScript. It&rsquo;s a rather basic application overall, but it does do everything I wanted it to do from the start.</p>
+<p>ISAAC definitely won&rsquo;t be getting a UI like this, though – the style doesn&rsquo;t fit, and the HTML seems a bit messy. More exploration is needed.</p>
+
+    </div>
+  </div>
+</body>
+
+</html>

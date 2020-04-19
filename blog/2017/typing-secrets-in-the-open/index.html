@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta property="fb:admins" content="jerome.cheng">
+  <title>Typing Secrets in the Open - ayulin.net</title>
+
+  <link href="https://fonts.googleapis.com/css?family=Lato:400,900" rel="stylesheet">
+  <link href="/css/typography.css" rel="stylesheet">
+  <link href="/css/common.css" rel="stylesheet">
+  <link href="/css/blog.css" rel="stylesheet">
+
+  <link rel="alternate" type="application/rss+xml" href="/blog/index.xml" title="ayulin.net" />
+
+  <link rel="shortcut icon" href="/profile.jpg">
+</head>
+
+<body>
+  <div class="wrapper">
+    <div class="header">
+  <div class="profile-pic">
+    <a href="/">
+      <img src="/profile.jpg" />
+    </a>
+  </div>
+
+  <div class="contact">
+    <p class="author">
+      <a href="/">ayulin.net</a>
+    </p>
+
+    <p>
+      <a href="/about"><small>About</small></a>
+
+      
+      <a href="https://twitter.com/Ayulin"><small>Twitter</small></a>
+      
+
+      
+      <a href="https://github.com/jcheng31"><small>GitHub</small></a>
+      
+    </p>
+  </div>
+</div>
+
+    <div class="post-header">
+  <h5 class="subtle">17 June 2017</h5>
+  <h1><strong>Typing Secrets in the Open</strong></h1>
+  <h2 class="subtitle">Garbage out. Garbage in. Plaintext out.</h2>
+</div>
+
+    <div class="post-body">
+      <p>I&rsquo;ve been keeping a daily journal for quite a while now - 8 or so years? I started using OhLife,
+which was email-based, then when that shut down I moved to plain-old-Markdown files stored in a
+TrueCrypt (and now VeraCrypt) container&hellip; thing.</p>
+<p>One thing I had never really done was journal in public, because that would mean anyone could just read whatever I wrote. If I had to, I&rsquo;d try and put my back to a wall, and close the window whenever anyone got near. Earlier this week, though, I found myself with some time to go before a flight and wondered if there were a way I could actually write at the gate, in the open, without anyone being able to tell what I was writing.</p>
+<p>I realised that I actually could, and that the method was really simple too.</p>
+<p>Something I&rsquo;d done a few years ago was switch over to using <a href="https://en.wikipedia.org/wiki/Keyboard_layout#Colemak">Colemak</a> instead of QWERTY; I can touch type in it, too. If I were to switch my keyboard layout back into QWERTY but keep typing as if I were using Colemak, the result would be seemingly gibberish to anyone looking - I&rsquo;d just need to convert the text back later. The same technique would work with any alternative keyboard layout with enough keys that differ from QWERTY, like Dvorak: it&rsquo;s effectively a simple <a href="https://en.wikipedia.org/wiki/Substitution_cipher">substitution cipher</a>, though instead of writing plaintext and encoding it, you just write the ciphertext directly.</p>
+<p>I wrote my entry, then worked on a tool to decode it. So here&rsquo;s <a href="https://github.com/jcheng31/ColemakConverter">ColemakConverter</a>.</p>
+<p>It:</p>
+<ul>
+<li>Is written in C#, using .NET Core.
+<ul>
+<li>I really like C#.</li>
+</ul>
+</li>
+<li>Is cross-platform! Hooray!
+<ul>
+<li>Install .NET Core, add it to your PATH, then run <code>dotnet ColemakConverter.dll &lt;path to input file&gt; &lt;path to output file&gt;</code>
+<ul>
+<li>It&rsquo;s like Java, but not!</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Converts text written using QWERTY, but as if the keyboard layout was Colemak, back into plain text.
+<ul>
+<li>In other words: set your keyboard layout to QWERTY, type as if you were using Colemak, and this tool will convert the result into a readable form.</li>
+</ul>
+</li>
+<li>Does not have any error-handling whatsoever.
+<ul>
+<li>Forget to give it either an input path or an output path? It&rsquo;ll crash.</li>
+<li>Give it an input path that points to something that isn&rsquo;t a text file? It&rsquo;ll probably crash.
+<ul>
+<li>I didn&rsquo;t actually try. But the chances are pretty good.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Probably won&rsquo;t scale well to massive files.
+<ul>
+<li>Here&rsquo;s how it works:
+<ol>
+<li>Read all lines from the input file.</li>
+<li>For each line, split the text into characters, convert each character, then join the converted characters into a converted string.</li>
+<li>Write all lines into the output file.</li>
+</ol>
+</li>
+<li>Let&rsquo;s do everything in memory! \o/</li>
+</ul>
+</li>
+</ul>
+<p>Could it be more efficient? Sure. Safer? Definitely. More general, with a file used to define the character mapping, so it&rsquo;s not just hardcoded for QWERTY and Colemak? Yeah. But this seems so incredibly niche that I doubt there&rsquo;s actually any demand for it.</p>
+<p>But if I&rsquo;m wrong, feel free to file an issue or submit a pull request!</p>
+    </div>
+  </div>
+</body>
+
+</html>

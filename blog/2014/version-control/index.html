@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta property="fb:admins" content="jerome.cheng">
+  <title>Version Control - ayulin.net</title>
+
+  <link href="https://fonts.googleapis.com/css?family=Lato:400,900" rel="stylesheet">
+  <link href="/css/typography.css" rel="stylesheet">
+  <link href="/css/common.css" rel="stylesheet">
+  <link href="/css/blog.css" rel="stylesheet">
+
+  <link rel="alternate" type="application/rss+xml" href="/blog/index.xml" title="ayulin.net" />
+
+  <link rel="shortcut icon" href="/profile.jpg">
+</head>
+
+<body>
+  <div class="wrapper">
+    <div class="header">
+  <div class="profile-pic">
+    <a href="/">
+      <img src="/profile.jpg" />
+    </a>
+  </div>
+
+  <div class="contact">
+    <p class="author">
+      <a href="/">ayulin.net</a>
+    </p>
+
+    <p>
+      <a href="/about"><small>About</small></a>
+
+      
+      <a href="https://twitter.com/Ayulin"><small>Twitter</small></a>
+      
+
+      
+      <a href="https://github.com/jcheng31"><small>GitHub</small></a>
+      
+    </p>
+  </div>
+</div>
+
+    <div class="post-header">
+  <h5 class="subtle">1 February 2014</h5>
+  <h1><strong>Version Control</strong></h1>
+  <h2 class="subtitle">Developing Office plug-ins for earlier versions than the one installed.</h2>
+</div>
+
+    <div class="post-body">
+      <p>I spent last December working on the narration and caption features for <a href="http://www.powerpointlabs.info">PowerPointLabs</a> without actually working on the plug-in itself; everything was done in a separate project. Eventually, it came time to merge everything in.</p>
+<p>Merging itself wasn&rsquo;t too difficult, since the components were neatly compartmentalised: it was pretty much just a matter of copying the files in and changing their namespaces. The only issue was with getting the project as a whole to work for both myself and the existing, main developer - I&rsquo;d been using Visual Studio 2013 and Office 2013, while he was on Visual Studio 2010 and Office 2010.</p>
+<p>The differences in Visual Studio version weren&rsquo;t an issue, as <a href="http://msdn.microsoft.com/en-us/library/hh266747.aspx">you can still open VS2013 projects in 2010 if Service Pack 1 is installed.</a> The Office versions, however, proved to be a little more tricky (though thankfully, fairly easily resolvable.) By default, Visual Studio will automatically upgrade an Office project to use the installed version of Office if it is newer than that specified in the project. This doesn&rsquo;t affect the version of Office the plug-in itself will run in - that is, the version of Office targeted by the plug-in - though it does mean you&rsquo;ll run into some issues when trying to debug.</p>
+<p>Here&rsquo;s how to fix them.</p>
+<hr>
+<p>Assuming you haven&rsquo;t already upgraded the project (i.e. it still opens and can be debugged without issue on the system with the older Office version), you&rsquo;ll see something like this every time you try opening the project on the new system.</p>
+<figure>
+    <img src="./images/1.png"
+         alt="Screenshot of a Visual Studio dialog prompting to permanently upgrade the project."/> 
+</figure>
+
+<p>If you have already upgraded the project, you&rsquo;ll want to revert to before the point of upgrading - you did use source control, right? ;)</p>
+<p>To prevent this, go to the <code>Tools</code> menu and hit <code>Options</code>, then navigate to <code>Office Tools\Project Migration</code> (or just search for it using the search bar there.) You&rsquo;ll see this option is checked by default:</p>
+<figure>
+    <img src="./images/2.png"
+         alt="Screenshot of Visual Studio preferences, showing the Project Migration section."/> 
+</figure>
+
+<p>Uncheck that, and Visual Studio will let you proceed without prompting you to upgrade. We aren&rsquo;t quite done, though - now the <strong>newer</strong> system will be the one to see this prompt when trying to debug:</p>
+<figure>
+    <img src="./images/3.png"
+         alt="Screenshot of Visual Studio showing an error saying the required version of Office is not installed."/> 
+</figure>
+
+<p>To fix this, you&rsquo;ll need to edit the project&rsquo;s properties. Go to the <code>Project</code> menu, and click the <code>&lt;Project Name&gt; Properties</code> item, then click on <code>Debug</code> in the left pane.</p>
+<figure>
+    <img src="./images/4.png"
+         alt="Screenshot of Visual Studio preferences showing the Debug pane."/> 
+</figure>
+
+<p>You&rsquo;ll want to change the <code>Start Action</code> to <code>Start external program</code>, then set it to launch the Office program executable you have installed; in my case here, that was just PowerPoint.</p>
+<figure>
+    <img src="./images/5.png"
+         alt="Screenshot of Visual Studio preferences showing the result of changing the debug pane accordingly."/> 
+</figure>
+
+<p>And there you go. This is a user-specific setting, so as long as you don&rsquo;t have your <code>.suo</code> and
+<code>.csproj.user</code> files tracked in source control, it won&rsquo;t affect any other system.</p>
+
+    </div>
+  </div>
+</body>
+
+</html>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta property="fb:admins" content="jerome.cheng">
+  <title>Media Keys, Colemak, and the ErgoDox - ayulin.net</title>
+
+  <link href="https://fonts.googleapis.com/css?family=Lato:400,900" rel="stylesheet">
+  <link href="/css/typography.css" rel="stylesheet">
+  <link href="/css/common.css" rel="stylesheet">
+  <link href="/css/blog.css" rel="stylesheet">
+
+  <link rel="alternate" type="application/rss+xml" href="/blog/index.xml" title="ayulin.net" />
+
+  <link rel="shortcut icon" href="/profile.jpg">
+</head>
+
+<body>
+  <div class="wrapper">
+    <div class="header">
+  <div class="profile-pic">
+    <a href="/">
+      <img src="/profile.jpg" />
+    </a>
+  </div>
+
+  <div class="contact">
+    <p class="author">
+      <a href="/">ayulin.net</a>
+    </p>
+
+    <p>
+      <a href="/about"><small>About</small></a>
+
+      
+      <a href="https://twitter.com/Ayulin"><small>Twitter</small></a>
+      
+
+      
+      <a href="https://github.com/jcheng31"><small>GitHub</small></a>
+      
+    </p>
+  </div>
+</div>
+
+    <div class="post-header">
+  <h5 class="subtle">26 December 2014</h5>
+  <h1><strong>Media Keys, Colemak, and the ErgoDox</strong></h1>
+  <h2 class="subtitle">Flashing the TMK firmware onto the ErgoDox.</h2>
+</div>
+
+    <div class="post-body">
+      <p>I got an <a href="https://www.massdrop.com/buy/ergodox">ErgoDox off of Massdrop</a> a few months ago, switching up from the Microsoft Sculpt Ergonomic Keyboard. It&rsquo;s an ergonomic, truly split keyboard (the two halves are joined by a cable so you can position them almost anywhere you want), with a feature that stood out to me: it&rsquo;s reprogrammable, being driven by a <a href="http://www.pjrc.com/teensy/">Teensy</a> microcontroller.</p>
+<p>Massdrop provides an online configurator which is fairly easy to use, and so when it arrived I loaded a <a href="https://www.massdrop.com/ext/ergodox/?referer=FK57F5&amp;hash=379b20112e91aef3f0383a1e72d9f054">customized Colemak layout</a> onto the keyboard. The only downside to this was that the tool is based on an older version of the firmware, and doesn&rsquo;t support media keys - volume up, down, play/pause, and so on.</p>
+<p>This was something I sorely missed from the Sculpt Ergonomic Keyboard, since it meant having to switch into and out of Spotify just to play and pause music. It&rsquo;s definitely not a major problem, though it is still a step down from before.</p>
+<p>Eventually, I came across the <a href="https://github.com/cub-uanic/tmk_keyboard">TMK firmware port</a> (on the <code>cub_layout</code> branch), and decided to give that a shot.</p>
+<p>&hellip;someday. This was about a month or two ago, when assignment deadlines and exams were looming. So I pinned the tab in Firefox, and left it there.</p>
+<p>Today ended up being that day.</p>
+<p>After forking the repo, the first thing I tried before making any changes was to just build the existing firmware and layout. I installed the AVR tools and ran the <code>make clean</code> command listed in the <a href="https://github.com/cub-uanic/tmk_keyboard/blob/cub_layout/doc/build.md">instructions</a> from within PowerShell, only for <code>sh.exe</code> to repeatedly crash.</p>
+<p>Switching over to Command Prompt caused <code>mkdir.exe</code> to crash instead.</p>
+<p>Instead of trying to figure out the cause of all that, I decided to just run everything from my Ubuntu VM instead. After installing the toolchain (<code>sudo apt-get install gcc-avr binutils-avr gdb-avr avr-libc avrdude</code>, as given <a href="http://avr-eclipse.sourceforge.net/wiki/index.php/The_AVR_GCC_Toolchain">here</a>), the <code>make</code> commands ran without issue.</p>
+<p>Next, I spent some time figuring out what I actually wanted each layer to have. I essentially wanted to just copy the existing layout I had, then add media keys to the function layer - what would usually be the left and right arrow keys would become previous and next track, while volume up and down would replace the up and down arrow keys. Space (on the right hand thumb cluster) would then be play/pause.</p>
+<p>One difference between the TMK and base ErgoDox firmwares is the way in which layers are handled. The base ErgoDox firmware uses a stack to keep track of the active layers - the layer on top of the stack takes precedence over those below. You can do some neat things with this, like having &ldquo;transparent&rdquo; keys that &ldquo;fallthrough&rdquo; to lower layers, though I didn&rsquo;t bother. You can also push and pop layers in any order.</p>
+<p>The TMK firmware, however, doesn&rsquo;t quite work the same way (or at least my understanding of it is it doesn&rsquo;t). There&rsquo;s still a layer stack, with higher layers taking precedence over lower ones, but the key difference is that you don&rsquo;t push or pop layers: instead, you enable or disable them entirely. That does mean it&rsquo;s a little less flexible than the stock firmware, though it does support some other cool stuff - for example, you can have keys which do one thing when tapped, and another when held.</p>
+<p>And media keys, which is why we&rsquo;re here.</p>
+<p>There are four layers I use: a Colemak base layer, a layer with function (and now media) keys, a NumPad layer, and finally a QWERTY (for gaming) layer. Because of the way TMK&rsquo;s stack works, I had to rearrange them so QWERTY came above Colemak, but below function and NumPad, which should always take precedence.</p>
+<p>I also changed things slightly, changing the toggle for the function layer which I never used (since I had other keys that would activate the layer when held instead) to toggle the QWERTY layer instead, which freed up that key for Caps Lock (or Backspace in QWERTY).</p>
+<p>That left me with <a href="https://github.com/jcheng31/tmk_keyboard/blob/colemak/keyboard/ergodox/keymap_colemak.h">this layout</a>. I opted to use no-ops instead of having keys be transparent in most cases, except on the function/media layer - the key &ldquo;above&rdquo; that which would be held down to toggle that layer needed to be transparent, or else the layer would end up being stuck on. <em>Update: I also made the keys above the modifiers (Ctrl, Alt, and Shift) transparent, so they would be properly released after a key combination involving them and an F-key.</em></p>
+<p>Running <code>make -f Makefile.pjrc colemak</code> from <code>/keyboard/ergodox</code> builds the actual <code>.hex</code> which can be loaded using the Teensy loader.</p>
+<p>And now I have media keys on my ErgoDox. Itch scratched.</p>
+
+    </div>
+  </div>
+</body>
+
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta property="fb:admins" content="jerome.cheng">
+  <title>Packaging Problem - ayulin.net</title>
+
+  <link href="https://fonts.googleapis.com/css?family=Lato:400,900" rel="stylesheet">
+  <link href="/css/typography.css" rel="stylesheet">
+  <link href="/css/common.css" rel="stylesheet">
+  <link href="/css/blog.css" rel="stylesheet">
+
+  <link rel="alternate" type="application/rss+xml" href="/blog/index.xml" title="ayulin.net" />
+
+  <link rel="shortcut icon" href="/profile.jpg">
+</head>
+
+<body>
+  <div class="wrapper">
+    <div class="header">
+  <div class="profile-pic">
+    <a href="/">
+      <img src="/profile.jpg" />
+    </a>
+  </div>
+
+  <div class="contact">
+    <p class="author">
+      <a href="/">ayulin.net</a>
+    </p>
+
+    <p>
+      <a href="/about"><small>About</small></a>
+
+      
+      <a href="https://twitter.com/Ayulin"><small>Twitter</small></a>
+      
+
+      
+      <a href="https://github.com/jcheng31"><small>GitHub</small></a>
+      
+    </p>
+  </div>
+</div>
+
+    <div class="post-header">
+  <h5 class="subtle">18 November 2015</h5>
+  <h1><strong>Packaging Problem</strong></h1>
+  <h2 class="subtitle">NuGet, .csproj, and build configurations.</h2>
+</div>
+
+    <div class="post-body">
+      <p>Relatively recently, I started using the actual command-line tool for NuGet; previously, I&rsquo;d been using the Package Explorer GUI to create packages for <a href="https://github.com/jcheng31/ForecastPCL">ForecastPCL</a>. The benefit of the command-line tool is that it automagically creates packages the &ldquo;proper&rdquo; way - I don&rsquo;t understand how things are supposed to be structured internally, with the subfolders whose names specify the platforms you&rsquo;re targeting, but I don&rsquo;t need to worry about that.</p>
+<p>For now, at least. I&rsquo;m sure I&rsquo;ll need to at some point in the future.</p>
+<p>There&rsquo;s a simple gotcha that I missed when skimming the <a href="https://docs.nuget.org/Create/Creating-and-Publishing-a-Package">NuGet documentation</a>, though. I created a nuspec file by running <code>nuget spec</code> from within the folder where my <code>.csproj</code> was, edited it as desired, then ran <code>nuget pack &lt;project&gt;.csproj</code> to create the package. This works without any problems, and the end result was a package that I was able to upload just fine without any issues.</p>
+<p>The problem, though, is that:</p>
+<blockquote>
+<p>By default, NuGet will use the default build configuration set in the project file (typically Debug).</p>
+</blockquote>
+<p>This <strong>is</strong> stated in the documentation. How to fix it is also given there. I didn&rsquo;t see it, though, which meant that when someone tried to actually use the package in an app, <a href="https://github.com/jcheng31/ForecastPCL/issues/12">it failed certification</a> because the package had included the binary built in Debug mode, and not Release.</p>
+<p>The NuGet documentation gives two ways of addressing this. The first is to specify the build configuration you want to use when running the tool:
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">nuget pack &lt;project&gt;.csproj -Prop Configuration=Release</code></pre></div></p>
+<p>The downside to this is you need to remember to do it every time, which I&rsquo;d definitely forget. You could stick it in a build script, of course.</p>
+<p>The other method is to modify the <code>.csproj</code> file and just change the default configuration there. That&rsquo;s easily done by opening it in a text editor and changing the line that looks like this:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml"><span style="color:#000080">&lt;Configuration</span> <span style="color:#008080">Condition=</span><span style="color:#d14">&#34; &#39;$(Configuration)&#39; == &#39;&#39; &#34;</span><span style="color:#000080">&gt;</span>Debug<span style="color:#000080">&lt;/Configuration&gt;</span></code></pre></div>
+<p>To this:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml"><span style="color:#000080">&lt;Configuration</span> <span style="color:#008080">Condition=</span><span style="color:#d14">&#34; &#39;$(Configuration)&#39; == &#39;&#39; &#34;</span><span style="color:#000080">&gt;</span>Release<span style="color:#000080">&lt;/Configuration&gt;</span></code></pre></div>
+<p>And that&rsquo;s that.</p>
+
+    </div>
+  </div>
+</body>
+
+</html>
