@@ -62,7 +62,7 @@ on the VPS to rebuild. I didn&rsquo;t have a good way of reproducing that set-up
 permanently since I&rsquo;d set it up all manually, and I didn&rsquo;t like how Jekyll made my website feel like
 an entire Ruby project - I had to track <code>.ruby-version</code> and Gemfile just to be able to set it up
 again reliably.</p>
-<p>(And go through an entire install <code>rbenv</code>, <code>rbenv install</code>, <code>bundle install</code> cycle first as well.)</p>
+<p>(And go through an entire install <code>rbenv</code>, <code>rbenv install</code>, <code>gem install bundler</code>, <code>bundle install</code> cycle first as well.)</p>
 <p>This time around deploying is just running a script (provided in the Hugo docs, even) locally, and
 it fits in source control alongside the content. There isn&rsquo;t anything to worry about
 dependency-wise, too, since Hugo&rsquo;s just a single binary.</p>
