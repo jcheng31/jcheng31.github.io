@@ -4,12 +4,17 @@
   
   <url>
     <loc>https://www.ayulin.net/</loc>
-    <lastmod>2020-04-19T13:38:00+08:00</lastmod>
+    <lastmod>2020-04-27T13:43:00+08:00</lastmod>
   </url>
   
   <url>
     <loc>https://www.ayulin.net/blog/</loc>
-    <lastmod>2020-04-19T13:38:00+08:00</lastmod>
+    <lastmod>2020-04-27T13:43:00+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.ayulin.net/blog/2020/running-games-on-ec2-with-parsec/</loc>
+    <lastmod>2020-04-27T13:43:00+08:00</lastmod>
   </url>
   
   <url>

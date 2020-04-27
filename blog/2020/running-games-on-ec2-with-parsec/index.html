@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta property="fb:admins" content="jerome.cheng">
+  <title>Running Games on EC2 with Parsec - ayulin.net</title>
+
+  <link href="https://fonts.googleapis.com/css?family=Lato:400,900" rel="stylesheet">
+  <link href="/css/typography.css" rel="stylesheet">
+  <link href="/css/common.css" rel="stylesheet">
+  <link href="/css/blog.css" rel="stylesheet">
+
+  <link rel="alternate" type="application/rss+xml" href="/blog/index.xml" title="ayulin.net" />
+
+  <link rel="shortcut icon" href="/profile.jpg">
+</head>
+
+<body>
+  <div class="wrapper">
+    <div class="header">
+  <div class="profile-pic">
+    <a href="/">
+      <img src="/profile.jpg" />
+    </a>
+  </div>
+
+  <div class="contact">
+    <p class="author">
+      <a href="/">ayulin.net</a>
+    </p>
+
+    <p>
+      <a href="/about"><small>About</small></a>
+
+      
+      <a href="https://twitter.com/Ayulin"><small>Twitter</small></a>
+      
+
+      
+      <a href="https://github.com/jcheng31"><small>GitHub</small></a>
+      
+    </p>
+  </div>
+</div>
+
+    <div class="post-header">
+  <h5 class="subtle">27 April 2020</h5>
+  <h1><strong>Running Games on EC2 with Parsec</strong></h1>
+  <h2 class="subtitle">Like a LAN shop, except that it really isn&#39;t in almost every way.</h2>
+</div>
+
+    <div class="post-body">
+      <p>I&rsquo;m back in Singapore and away from my desktop, which has meant not being able to play any of my
+more demanding or Windows-only games on the computer I actually have here (a MacBook Pro). I gave
+GeForce Now a shot, but given that they didn&rsquo;t have any servers in the region, the latency made
+things quite unplayable. It also didn&rsquo;t look very good, most likely for the same reason.</p>
+<figure>
+    <img src="./images/geforce-now.png"
+         alt="Screenshot of GeForce Now network test, showing a recommendation against streaming."/> <figcaption>
+            <p>They&rsquo;re really not kidding.</p>
+        </figcaption>
+</figure>
+
+<p>I came across <a href="https://lg.io/2015/07/05/revised-and-much-faster-run-your-own-highend-cloud-gaming-service-on-ec2.html">this 2015 guide</a>
+to running an EC2 instance for gaming via a Telegram group chat, and gave the pre-built AMI a shot. I wanted to use
+<a href="https://parsecgaming.com/">Parsec</a> instead of Steam In-Home Streaming, though, since I was
+interested in playing a game which <em>wasn&rsquo;t</em> on Steam (and I forgot that you could just add the game
+<em>to</em> Steam and play it that way). Unfortunately, out of the box, Parsec wouldn&rsquo;t work - it came back
+with an error saying the encoder couldn&rsquo;t be initialised, which I guessed was because of severely
+outdated graphics drivers. I didn&rsquo;t manage to get newer ones to install, so I decided to start over
+from scratch, following <a href="https://medium.com/@bmatcuk/gaming-on-amazon-s-ec2-83b178f47a34">a 2016 guide</a>
+instead and riffing on it to modernize things a little.</p>
+<p>The result is a set-up that lets me play The Division 2 at about 50ish FPS on High-ish settings at
+1440p, and XCOM: Chimera Squad at 60 FPS on maxed-out settings at the same resolution. Latency is
+pretty good in that I don&rsquo;t notice it at all, though when playing The Division 2 I get occasional
+issues where everything freezes before catching up; this literally happens to me on my actual
+desktop too, though, so I&rsquo;m not too fussed there. Maybe it&rsquo;s just that game.</p>
+<p>It&rsquo;s also not the exact same in terms of visual fidelity as playing on identical settings on a
+&ldquo;real&rdquo; machine in front of you - it&rsquo;s a little bit off since you&rsquo;re pretty much watching a video of
+the game running - but it&rsquo;s still better than nothing, and the difference isn&rsquo;t that jarring.</p>
+<p>The cost of running this varies based on the bandwidth needed to stream and how long you play - any
+games which have a lot of motion going on will be higher-bandwidth than ones which are relatively
+static, and your resolution is going to affect this too. It seems to have come out to approximately
+a (US) dollar per hour for me so far, which is close enough to what I remember the cost of going to
+a LAN shop being (albeit almost two decades ago). Plus those are closed now given everything going
+on in the world, and I can do this while at home.</p>
+<p>So. Here&rsquo;re the steps I followed. This is again adapted from <a href="https://medium.com/@bmatcuk/gaming-on-amazon-s-ec2-83b178f47a34">this guide</a>,
+which is worth checking out as well for more details on how AWS pricing works.</p>
+<h2 id="creating-the-instance">Creating the Instance</h2>
+<ol>
+<li>First, select an appropriate region within the AWS console. You&rsquo;ll probably want to use
+<a href="https://www.cloudping.info">CloudPing.info</a> to find the one with the lowest latency. Since I&rsquo;m
+in Singapore, I chose <code>Asia Pacific (Singapore)</code>, also known as <code>ap-southeast-1</code>.</li>
+<li>In the EC2 dashboard, click either of the <code>Launch Instance</code> buttons.</li>
+<li>Choose the <code>Microsoft Windows Server 2019 Base</code> AMI.</li>
+<li>Filter the instance list by GPU Instances, then select a <code>g4dn.xlarge</code> instance. This is a
+4-core, 16 GB RAM instance with an NVIDIA Tesla T4 GPU which is (so far) good enough.</li>
+<li>Tick the <code>Request Spot instances</code> button, then enter a maximum price of one cent more than the
+current price shown (rounded down). As of this writing in <code>ap-southeast-1</code> the current price is
+$0.4048; I would enter $0.41 here.</li>
+<li>On the Add Storage screen, leave the default storage size of 30GB unchanged. We&rsquo;ll talk about
+this later.</li>
+<li>Skip the Add Tags step, unless you have a use for it. I didn&rsquo;t.</li>
+<li>Create a new security group to enable yourself to access the machine. My ISP gives out static IP
+addresses, so I created one which just allows all traffic from my IP.</li>
+<li>Launch the instance and connect to it. The Connect dialogue on the EC2 dashboard should provide
+instructions on how to get the Windows login password using a key pair. After doing so, I used <a href="https://apps.apple.com/us/app/microsoft-remote-desktop-10/id1295203466?mt=12">Microsoft Remote
+Desktop</a> with the
+AWS-provided RDP file. If you&rsquo;re on Windows, you can use Remote Desktop (open Start, then type
+<code>Remote Desktop Connection</code>) - I haven&rsquo;t tried this, though.</li>
+</ol>
+<h2 id="setting-up-parsec">Setting up Parsec</h2>
+<p>Right now we have a machine up and running, but it&rsquo;s not actually in a game-ready state. We&rsquo;ll want
+to get graphics and sound drivers installed, as well as Parsec, which&rsquo;ll let us connect to it with
+better latency than Remote Desktop.</p>
+<ol>
+<li>Parsec provides a handy <a href="https://github.com/jamesstringerparsec/Parsec-Cloud-Preparation-Tool">installation
+script</a> which does all the
+hard work for us. Follow the instructions there and log in to Parsec when it&rsquo;s installed.</li>
+<li>Open Parsec&rsquo;s settings and enable x265 streaming under the Host tab (and do the same on your
+computer, under Client). This&rsquo;ll make things look better while using less bandwidth, which is
+great for us. You may also want to tweak the Bandwidth Limit if you find things look a little
+blocky when playing (later), or if you don&rsquo;t mind trading off some visual quality for less cost
+(or the other way around). I bumped mine from the default 10 mbps to 30.</li>
+<li>After running the GPU updater and rebooting the instance, check that you can reconnect using
+Parsec on your own computer - the instance should pop up there after a couple of minutes. <strong>Do
+not</strong> use Remote Desktop to connect first; if you do, you&rsquo;ll have to reboot again in order for
+Parsec to work.</li>
+</ol>
+<p>At this point, you can also go ahead and install the game store of your choice - Steam, uPlay,
+Origin, etc. Even Epic if you want. Whatever works for you.</p>
+<h2 id="preparing-an-ami-of-our-own">Preparing an AMI of Our Own</h2>
+<p>Since we&rsquo;re not going to keep the instance up all the time, we&rsquo;ll prepare an AMI that&rsquo;ll let us
+create a new one with everything set up just the way we have it now.</p>
+<p>The aforementioned guide I was basing this off of said to do this before installing any games, which
+gives us a clean slate AMI - you&rsquo;d then create a new AMI for each game you want to play (after
+installing it). This is to help keep costs down, since you&rsquo;re charged for EBS storage based on the
+size of the instance&rsquo;s disk while it&rsquo;s running. Having game-specific AMIs with smaller disks means
+you pay less than if you have all your games in a single one with a large disk.</p>
+<p>Interestingly, and at least according to the same guide, storage of the AMI itself is charged
+somewhat differently: you&rsquo;re only charged for actual data being used and not the size of the disk.
+You also only pay for the delta between the base AMI and the child one - in our case here, we&rsquo;d pay
+only for the size difference between what&rsquo;s on disk in our current &ldquo;base gaming&rdquo; AMI and Amazon&rsquo;s
+<code>Microsoft Windows Server 2019 Base</code> one, as well as the difference between our game AMIs and the
+&ldquo;base gaming&rdquo; one<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup>.</p>
+<p>For now, we&rsquo;ll just create the base AMI and we&rsquo;ll talk more about creating game-specific ones
+later.</p>
+<ol>
+<li>Back in the EC2 dashboard, right click the running instance, select <code>Image</code>, then click <code>Create Image</code>. Give it an appropriate name (I called mine <code>Base Gaming VM</code> just like the other guide).</li>
+<li>Terminate the instance and wait. You don&rsquo;t have to have the instance running while an AMI is
+being built from it.</li>
+</ol>
+<p>That&rsquo;s it.</p>
+<h2 id="installing-games">Installing Games</h2>
+<p>To install a game, we&rsquo;re going to go through most of the same steps that we went through to create
+the first instance, though we don&rsquo;t need to go through setting everything up again.</p>
+<ol>
+<li>Click <code>Launch Instance</code>.</li>
+<li>Select the AMI you just created from <code>My AMIs</code>.</li>
+<li>Select the <code>g4dn.xlarge</code> instance type.</li>
+<li>Choose <code>Request Spot instances</code> and type in an appropriate max price.</li>
+<li>On the <code>Add Storage</code> screen, increase the size of the <code>Root</code> volume to an appropriate size to
+be able to store your game.</li>
+<li>Skip the <code>Add Tags</code> screen again, or if you have a use for it, do what you want to do here.</li>
+<li>Choose the security group you created before.</li>
+<li>Launch the instance and connect to it using Parsec when it appears there.</li>
+<li>Hit Start and type <code>Disk Management</code>, then select the <code>Create and format hard disk partitions</code>
+option.</li>
+<li>You&rsquo;ll be prompted to initialize something or another. Accept.</li>
+<li>Right-click the existing <code>C:/</code> drive, then select <code>Extend Volume</code>. By default it <em>should</em> opt to
+fill all the remaining space, so all you should need to do here is confirm. (If it doesn&rsquo;t,
+adjust the options so it does.)</li>
+<li>Install your game.</li>
+</ol>
+<p>You&rsquo;ll then want to go through the AMI creation process again, this time creating an AMI specific to
+the game. I name mine with the date and the name of the game (e.g. <code>2020-04-27 Division 2</code>). You&rsquo;ll
+also have to create a new AMI each time something on disk changes that you want to persist through
+to the next time you launch an instance. For most modern games with cloud save, this will just be
+every time the game is patched (so as to avoid having to repatch each time); for older ones without,
+you&rsquo;ll have to do this every time you&rsquo;re done playing as well unless you want to lose all your
+progress. If you upgrade the GPU drivers, it&rsquo;s the same deal.</p>
+<p>When you do create an &ldquo;updated game&rdquo; AMI, you&rsquo;ll want to deregister the old one and delete the
+associated snapshot so you don&rsquo;t keep paying for them.</p>
+<ol>
+<li>Click on <code>Snapshots</code> on the left sidebar, under <code>Elastic Block Store</code>.</li>
+<li>Find the snapshot you want to delete, then right-click it and select <code>Delete.</code> Usually the
+timestamp is enough to figure out which one you want, but you can also cross-reference using the
+AMI ID from the description.</li>
+<li>Go to the <code>AMIs</code> page under <code>Images</code> on the left side bar.</li>
+<li>Right-click the old AMI and select <code>Deregister</code>.</li>
+</ol>
+<h2 id="actually-playing">Actually Playing</h2>
+<p>Go through the same steps as the previous section, but choose the game&rsquo;s AMI instead. You don&rsquo;t need
+to tweak storage, go through Disk Management, or install the game again. Connect using Parsec once
+the machine pops up there and start playing.</p>
+<hr>
+<p>One disadvantage of us running a Windows spot instance is that as of this writing, <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/spot-interruptions.html#billing-for-interrupted-spot-instances">AWS charges for
+the entire hour of usage instead of doing per-second billing like Linux spot
+instances.</a>
+Which means that if you play for a little over an hour and terminate the instance, you&rsquo;re still
+getting billed for two full hours.</p>
+<p>Exactly like a LAN shop, I suppose. There might be a way to do all of this on Linux to save even
+more money, but I haven&rsquo;t tried it; Parsec runs on Linux too, but their installation script isn&rsquo;t
+currently set up for non-Windows OSes so you&rsquo;d have to figure everything out yourself.</p>
+<section class="footnotes" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn:1" role="doc-endnote">
+<p>I&rsquo;m not super familiar with AWS and its pricing, so if I got something
+wrong here please feel free to reach out with a correction. Hit the <code>About</code> link in the site header
+to get in touch. <a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+</ol>
+</section>
+
+    </div>
+  </div>
+</body>
+
+</html>

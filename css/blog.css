@@ -23,6 +23,10 @@
   height: auto;
 }
 
+.post-body figure figcaption {
+  text-align: center;
+}
+
 .post-body video {
   display: block;
 

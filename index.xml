@@ -6,10 +6,19 @@
     <description>Recent content in &#34;it&#39;s dot com!&#34; on ayulin.net</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-uk</language>
-    <lastBuildDate>Sun, 19 Apr 2020 13:38:00 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 27 Apr 2020 13:43:00 +0800</lastBuildDate>
     
 	<atom:link href="https://www.ayulin.net/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Running Games on EC2 with Parsec</title>
+      <link>https://www.ayulin.net/blog/2020/running-games-on-ec2-with-parsec/</link>
+      <pubDate>Mon, 27 Apr 2020 13:43:00 +0800</pubDate>
+      
+      <guid>https://www.ayulin.net/blog/2020/running-games-on-ec2-with-parsec/</guid>
+      <description>I&amp;rsquo;m back in Singapore and away from my desktop, which has meant not being able to play any of my more demanding or Windows-only games on the computer I actually have here (a MacBook Pro).</description>
+    </item>
     
     <item>
       <title>Hello, Hugo.</title>
