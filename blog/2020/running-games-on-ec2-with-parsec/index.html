@@ -184,12 +184,13 @@ progress. If you upgrade the GPU drivers, it&rsquo;s the same deal.</p>
 <p>When you do create an &ldquo;updated game&rdquo; AMI, you&rsquo;ll want to deregister the old one and delete the
 associated snapshot so you don&rsquo;t keep paying for them.</p>
 <ol>
-<li>Click on <code>Snapshots</code> on the left sidebar, under <code>Elastic Block Store</code>.</li>
-<li>Find the snapshot you want to delete, then right-click it and select <code>Delete.</code> Usually the
-timestamp is enough to figure out which one you want, but you can also cross-reference using the
-AMI ID from the description.</li>
 <li>Go to the <code>AMIs</code> page under <code>Images</code> on the left side bar.</li>
 <li>Right-click the old AMI and select <code>Deregister</code>.</li>
+<li>Click on <code>Snapshots</code> on the left sidebar, under <code>Elastic Block Store</code>.</li>
+<li>Find the snapshot you want to delete, then right-click it and select <code>Delete</code>. Usually the
+creation timestamp is good enough to be able to figure out which snapshot is the correct one, but
+you can also cross-reference the AMI ID in the description if you&rsquo;re having trouble (make a note
+of that before deregistering the AMI!)</li>
 </ol>
 <h2 id="actually-playing">Actually Playing</h2>
 <p>Go through the same steps as the previous section, but choose the game&rsquo;s AMI instead. You don&rsquo;t need
