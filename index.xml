@@ -6,10 +6,28 @@
     <description>Recent content in &#34;it&#39;s dot com!&#34; on ayulin.net</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-uk</language>
-    <lastBuildDate>Mon, 27 Apr 2020 13:43:00 +0800</lastBuildDate>
+    <lastBuildDate>Fri, 01 May 2020 10:24:01 -0700</lastBuildDate>
     
 	<atom:link href="https://www.ayulin.net/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Tips to Take Table Tests to the Top</title>
+      <link>https://www.ayulin.net/blog/2020/tips-to-take-table-tests-to-the-top/</link>
+      <pubDate>Fri, 01 May 2020 10:24:01 -0700</pubDate>
+      
+      <guid>https://www.ayulin.net/blog/2020/tips-to-take-table-tests-to-the-top/</guid>
+      <description>I&amp;rsquo;m a huge fan of Go&amp;rsquo;s table-driven tests. They&amp;rsquo;re really well-suited for behavioural testing, which we discussed before, and they make writing tests quite easy.</description>
+    </item>
+    
+    <item>
+      <title>Six Statements About Testing</title>
+      <link>https://www.ayulin.net/blog/2020/six-statements-about-testing/</link>
+      <pubDate>Fri, 01 May 2020 10:24:00 -0700</pubDate>
+      
+      <guid>https://www.ayulin.net/blog/2020/six-statements-about-testing/</guid>
+      <description>I volunteered to do a learning lab session on testing at work; there were some common patterns and things I noticed we were doing when writing tests which I thought we could be doing better.</description>
+    </item>
     
     <item>
       <title>Running Games on EC2 with Parsec</title>

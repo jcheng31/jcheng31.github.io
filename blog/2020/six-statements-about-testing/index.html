@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta property="fb:admins" content="jerome.cheng">
+  <title>Six Statements About Testing - ayulin.net</title>
+
+  <link href="https://fonts.googleapis.com/css?family=Lato:400,900" rel="stylesheet">
+  <link href="/css/typography.css" rel="stylesheet">
+  <link href="/css/common.css" rel="stylesheet">
+  <link href="/css/blog.css" rel="stylesheet">
+
+  <link rel="alternate" type="application/rss+xml" href="/blog/index.xml" title="ayulin.net" />
+
+  <link rel="shortcut icon" href="/profile.jpg">
+</head>
+
+<body>
+  <div class="wrapper">
+    <div class="header">
+  <div class="profile-pic">
+    <a href="/">
+      <img src="/profile.jpg" />
+    </a>
+  </div>
+
+  <div class="contact">
+    <p class="author">
+      <a href="/">ayulin.net</a>
+    </p>
+
+    <p>
+      <a href="/about"><small>About</small></a>
+
+      
+      <a href="https://twitter.com/Ayulin"><small>Twitter</small></a>
+      
+
+      
+      <a href="https://github.com/jcheng31"><small>GitHub</small></a>
+      
+    </p>
+  </div>
+</div>
+
+    <div class="post-header">
+  <h5 class="subtle">1 May 2020</h5>
+  <h1><strong>Six Statements About Testing</strong></h1>
+  <h2 class="subtitle">Testing, 1, 2, 3. And 4 and 5 and 6.</h2>
+</div>
+
+    <div class="post-body">
+      <p>I volunteered to do a learning lab session on testing at work; there were some common patterns and
+things I noticed we were doing when writing tests which I thought we could be doing better.</p>
+<p>Instead of just coming up with an internal-only presentation that would never see the light of day
+outside the company (or just the immediate team, even), I thought it might be fun(???) to write
+a couple of blog posts instead and later convert those into a presentation. The first one&rsquo;d be about
+general observations/things to think about, while the second one would cover Go-specific things we
+could do.</p>
+<p>This is the first of those two posts. The second one is <a href="https://www.ayulin.net/blog/2020/tips-to-take-table-tests-to-the-top/">here</a>.<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup></p>
+<p>This is all, of course, hugely opinionated. It&rsquo;s also not intended to be a criticism of anyone.</p>
+<hr>
+<h2 id="1-testing-isnt-the-most-fun-thing-to-do">1. Testing isn&rsquo;t the most fun thing to do.</h2>
+<p>Why do we write tests? The short answer is probably that we&rsquo;ve been told it&rsquo;s The Right Thing To Do,
+and not because we really want to.</p>
+<p>We&rsquo;re told this when learning - whether you&rsquo;ve come from a CS degree, a bootcamp, or picked things
+up on your own or otherwise, chances are that when learning about software engineering you&rsquo;ve been
+told that testing is Good. Testing helps reduce bugs, bugs are Bad, therefore we should write tests.</p>
+<p>We&rsquo;re told this at work, too, usually. It&rsquo;s part of the performance criteria, everyone else is writing them or saying to and they&rsquo;ve been doing this whole engineering
+thing for a while, so I guess it&rsquo;s a good idea if I write some tests too.</p>
+<p>But testing&rsquo;s not glamorous. Tests don&rsquo;t deliver business value in an obvious way - it&rsquo;s unlikely
+that a product manager or customer is going to come to you and request that you write them. It&rsquo;s
+unlikely that you&rsquo;re getting an Exceeds Expectations or a promotion because you wrote a lot of
+tests. So we write them because it&rsquo;s just what you have to do, because we&rsquo;ve been told it&rsquo;s The
+Right Thing To Do and we <em>know</em> that, but in the end they&rsquo;re a chore to get through as part of the
+process.</p>
+<p>Even if testing <em>is</em> a net positive thing to have if done well, I think it&rsquo;s still okay to
+acknowledge that it just straight up isn&rsquo;t much fun for most folks.</p>
+<hr>
+<h2 id="2-tests-dont-get-code-reviewed-but-they-should">2. Tests don&rsquo;t get code reviewed, but they should.</h2>
+<p>You&rsquo;ll definitely be called out at work for adding an entire feature without any tests, but for the
+most part if there&rsquo;s <em>something</em> there that passes?</p>
+<p>LGTM, stamped, ship it.</p>
+<p>It&rsquo;s quote-unquote funny that one thing that&rsquo;s been common to each of the jobs I&rsquo;ve had
+so far is that tests don&rsquo;t get as much attention at code review time (or any time, really) as
+the feature code that&rsquo;s being shipped alongside. It&rsquo;s noticeable both online and in person: test
+code rarely gets commented on and is often scrolled past in the same way that generated code is.</p>
+<p>Tests are just code. It&rsquo;s code that&rsquo;s supposed to check that our feature code does what we want
+it to. That means we should be checking that it&rsquo;s <em>actually</em> doing so.</p>
+<p>That means looking at tests during code review<sup id="fnref:2"><a href="#fn:2" class="footnote-ref" role="doc-noteref">2</a></sup>.</p>
+<hr>
+<h2 id="3-tests-dont-make-your-code-correct">3. Tests don&rsquo;t make your code correct.</h2>
+<p>You might say that tests make sure your code is correct, but that&rsquo;s just what we <em>want</em> them to do.
+What they <em>actually</em> do is make sure the code does what the test is checking for. If it&rsquo;s checking
+the wrong thing, then hey. Tests pass; your code&rsquo;s wrong.</p>
+<p>How many times have you written code, wrote some tests, and later discovered a bug or an edge case
+you hadn&rsquo;t handled? Or found that some code wasn&rsquo;t behaving the way it was supposed to, and that
+incorrect behaviour was included as a test case?</p>
+<p>Tests only do what you write them to do.</p>
+<hr>
+<h2 id="4-coverage-doesnt-mean-anything">4. Coverage doesn&rsquo;t mean anything.</h2>
+<p>How do we know if our tests are checking the right thing? Well, the answer is definitely not
+coverage.</p>
+<p>Low coverage is possibly-to-likely a bad thing. If a codebase has 0% coverage that&rsquo;s a big red flag
+that should probably get looked at soon. But any &ldquo;reasonable&rdquo; amount of coverage up to and including
+100% in of itself is meaningless without knowing how that coverage was achieved. You can write tests
+that hit every line of code in your code base and still test absolutely nothing of value. Hit every
+execution path, leave out any assertions, and there you go. 100% coverage, none of it useful.</p>
+<p>This is both extreme and contrived, so here&rsquo;s the real point: just as a test only ensures code does
+what the test is checking for, coverage tautologically only ensures you&rsquo;re executing lines of code
+as part of your test. It doesn&rsquo;t say anything about whether or not that code is correct. Chasing after coverage encourages writing tests which
+overfit<sup id="fnref:3"><a href="#fn:3" class="footnote-ref" role="doc-noteref">3</a></sup> to the implementation and which basically only ensure there&rsquo;re no runtime
+errors.</p>
+<p>Making sure your code runs is great, but that&rsquo;s not the same as making sure it&rsquo;s doing the right
+thing.</p>
+<hr>
+<h2 id="5-test-behaviour-not-implementation">5. Test behaviour, not implementation.</h2>
+<p>Testing your implementation means you&rsquo;ve tested that your code runs. It doesn&rsquo;t mean your code is
+doing what it should. To do that, you need to be testing its behaviour.</p>
+<p>One way to do this is often referred to as <a href="https://en.wikipedia.org/wiki/Black-box_testing">black-box testing</a>
+- treat the code as a black-box and ignore everything you know about how it works internally. Given
+a particular set of inputs, what is the code supposed to do, and what is supposed to be returned, or
+what side effects are expected?</p>
+<p>You then need to think about the different types or classes of inputs you might expect -
+sometimes called boundary-value analysis<sup id="fnref:4"><a href="#fn:4" class="footnote-ref" role="doc-noteref">4</a></sup> or testing. What&rsquo;re some valid inputs to the function?
+Write a test with one or two. What&rsquo;re all the invalid inputs? Write tests for each. You want to
+figure out your range of accepted inputs, determine the edges of that range, and write tests that
+cover the edge itself, something just outside the range on the &ldquo;wrong&rdquo; side of the edge, and
+something just inside on the &ldquo;right&rdquo; side.</p>
+<p>For instance, say you have a function which takes a positive integer representing a user&rsquo;s age.
+You&rsquo;d want to test one or two valid/&ldquo;safe&rdquo; values (say <code>24</code> or <code>65</code>), the invalid ones (<code>0</code>, <code>-1</code>),
+and one that&rsquo;s barely okay (<code>1</code>).</p>
+<p>Test tables in Go are perfect for this sort of test, iterating through inputs and expected values.</p>
+<p>Preconditions are also inputs of a sort. Let&rsquo;s say your code is calling an external service to
+retrieve some data. You&rsquo;re probably mocking that service as part of your test, so think about all
+the ways it could behave. What if it returns an error? Or it doesn&rsquo;t return an error, but it returns
+an empty result, or one that&rsquo;s missing some fields?</p>
+<p>As an addendum to this point - you probably don&rsquo;t need to be asserting calls on every single one of
+your mocks. Unless calling the thing that&rsquo;s being mocked is an explicit part of the expected
+behaviour of your code, asserting that the mock is being called is more checking-for-implementation.
+I think this is more subjective than any of the other points I&rsquo;m trying to make here, though, so
+YMMV even further.</p>
+<hr>
+<h2 id="6-done-well-tests-can-be-like-documentation">6. Done well, tests can be like documentation.</h2>
+<p>Note that I didn&rsquo;t say they can <strong>be</strong> documentation. In no way is a set of tests a substitute for
+good documentation; in no way is code alone its own documentation.</p>
+<p>A good set of tests can, however, supplement documentation by showing how the code was expected
+to behave at the time it was written. If you&rsquo;ve done things well, your tests are a set of inputs to
+your code and corresponding sets of returned values, changed fields, mocked function calls, or other
+expected side effects. That&rsquo;s a pretty good overview of what the code&rsquo;s supposed to do, or at least
+the understanding of such at the time.</p>
+<p>This of course only works if your tests all pass. Just like documentation, tests which fall out of
+date and fail because they no longer match the expected behaviour are no longer useful - both as
+a reference and otherwise.</p>
+<section class="footnotes" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn:1" role="doc-endnote">
+<pre><code>import cycle not allowed
+post six-statements-about-testing
+ imports tips-to-take-test-tables-to-the-top
+ imports six-statements-about-testing
+</code></pre> <a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></li>
+<li id="fn:2" role="doc-endnote">
+<p>In an ideal world, we&rsquo;d be holding tests to a similar level of scrutiny as
+&ldquo;real&rdquo; code because they <em>are</em> real code. But this isn&rsquo;t an ideal world and I&rsquo;m just some person on
+the internet, so you do you.</p>
+<p>Unless you&rsquo;re dealing with mission-critical stuff - nuclear reactors, medical devices, airplanes, etc. - in which case you really should be quite thorough with checking your tests and your code, or at the very least better than certain events would seem to indicate.</p>
+<p>Ahem. <a href="#fnref:2" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:3" role="doc-endnote">
+<p>If your tests fail every time you make a code change, they&rsquo;re probably being
+coupled too tightly to your implementation. <a href="#fnref:3" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:4" role="doc-endnote">
+<p>The <a href="https://en.wikipedia.org/wiki/Boundary-value_analysis">Wikipedia article</a> for this
+uses a lot of big words and mathematical symbols, if you&rsquo;re into that. <a href="#fnref:4" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+</ol>
+</section>
+
+    </div>
+  </div>
+</body>
+
+</html>
