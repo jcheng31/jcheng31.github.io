@@ -2,31 +2,31 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Linux on ayulin.net</title>
-    <link>https://www.ayulin.net/categories/linux/</link>
+    <link>https://ayulin.net/categories/linux/</link>
     <description>Recent content in Linux on ayulin.net</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-uk</language>
     <lastBuildDate>Wed, 10 May 2017 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="https://www.ayulin.net/categories/linux/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://ayulin.net/categories/linux/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Working with WSL</title>
-      <link>https://www.ayulin.net/blog/2017/working-with-wsl/</link>
+      <link>https://ayulin.net/blog/2017/working-with-wsl/</link>
       <pubDate>Wed, 10 May 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://www.ayulin.net/blog/2017/working-with-wsl/</guid>
+      <guid>https://ayulin.net/blog/2017/working-with-wsl/</guid>
       <description>&lt;p&gt;Bash on Ubuntu on Windows, or the Windows Subsystem for Linux (or WSL), is a little over one year
 old now, and still a mouthful to say. When it was announced, I tweeted:&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>Doing the Splits</title>
-      <link>https://www.ayulin.net/blog/2017/tmux-splits/</link>
+      <link>https://ayulin.net/blog/2017/tmux-splits/</link>
       <pubDate>Sat, 15 Apr 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://www.ayulin.net/blog/2017/tmux-splits/</guid>
+      <guid>https://ayulin.net/blog/2017/tmux-splits/</guid>
       <description>&lt;p&gt;While trying to fall asleep, I ended up thinking about the key combinations used to create splits in
 tmux.&lt;/p&gt;</description>
     </item>

@@ -2,147 +2,147 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Categories on ayulin.net</title>
-    <link>https://www.ayulin.net/categories/</link>
+    <link>https://ayulin.net/categories/</link>
     <description>Recent content in Categories on ayulin.net</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-uk</language>
     <lastBuildDate>Sat, 17 Jun 2017 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="https://www.ayulin.net/categories/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://ayulin.net/categories/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>.NET Core</title>
-      <link>https://www.ayulin.net/categories/.net-core/</link>
+      <link>https://ayulin.net/categories/.net-core/</link>
       <pubDate>Sat, 17 Jun 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://www.ayulin.net/categories/.net-core/</guid>
+      <guid>https://ayulin.net/categories/.net-core/</guid>
       <description></description>
     </item>
     
     <item>
       <title>C#</title>
-      <link>https://www.ayulin.net/categories/c#/</link>
+      <link>https://ayulin.net/categories/c#/</link>
       <pubDate>Sat, 17 Jun 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://www.ayulin.net/categories/c#/</guid>
+      <guid>https://ayulin.net/categories/c#/</guid>
       <description></description>
     </item>
     
     <item>
       <title>ColemakConverter</title>
-      <link>https://www.ayulin.net/categories/colemakconverter/</link>
+      <link>https://ayulin.net/categories/colemakconverter/</link>
       <pubDate>Sat, 17 Jun 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://www.ayulin.net/categories/colemakconverter/</guid>
+      <guid>https://ayulin.net/categories/colemakconverter/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Projects</title>
-      <link>https://www.ayulin.net/categories/projects/</link>
+      <link>https://ayulin.net/categories/projects/</link>
       <pubDate>Sat, 17 Jun 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://www.ayulin.net/categories/projects/</guid>
+      <guid>https://ayulin.net/categories/projects/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Bash on Windows</title>
-      <link>https://www.ayulin.net/categories/bash-on-windows/</link>
+      <link>https://ayulin.net/categories/bash-on-windows/</link>
       <pubDate>Wed, 10 May 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://www.ayulin.net/categories/bash-on-windows/</guid>
+      <guid>https://ayulin.net/categories/bash-on-windows/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Linux</title>
-      <link>https://www.ayulin.net/categories/linux/</link>
+      <link>https://ayulin.net/categories/linux/</link>
       <pubDate>Wed, 10 May 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://www.ayulin.net/categories/linux/</guid>
+      <guid>https://ayulin.net/categories/linux/</guid>
       <description></description>
     </item>
     
     <item>
       <title>WSL</title>
-      <link>https://www.ayulin.net/categories/wsl/</link>
+      <link>https://ayulin.net/categories/wsl/</link>
       <pubDate>Wed, 10 May 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://www.ayulin.net/categories/wsl/</guid>
+      <guid>https://ayulin.net/categories/wsl/</guid>
       <description></description>
     </item>
     
     <item>
       <title>tmux</title>
-      <link>https://www.ayulin.net/categories/tmux/</link>
+      <link>https://ayulin.net/categories/tmux/</link>
       <pubDate>Sat, 15 Apr 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://www.ayulin.net/categories/tmux/</guid>
+      <guid>https://ayulin.net/categories/tmux/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Fourcast</title>
-      <link>https://www.ayulin.net/categories/fourcast/</link>
+      <link>https://ayulin.net/categories/fourcast/</link>
       <pubDate>Tue, 12 Jul 2016 00:00:00 +0000</pubDate>
       
-      <guid>https://www.ayulin.net/categories/fourcast/</guid>
+      <guid>https://ayulin.net/categories/fourcast/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Fourcast Patches</title>
-      <link>https://www.ayulin.net/categories/fourcast-patches/</link>
+      <link>https://ayulin.net/categories/fourcast-patches/</link>
       <pubDate>Tue, 12 Jul 2016 00:00:00 +0000</pubDate>
       
-      <guid>https://www.ayulin.net/categories/fourcast-patches/</guid>
+      <guid>https://ayulin.net/categories/fourcast-patches/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Development</title>
-      <link>https://www.ayulin.net/categories/development/</link>
+      <link>https://ayulin.net/categories/development/</link>
       <pubDate>Mon, 18 Aug 2014 21:59:00 +0000</pubDate>
       
-      <guid>https://www.ayulin.net/categories/development/</guid>
+      <guid>https://ayulin.net/categories/development/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Web</title>
-      <link>https://www.ayulin.net/categories/web/</link>
+      <link>https://ayulin.net/categories/web/</link>
       <pubDate>Mon, 18 Aug 2014 21:59:00 +0000</pubDate>
       
-      <guid>https://www.ayulin.net/categories/web/</guid>
+      <guid>https://ayulin.net/categories/web/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Personal</title>
-      <link>https://www.ayulin.net/categories/personal/</link>
+      <link>https://ayulin.net/categories/personal/</link>
       <pubDate>Thu, 16 Aug 2012 00:00:00 +0000</pubDate>
       
-      <guid>https://www.ayulin.net/categories/personal/</guid>
+      <guid>https://ayulin.net/categories/personal/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Ramblings</title>
-      <link>https://www.ayulin.net/categories/ramblings/</link>
+      <link>https://ayulin.net/categories/ramblings/</link>
       <pubDate>Thu, 24 May 2012 00:00:00 +0000</pubDate>
       
-      <guid>https://www.ayulin.net/categories/ramblings/</guid>
+      <guid>https://ayulin.net/categories/ramblings/</guid>
       <description></description>
     </item>
     
     <item>
       <title>ISAAC</title>
-      <link>https://www.ayulin.net/categories/isaac/</link>
+      <link>https://ayulin.net/categories/isaac/</link>
       <pubDate>Sat, 12 May 2012 00:00:00 +0000</pubDate>
       
-      <guid>https://www.ayulin.net/categories/isaac/</guid>
+      <guid>https://ayulin.net/categories/isaac/</guid>
       <description></description>
     </item>
     

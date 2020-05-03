@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Ramblings on ayulin.net</title>
-    <link>https://www.ayulin.net/categories/ramblings/</link>
+    <link>https://ayulin.net/categories/ramblings/</link>
     <description>Recent content in Ramblings on ayulin.net</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-uk</language>
     <lastBuildDate>Thu, 24 May 2012 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="https://www.ayulin.net/categories/ramblings/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://ayulin.net/categories/ramblings/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Designing 4-bit Webther: A Retrospective</title>
-      <link>https://www.ayulin.net/blog/2012/designing-4-bit-webther-a-retrospective/</link>
+      <link>https://ayulin.net/blog/2012/designing-4-bit-webther-a-retrospective/</link>
       <pubDate>Thu, 24 May 2012 00:00:00 +0000</pubDate>
       
-      <guid>https://www.ayulin.net/blog/2012/designing-4-bit-webther-a-retrospective/</guid>
+      <guid>https://ayulin.net/blog/2012/designing-4-bit-webther-a-retrospective/</guid>
       <description>Update (2020-04-19): 4-bit Webther is no longer available; the Yahoo! Weather API is no more. The links to it here have been removed, but the remainder of the post&amp;rsquo;s text has been left untouched, as self-indulgent as it is.</description>
     </item>
     

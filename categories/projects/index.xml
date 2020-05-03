@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Projects on ayulin.net</title>
-    <link>https://www.ayulin.net/categories/projects/</link>
+    <link>https://ayulin.net/categories/projects/</link>
     <description>Recent content in Projects on ayulin.net</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-uk</language>
     <lastBuildDate>Sat, 17 Jun 2017 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="https://www.ayulin.net/categories/projects/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://ayulin.net/categories/projects/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Typing Secrets in the Open</title>
-      <link>https://www.ayulin.net/blog/2017/typing-secrets-in-the-open/</link>
+      <link>https://ayulin.net/blog/2017/typing-secrets-in-the-open/</link>
       <pubDate>Sat, 17 Jun 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://www.ayulin.net/blog/2017/typing-secrets-in-the-open/</guid>
+      <guid>https://ayulin.net/blog/2017/typing-secrets-in-the-open/</guid>
       <description>&lt;p&gt;I&amp;rsquo;ve been keeping a daily journal for quite a while now - 8 or so years? I started using OhLife,
 which was email-based, then when that shut down I moved to plain-old-Markdown files stored in a
 TrueCrypt (and now VeraCrypt) container&amp;hellip; thing.&lt;/p&gt;</description>
@@ -24,29 +24,29 @@ TrueCrypt (and now VeraCrypt) container&amp;hellip; thing.&lt;/p&gt;</descriptio
     
     <item>
       <title>That Fourcast Crash Bug</title>
-      <link>https://www.ayulin.net/blog/2012/that-fourcast-crash-bug/</link>
+      <link>https://ayulin.net/blog/2012/that-fourcast-crash-bug/</link>
       <pubDate>Sat, 29 Dec 2012 00:00:00 +0000</pubDate>
       
-      <guid>https://www.ayulin.net/blog/2012/that-fourcast-crash-bug/</guid>
+      <guid>https://ayulin.net/blog/2012/that-fourcast-crash-bug/</guid>
       <description>If you’ve upgraded from Fourcast v0.6 to v0.7 and
  Fourcast is set to load your Home Location on launch; OR Fourcast is set to load the previously viewed location on launch  The app will crash on launch.</description>
     </item>
     
     <item>
       <title>Designing 4-bit Webther: A Retrospective</title>
-      <link>https://www.ayulin.net/blog/2012/designing-4-bit-webther-a-retrospective/</link>
+      <link>https://ayulin.net/blog/2012/designing-4-bit-webther-a-retrospective/</link>
       <pubDate>Thu, 24 May 2012 00:00:00 +0000</pubDate>
       
-      <guid>https://www.ayulin.net/blog/2012/designing-4-bit-webther-a-retrospective/</guid>
+      <guid>https://ayulin.net/blog/2012/designing-4-bit-webther-a-retrospective/</guid>
       <description>Update (2020-04-19): 4-bit Webther is no longer available; the Yahoo! Weather API is no more. The links to it here have been removed, but the remainder of the post&amp;rsquo;s text has been left untouched, as self-indulgent as it is.</description>
     </item>
     
     <item>
       <title>4-bit Webther</title>
-      <link>https://www.ayulin.net/blog/2012/4-bit-webther/</link>
+      <link>https://ayulin.net/blog/2012/4-bit-webther/</link>
       <pubDate>Tue, 15 May 2012 00:00:00 +0000</pubDate>
       
-      <guid>https://www.ayulin.net/blog/2012/4-bit-webther/</guid>
+      <guid>https://ayulin.net/blog/2012/4-bit-webther/</guid>
       <description>Update (2020-04-19): 4-bit Webther is no longer available; the Yahoo! Weather API is no more. The links to it here have been removed, but the remainder of the post&amp;rsquo;s text has been left untouched.</description>
     </item>
     

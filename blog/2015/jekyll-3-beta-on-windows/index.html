@@ -52,7 +52,7 @@
 </div>
 
     <div class="post-body">
-      <p>In a <a href="https://www.ayulin.net/blog/2014/yet-another-how-to-install-jekyll-on-windows-post./">previous post</a> I wrote about installing Jekyll 1.4.2 on Windows - at the time, the guide linked from the Jekyll site itself was way out of date. Happily, they&rsquo;ve since updated to link to a <a href="http://jekyll-windows.juthilo.com/">much better guide</a>.</p>
+      <p>In a <a href="https://ayulin.net/blog/2014/yet-another-how-to-install-jekyll-on-windows-post./">previous post</a> I wrote about installing Jekyll 1.4.2 on Windows - at the time, the guide linked from the Jekyll site itself was way out of date. Happily, they&rsquo;ve since updated to link to a <a href="http://jekyll-windows.juthilo.com/">much better guide</a>.</p>
 <p>Still, Jekyll 3&rsquo;s first beta has just come out, and I wanted to give that a shot. I also couldn&rsquo;t get things working exactly according to the above guide, and had to fall back to Ruby 1.9.3 (instead of 2.0.0 like it recommends).</p>
 <p>So, from scratch, here&rsquo;s how to get Jekyll 3 (beta 1) up and running on Windows. Steps 1 and 2 are pretty much the same as in the old guide, except we&rsquo;re using a newer version of Ruby.</p>
 <h2 id="1-install-ruby-215">1. Install Ruby (2.1.5)</h2>
@@ -76,7 +76,7 @@
 <h2 id="6-optional-stop-jekyll-serve-complaining">6. (Optional) Stop <code>jekyll serve</code> complaining</h2>
 <p>At this point, Jekyll works just fine, but it&rsquo;ll complain when you run <code>jekyll serve</code>, saying to add <code>wdm</code> to your Gemfile to avoid polling for changes. We can just run <code>gem install wdm</code> instead, which fixes this globally.</p>
 <p><strong>Whew.</strong> It&rsquo;s a bit more involved than before, but at this point we&rsquo;re good to go.</p>
-<p>There&rsquo;s a follow-up <a href="https://www.ayulin.net/blog/2015/installing-nokogiri/">here</a> which deals with installing Nokogiri, which I had to do since my existing site - this one - somehow needs it. It&rsquo;s not really part of what you need for a plain Jekyll install, though, so I&rsquo;m not including it here.</p>
+<p>There&rsquo;s a follow-up <a href="https://ayulin.net/blog/2015/installing-nokogiri/">here</a> which deals with installing Nokogiri, which I had to do since my existing site - this one - somehow needs it. It&rsquo;s not really part of what you need for a plain Jekyll install, though, so I&rsquo;m not including it here.</p>
 
     </div>
   </div>
