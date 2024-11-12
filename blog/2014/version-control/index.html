@@ -35,10 +35,6 @@
       <a href="/about"><small>About</small></a>
 
       
-      <a href="https://twitter.com/Ayulin"><small>Twitter</small></a>
-      
-
-      
       <a href="https://github.com/jcheng31"><small>GitHub</small></a>
       
     </p>
@@ -58,34 +54,29 @@
 <p>Here&rsquo;s how to fix them.</p>
 <hr>
 <p>Assuming you haven&rsquo;t already upgraded the project (i.e. it still opens and can be debugged without issue on the system with the older Office version), you&rsquo;ll see something like this every time you try opening the project on the new system.</p>
-<figure>
-    <img src="./images/1.png"
-         alt="Screenshot of a Visual Studio dialog prompting to permanently upgrade the project."/> 
+<figure><img src="./images/1.png"
+    alt="Screenshot of a Visual Studio dialog prompting to permanently upgrade the project.">
 </figure>
 
 <p>If you have already upgraded the project, you&rsquo;ll want to revert to before the point of upgrading - you did use source control, right? ;)</p>
 <p>To prevent this, go to the <code>Tools</code> menu and hit <code>Options</code>, then navigate to <code>Office Tools\Project Migration</code> (or just search for it using the search bar there.) You&rsquo;ll see this option is checked by default:</p>
-<figure>
-    <img src="./images/2.png"
-         alt="Screenshot of Visual Studio preferences, showing the Project Migration section."/> 
+<figure><img src="./images/2.png"
+    alt="Screenshot of Visual Studio preferences, showing the Project Migration section.">
 </figure>
 
 <p>Uncheck that, and Visual Studio will let you proceed without prompting you to upgrade. We aren&rsquo;t quite done, though - now the <strong>newer</strong> system will be the one to see this prompt when trying to debug:</p>
-<figure>
-    <img src="./images/3.png"
-         alt="Screenshot of Visual Studio showing an error saying the required version of Office is not installed."/> 
+<figure><img src="./images/3.png"
+    alt="Screenshot of Visual Studio showing an error saying the required version of Office is not installed.">
 </figure>
 
 <p>To fix this, you&rsquo;ll need to edit the project&rsquo;s properties. Go to the <code>Project</code> menu, and click the <code>&lt;Project Name&gt; Properties</code> item, then click on <code>Debug</code> in the left pane.</p>
-<figure>
-    <img src="./images/4.png"
-         alt="Screenshot of Visual Studio preferences showing the Debug pane."/> 
+<figure><img src="./images/4.png"
+    alt="Screenshot of Visual Studio preferences showing the Debug pane.">
 </figure>
 
 <p>You&rsquo;ll want to change the <code>Start Action</code> to <code>Start external program</code>, then set it to launch the Office program executable you have installed; in my case here, that was just PowerPoint.</p>
-<figure>
-    <img src="./images/5.png"
-         alt="Screenshot of Visual Studio preferences showing the result of changing the debug pane accordingly."/> 
+<figure><img src="./images/5.png"
+    alt="Screenshot of Visual Studio preferences showing the result of changing the debug pane accordingly.">
 </figure>
 
 <p>And there you go. This is a user-specific setting, so as long as you don&rsquo;t have your <code>.suo</code> and

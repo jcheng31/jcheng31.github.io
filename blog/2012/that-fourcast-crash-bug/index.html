@@ -35,10 +35,6 @@
       <a href="/about"><small>About</small></a>
 
       
-      <a href="https://twitter.com/Ayulin"><small>Twitter</small></a>
-      
-
-      
       <a href="https://github.com/jcheng31"><small>GitHub</small></a>
       
     </p>
@@ -61,9 +57,8 @@
 <p>If you’ve set Fourcast to load your current location on launch (and have upgraded from v0.6 to v0.7), you’re good to go and <strong>don’t</strong> need to reinstall.</p>
 <p>This post is basically to explain what went wrong and why: a really silly oversight.</p>
 <h1 id="background">Background</h1>
-<figure>
-    <img src="./images/1.png"
-         alt="Screenshot of the Fourcast v0.7 changelog."/> 
+<figure><img src="./images/1.png"
+    alt="Screenshot of the Fourcast v0.7 changelog.">
 </figure>
 
 <p>Fourcast v0.7 is, from the user’s perspective, a maintenance release. There’s only one “new” thing: updating the resolution of the app’s Live Tiles so they don’t <a href="https://twitpic.com/bkp20y">look all pixelated</a> on Windows Phone 8 (and eventually, 7.8) devices.</p>
@@ -75,9 +70,8 @@
 <p>There was clearly an issue with v0.7, but it only seemed to affect those who’d upgraded from v0.6; this was deduced from the issue not appearing on my own device, which I had recently replaced and hence hadn’t run v0.6 on, as well as the absence of reports from WP8 users who had discovered Fourcast after v0.7 launched.</p>
 <h2 id="breakdown">Breakdown</h2>
 <p>Here’s an example of a crash report email, with the stack trace for this issue. (These emails are incredibly useful, since they: a) let me know there is an issue somewhere; b) flag where the issue started. They’re not perfect since I can’t see the exact state of the application when the crash occurred, but at least there’s a start point.)</p>
-<figure>
-    <img src="./images/2.png"
-         alt="Screenshot of a stack trace from Fourcast"/> 
+<figure><img src="./images/2.png"
+    alt="Screenshot of a stack trace from Fourcast">
 </figure>
 
 <p>We can tell pretty easily from the stack trace that the app is crashing on launch, since the <code>HandleApplicationStart</code> method is right there. The issue seems to occur only when it tries to retrieve weather (<code>WeatherEngine.GetWeather</code>), and only when the app is doing so for a previously saved location (<code>MainPage.LoadWeatherFromPreferences</code>).</p>
@@ -90,9 +84,8 @@
 <p>Query links are nested inside the weather data objects that are written to Isolated Storage, and not stored as a separate “entry”. From a design perspective this made some sense, as it would be useful to take a weather object and be able to retrieve updated data for the same location by just “asking” the object what its query link was. So when Fourcast launches it retrieves the stored weather objects (which is how the app can display weather it had loaded the last time it was run – this happens in <code>LoadWeatherFromPreferences</code>), pulls the query link from them, and tries to get updated weather data.</p>
 <p>The whole reason this took so long to figure out was basically because I’d been looking in the wrong place for the wrong things. In the process of refactoring everything, chunks of code got shifted between files to make more logical sense (and several things were partially rewritten) – I’d basically assumed that the query link wasn’t being saved properly, and was searching for the point where this was the case.</p>
 <p>Here’s the real cause of the issue, a change to the weather object which was carried out months ago when I first started working on v0.7. Thanks to version control, it was extremely obvious where the problem was… once I actually looked in the right place.</p>
-<figure>
-    <img src="./images/3.png"
-         alt="Comparison of Fourcast code from v0.6 and v0.7, showing renamed variables that caused a crash."/> 
+<figure><img src="./images/3.png"
+    alt="Comparison of Fourcast code from v0.6 and v0.7, showing renamed variables that caused a crash.">
 </figure>
 
 <p>Most of the variables here were renamed so they actually followed standard naming conventions, which basically broke everything. The weather objects saved under v0.6 were still retrievable in v0.7, but were unusable since they were essentially a blank slate (as the saved data didn’t match the new variable names, and so everything defaulted to their uninitialized values).</p>

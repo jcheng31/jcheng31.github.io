@@ -35,10 +35,6 @@
       <a href="/about"><small>About</small></a>
 
       
-      <a href="https://twitter.com/Ayulin"><small>Twitter</small></a>
-      
-
-      
       <a href="https://github.com/jcheng31"><small>GitHub</small></a>
       
     </p>
@@ -55,12 +51,12 @@
       <p><a href="http://lesscss.org/">Less</a> is great. Having to manually compile it isn&rsquo;t.</p>
 <p>In lieu of using something like <a href="http://gruntjs.com/">Grunt</a> (which is probably a much better long-term solution), I came up with a quick Sublime Text <a href="http://www.sublimetext.com/docs/build">Build System</a> to just stick in my project file and use. Triggering it from within a <code>.less</code> file passes that file to <code>lessc</code> and saves the result as a <code>.css</code> file in the same directory as the original.</p>
 <p>Here it is:</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-JSON" data-lang="JSON">        {
-            <span style="color:#000080">&#34;shell_cmd&#34;</span>: <span style="color:#d14">&#34;lessc \&#34;$file\&#34; &gt; \&#34;${file/\\.less/\\.css/}\&#34;&#34;</span>,
-            <span style="color:#000080">&#34;selector&#34;</span>: <span style="color:#d14">&#34;source.less&#34;</span>,
-            <span style="color:#000080">&#34;name&#34;</span>: <span style="color:#d14">&#34;LESS CSS&#34;</span>
-        }
-</code></pre></div><p>Sticking that in the <code>build_systems</code> array in <code>.sublime-project</code> causes it to show up under <code>Tools -&gt; Build System</code>, and choosing Automatic should cause it to only trigger from within a <code>.less</code> file.</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-JSON" data-lang="JSON"><span style="display:flex;"><span>        {
+</span></span><span style="display:flex;"><span>            <span style="color:#000080">&#34;shell_cmd&#34;</span>: <span style="color:#d14">&#34;lessc \&#34;$file\&#34; &gt; \&#34;${file/\\.less/\\.css/}\&#34;&#34;</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#000080">&#34;selector&#34;</span>: <span style="color:#d14">&#34;source.less&#34;</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#000080">&#34;name&#34;</span>: <span style="color:#d14">&#34;LESS CSS&#34;</span>
+</span></span><span style="display:flex;"><span>        }
+</span></span></code></pre></div><p>Sticking that in the <code>build_systems</code> array in <code>.sublime-project</code> causes it to show up under <code>Tools -&gt; Build System</code>, and choosing Automatic should cause it to only trigger from within a <code>.less</code> file.</p>
 <p>However:</p>
 <ul>
 <li>I only tested it on Windows. It doesn&rsquo;t seem like there would be any issues on other OSes, but I don&rsquo;t know that for sure either.

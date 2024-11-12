@@ -35,10 +35,6 @@
       <a href="/about"><small>About</small></a>
 
       
-      <a href="https://twitter.com/Ayulin"><small>Twitter</small></a>
-      
-
-      
       <a href="https://github.com/jcheng31"><small>GitHub</small></a>
       
     </p>
@@ -63,9 +59,9 @@
 <p>To actually install the development kit, open up Command Prompt or PowerShell, <code>cd</code> to the folder it&rsquo;s extracted to, then run <code>ruby dk.rb init</code> and <code>ruby dk.rb install</code>.</p>
 <h2 id="3-fix-ssl-the-right-way">3. Fix SSL, the right way.</h2>
 <p>Out of the box, RubyGems runs into some SSL issues when you try to install anything:</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">ERROR: While executing gem ... <span style="color:#000;font-weight:bold">(</span>Gem::RemoteFetcher::FetchError<span style="color:#000;font-weight:bold">)</span>
-    SSL_connect <span style="color:#008080">returned</span><span style="color:#000;font-weight:bold">=</span><span style="color:#099">1</span> <span style="color:#008080">errno</span><span style="color:#000;font-weight:bold">=</span><span style="color:#099">0</span> <span style="color:#008080">state</span><span style="color:#000;font-weight:bold">=</span>SSLv3 <span style="color:#0086b3">read</span> server certificate B: certificate verify failed <span style="color:#000;font-weight:bold">(</span>https://api.rubygems.org/specs.4.8.gz<span style="color:#000;font-weight:bold">)</span>
-</code></pre></div><p>According to various StackOverflow answers (the best source), this is because Ruby can&rsquo;t find a root certificate to trust. We can fix that by grabbing the same certificate bundle Mozilla uses, conveniently found <a href="http://curl.haxx.se/ca/cacert.pem">here</a>. I saved it in <code>C:\Ruby21-x64</code> as well.</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>ERROR: While executing gem ... <span style="color:#000;font-weight:bold">(</span>Gem::RemoteFetcher::FetchError<span style="color:#000;font-weight:bold">)</span>
+</span></span><span style="display:flex;"><span>    SSL_connect <span style="color:#008080">returned</span><span style="color:#000;font-weight:bold">=</span><span style="color:#099">1</span> <span style="color:#008080">errno</span><span style="color:#000;font-weight:bold">=</span><span style="color:#099">0</span> <span style="color:#008080">state</span><span style="color:#000;font-weight:bold">=</span>SSLv3 <span style="color:#0086b3">read</span> server certificate B: certificate verify failed <span style="color:#000;font-weight:bold">(</span>https://api.rubygems.org/specs.4.8.gz<span style="color:#000;font-weight:bold">)</span>
+</span></span></code></pre></div><p>According to various StackOverflow answers (the best source), this is because Ruby can&rsquo;t find a root certificate to trust. We can fix that by grabbing the same certificate bundle Mozilla uses, conveniently found <a href="http://curl.haxx.se/ca/cacert.pem">here</a>. I saved it in <code>C:\Ruby21-x64</code> as well.</p>
 <p>We also need make sure Ruby knows about it. To do that, go to <code>Advanced system settings</code> (on Windows 8 and above, hit <code>Win + X</code> then <code>y</code>, then click the link on the left), click <code>Environment Variables</code>, and add a System Variable with <code>SSL_CERT_FILE</code> as the name and the path to the saved bundle file as the value (<code>C:\Ruby21-x64\cacert.pem</code> if you&rsquo;re like me.)</p>
 <p>Why &ldquo;the right way&rdquo;? There were some &ldquo;solutions&rdquo; here and there that involved making RubyGems use HTTP instead of HTTPS. Just, no.</p>
 <h2 id="4-install-jekyll">4. Install Jekyll</h2>

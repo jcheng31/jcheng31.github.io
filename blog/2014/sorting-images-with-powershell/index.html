@@ -35,10 +35,6 @@
       <a href="/about"><small>About</small></a>
 
       
-      <a href="https://twitter.com/Ayulin"><small>Twitter</small></a>
-      
-
-      
       <a href="https://github.com/jcheng31"><small>GitHub</small></a>
       
     </p>
@@ -77,14 +73,14 @@
 <h1 id="initial-commit">Initial Commit.</h1>
 <p>So let&rsquo;s do it.</p>
 <p>The first version is pretty simple - more of a proof of concept. I&rsquo;m using the full cmdlet names here, whereas you&rsquo;d probably use an alias instead if you were to actually type things out in the shell (for example, <code>Get-ChildItem</code> becomes <code>gci</code>, the DOS-style <code>dir</code>, or the UNIX-friendly <code>ls</code>.)</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell"><span style="color:#000;font-weight:bold">foreach</span> (<span style="color:#008080">$item</span> <span style="color:#000;font-weight:bold">in</span> <span style="color:#0086b3">Get-ChildItem</span> | <span style="color:#0086b3">Where-Object</span> Extension -In <span style="color:#d14">&#34;.jpg&#34;</span>, <span style="color:#d14">&#34;.bmp&#34;</span>, <span style="color:#d14">&#34;.png&#34;</span>) {
-	<span style="color:#008080">$image</span> = <span style="color:#0086b3">New-Object</span> System.Drawing.Bitmap <span style="color:#008080">$item</span>.FullName
-	<span style="color:#008080">$aspectRatio</span> = <span style="color:#008080">$image</span>.Width / <span style="color:#008080">$image</span>.Height
-	
-	<span style="color:#000;font-weight:bold">if</span> (<span style="color:#008080">$aspectRatio</span> <span style="color:#000;font-weight:bold">-ne</span> 16/9) {
-		<span style="color:#0086b3">Write-Host</span> <span style="color:#008080">$item</span>.Name
-	}
-}</code></pre></div>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span><span style="color:#000;font-weight:bold">foreach</span> (<span style="color:#008080">$item</span> <span style="color:#000;font-weight:bold">in</span> <span style="color:#0086b3">Get-ChildItem</span> | <span style="color:#0086b3">Where-Object</span> Extension -In <span style="color:#d14">&#34;.jpg&#34;</span>, <span style="color:#d14">&#34;.bmp&#34;</span>, <span style="color:#d14">&#34;.png&#34;</span>) {
+</span></span><span style="display:flex;"><span>	<span style="color:#008080">$image</span> = <span style="color:#0086b3">New-Object</span> System.Drawing.Bitmap <span style="color:#008080">$item</span>.FullName
+</span></span><span style="display:flex;"><span>	<span style="color:#008080">$aspectRatio</span> = <span style="color:#008080">$image</span>.Width / <span style="color:#008080">$image</span>.Height
+</span></span><span style="display:flex;"><span>	
+</span></span><span style="display:flex;"><span>	<span style="color:#000;font-weight:bold">if</span> (<span style="color:#008080">$aspectRatio</span> <span style="color:#000;font-weight:bold">-ne</span> <span style="color:#099">16</span>/<span style="color:#099">9</span>) {
+</span></span><span style="display:flex;"><span>		<span style="color:#0086b3">Write-Host</span> <span style="color:#008080">$item</span>.Name
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>}</span></span></code></pre></div>
 <p>Or, in English:</p>
 <blockquote>
 <p>For each file in the current directory which has a .jpg, .bmp, or .png extension (i.e. images),</p>
@@ -102,38 +98,38 @@
 <hr>
 <h1 id="category-2">Category 2</h1>
 <p>So this catches stuff that falls into categories 2, 3, and 4 above. But category 2 images still display fairly well - what if we added some tolerance?</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell"><span style="color:#008080">$upperLimit</span> = 16/9 + 0.05
-<span style="color:#008080">$lowerLimit</span> = 16/9 - 0.05
-
-<span style="color:#000;font-weight:bold">foreach</span> (<span style="color:#008080">$item</span> <span style="color:#000;font-weight:bold">in</span> <span style="color:#0086b3">Get-ChildItem</span> | <span style="color:#0086b3">Where-Object</span> Extension -In <span style="color:#d14">&#34;.jpg&#34;</span>, <span style="color:#d14">&#34;.bmp&#34;</span>, <span style="color:#d14">&#34;.png&#34;</span>) {
-    <span style="color:#008080">$image</span> = <span style="color:#0086b3">New-Object</span> System.Drawing.Bitmap <span style="color:#008080">$item</span>.FullName
-    <span style="color:#008080">$aspectRatio</span> = <span style="color:#008080">$image</span>.Width / <span style="color:#008080">$image</span>.Height
-
-    <span style="color:#000;font-weight:bold">if</span> (<span style="color:#008080">$aspectRatio</span> <span style="color:#000;font-weight:bold">-gt</span> <span style="color:#008080">$upperLimit</span> <span style="color:#000;font-weight:bold">-or</span> <span style="color:#008080">$aspectRatio</span> <span style="color:#000;font-weight:bold">-lt</span> <span style="color:#008080">$lowerLimit</span>) {
-        <span style="color:#0086b3">Write-Host</span> <span style="color:#008080">$item</span>.Name
-    }
-}</code></pre></div>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span><span style="color:#008080">$upperLimit</span> = <span style="color:#099">16</span>/<span style="color:#099">9</span> + <span style="color:#099">0.05</span>
+</span></span><span style="display:flex;"><span><span style="color:#008080">$lowerLimit</span> = <span style="color:#099">16</span>/<span style="color:#099">9</span> - <span style="color:#099">0.05</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#000;font-weight:bold">foreach</span> (<span style="color:#008080">$item</span> <span style="color:#000;font-weight:bold">in</span> <span style="color:#0086b3">Get-ChildItem</span> | <span style="color:#0086b3">Where-Object</span> Extension -In <span style="color:#d14">&#34;.jpg&#34;</span>, <span style="color:#d14">&#34;.bmp&#34;</span>, <span style="color:#d14">&#34;.png&#34;</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#008080">$image</span> = <span style="color:#0086b3">New-Object</span> System.Drawing.Bitmap <span style="color:#008080">$item</span>.FullName
+</span></span><span style="display:flex;"><span>    <span style="color:#008080">$aspectRatio</span> = <span style="color:#008080">$image</span>.Width / <span style="color:#008080">$image</span>.Height
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#000;font-weight:bold">if</span> (<span style="color:#008080">$aspectRatio</span> <span style="color:#000;font-weight:bold">-gt</span> <span style="color:#008080">$upperLimit</span> <span style="color:#000;font-weight:bold">-or</span> <span style="color:#008080">$aspectRatio</span> <span style="color:#000;font-weight:bold">-lt</span> <span style="color:#008080">$lowerLimit</span>) {
+</span></span><span style="display:flex;"><span>        <span style="color:#0086b3">Write-Host</span> <span style="color:#008080">$item</span>.Name
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}</span></span></code></pre></div>
 <p>So instead of checking for strict equality with 16:9, we allow for a little bit of leeway on either side. We can tweak the amount of tolerance later if needed (0.05 was picked just because it&rsquo;d let some images I already know look decent slip through.)</p>
 <hr>
 <h1 id="drip-drip">Drip. Drip.</h1>
 <p>At this point, I switched working directories from my root wallpaper folder containing just ninety-one files to one of the subfolders which had just over ten times that amount. The script worked fine, though the rate at which file names were displayed very obviously started to decrease after some time.</p>
 <p>While trying to figure out why, I noticed PowerShell was now using over three hundred MB of memory.</p>
 <p>Oops.</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell"><span style="color:#008080">$upperLimit</span> = 16/9 + 0.05
-<span style="color:#008080">$lowerLimit</span> = 16/9 - 0.05
-
-<span style="color:#000;font-weight:bold">foreach</span> (<span style="color:#008080">$item</span> <span style="color:#000;font-weight:bold">in</span> <span style="color:#0086b3">Get-ChildItem</span> | <span style="color:#0086b3">Where-Object</span> Extension -In <span style="color:#d14">&#34;.jpg&#34;</span>, <span style="color:#d14">&#34;.bmp&#34;</span>, <span style="color:#d14">&#34;.png&#34;</span>) {
-    <span style="color:#000;font-weight:bold">try</span> {
-        <span style="color:#008080">$image</span> = <span style="color:#0086b3">New-Object</span> System.Drawing.Bitmap <span style="color:#008080">$item</span>.FullName
-        <span style="color:#008080">$aspectRatio</span> = <span style="color:#008080">$image</span>.Width / <span style="color:#008080">$image</span>.Height
-
-        <span style="color:#000;font-weight:bold">if</span> (<span style="color:#008080">$aspectRatio</span> <span style="color:#000;font-weight:bold">-gt</span> <span style="color:#008080">$upperLimit</span> <span style="color:#000;font-weight:bold">-or</span> <span style="color:#008080">$aspectRatio</span> <span style="color:#000;font-weight:bold">-lt</span> <span style="color:#008080">$lowerLimit</span>) {
-            <span style="color:#0086b3">Write-Host</span> <span style="color:#008080">$item</span>.Name
-        }
-    } <span style="color:#000;font-weight:bold">finally</span> {
-        <span style="color:#008080">$image</span>.Dispose()
-    }
-}</code></pre></div>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span><span style="color:#008080">$upperLimit</span> = <span style="color:#099">16</span>/<span style="color:#099">9</span> + <span style="color:#099">0.05</span>
+</span></span><span style="display:flex;"><span><span style="color:#008080">$lowerLimit</span> = <span style="color:#099">16</span>/<span style="color:#099">9</span> - <span style="color:#099">0.05</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#000;font-weight:bold">foreach</span> (<span style="color:#008080">$item</span> <span style="color:#000;font-weight:bold">in</span> <span style="color:#0086b3">Get-ChildItem</span> | <span style="color:#0086b3">Where-Object</span> Extension -In <span style="color:#d14">&#34;.jpg&#34;</span>, <span style="color:#d14">&#34;.bmp&#34;</span>, <span style="color:#d14">&#34;.png&#34;</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#000;font-weight:bold">try</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#008080">$image</span> = <span style="color:#0086b3">New-Object</span> System.Drawing.Bitmap <span style="color:#008080">$item</span>.FullName
+</span></span><span style="display:flex;"><span>        <span style="color:#008080">$aspectRatio</span> = <span style="color:#008080">$image</span>.Width / <span style="color:#008080">$image</span>.Height
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#000;font-weight:bold">if</span> (<span style="color:#008080">$aspectRatio</span> <span style="color:#000;font-weight:bold">-gt</span> <span style="color:#008080">$upperLimit</span> <span style="color:#000;font-weight:bold">-or</span> <span style="color:#008080">$aspectRatio</span> <span style="color:#000;font-weight:bold">-lt</span> <span style="color:#008080">$lowerLimit</span>) {
+</span></span><span style="display:flex;"><span>            <span style="color:#0086b3">Write-Host</span> <span style="color:#008080">$item</span>.Name
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    } <span style="color:#000;font-weight:bold">finally</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#008080">$image</span>.Dispose()
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}</span></span></code></pre></div>
 <p><em>Try-finally</em>? Now we&rsquo;re looking even more like a program! (I think that&rsquo;s pretty cool.)</p>
 <p>All we&rsquo;re doing now is just releasing the image object at the end of each iteration, once we&rsquo;re done with it. Using the <code>finally</code> block just ensures it&rsquo;ll always get released, even if something messes up (though nothing should (fingers crossed)).</p>
 <p>That killed the memory leak, but didn&rsquo;t fix the slowdown. Some more investigation revealed one of the causes, which wasn&rsquo;t a bug or issue: the further &ldquo;in&rdquo; to the folder, the less files there were that got rejected. Still, even after modifying the script to output files that were acceptable, the rate of display still slowed down as time went on.</p>
@@ -142,46 +138,46 @@
 <h1 id="grab-everything">Grab everything.</h1>
 <p>It&rsquo;d be nice if I could run this from the root wallpaper directory, instead of having to go inside each individual subfolder. It&rsquo;d also be great if the script would automatically move the &ldquo;rejected&rdquo; images into an appropriate subfolder, instead of just spitting out their names.</p>
 <p>That means I need to recursively go through all the subfolders, and I need to know the folder of each rejected image. Both turned out to be pretty easy to do.</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell"><span style="color:#008080">$upperLimit</span> = 16/9 + 0.05
-<span style="color:#008080">$lowerLimit</span> = 16/9 - 0.05
-
-<span style="color:#000;font-weight:bold">foreach</span> (<span style="color:#008080">$item</span> <span style="color:#000;font-weight:bold">in</span> <span style="color:#0086b3">Get-ChildItem</span> -Recurse | <span style="color:#0086b3">Where-Object</span> Extension -In <span style="color:#d14">&#34;.jpg&#34;</span>, <span style="color:#d14">&#34;.bmp&#34;</span>, <span style="color:#d14">&#34;.png&#34;</span>) {
-    <span style="color:#000;font-weight:bold">try</span> {
-        <span style="color:#008080">$image</span> = <span style="color:#0086b3">New-Object</span> System.Drawing.Bitmap <span style="color:#008080">$item</span>.FullName
-        <span style="color:#008080">$aspectRatio</span> = <span style="color:#008080">$image</span>.Width / <span style="color:#008080">$image</span>.Height
-
-        <span style="color:#000;font-weight:bold">if</span> (<span style="color:#008080">$aspectRatio</span> <span style="color:#000;font-weight:bold">-gt</span> <span style="color:#008080">$upperLimit</span> <span style="color:#000;font-weight:bold">-or</span> <span style="color:#008080">$aspectRatio</span> <span style="color:#000;font-weight:bold">-lt</span> <span style="color:#008080">$lowerLimit</span>) {
-            <span style="color:#0086b3">Write-Host</span> <span style="color:#008080">$item</span>.Name <span style="color:#d14">&#34;in&#34;</span> <span style="color:#008080">$item</span>.Directory.Name
-        }
-    } <span style="color:#000;font-weight:bold">finally</span> {
-        <span style="color:#008080">$image</span>.Dispose()
-    }
-}</code></pre></div>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span><span style="color:#008080">$upperLimit</span> = <span style="color:#099">16</span>/<span style="color:#099">9</span> + <span style="color:#099">0.05</span>
+</span></span><span style="display:flex;"><span><span style="color:#008080">$lowerLimit</span> = <span style="color:#099">16</span>/<span style="color:#099">9</span> - <span style="color:#099">0.05</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#000;font-weight:bold">foreach</span> (<span style="color:#008080">$item</span> <span style="color:#000;font-weight:bold">in</span> <span style="color:#0086b3">Get-ChildItem</span> -Recurse | <span style="color:#0086b3">Where-Object</span> Extension -In <span style="color:#d14">&#34;.jpg&#34;</span>, <span style="color:#d14">&#34;.bmp&#34;</span>, <span style="color:#d14">&#34;.png&#34;</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#000;font-weight:bold">try</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#008080">$image</span> = <span style="color:#0086b3">New-Object</span> System.Drawing.Bitmap <span style="color:#008080">$item</span>.FullName
+</span></span><span style="display:flex;"><span>        <span style="color:#008080">$aspectRatio</span> = <span style="color:#008080">$image</span>.Width / <span style="color:#008080">$image</span>.Height
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#000;font-weight:bold">if</span> (<span style="color:#008080">$aspectRatio</span> <span style="color:#000;font-weight:bold">-gt</span> <span style="color:#008080">$upperLimit</span> <span style="color:#000;font-weight:bold">-or</span> <span style="color:#008080">$aspectRatio</span> <span style="color:#000;font-weight:bold">-lt</span> <span style="color:#008080">$lowerLimit</span>) {
+</span></span><span style="display:flex;"><span>            <span style="color:#0086b3">Write-Host</span> <span style="color:#008080">$item</span>.Name <span style="color:#d14">&#34;in&#34;</span> <span style="color:#008080">$item</span>.Directory.Name
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    } <span style="color:#000;font-weight:bold">finally</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#008080">$image</span>.Dispose()
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}</span></span></code></pre></div>
 <p>As the name implies, adding the <code>-Recurse</code> parameter tells <code>Get-ChildItem</code> to go through all subfolders as well. File objects also conveniently have a <code>Directory</code> property, which (of course) has a <code>Name</code> property.</p>
 <p>Almost there.</p>
 <hr>
 <h1 id="move-it">Move it.</h1>
 <p>Now that we can get all the files we want, it&rsquo;s just a matter of moving them to the appropriate folder. The desktop seems like a good place to put things.</p>
 <p>Well, maybe not. It&rsquo;s convenient, though.</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell"><span style="color:#008080">$upperLimit</span> = 16/9 + 0.05
-<span style="color:#008080">$lowerLimit</span> = 16/9 - 0.05
-
-<span style="color:#000;font-weight:bold">foreach</span> (<span style="color:#008080">$item</span> <span style="color:#000;font-weight:bold">in</span> <span style="color:#0086b3">Get-ChildItem</span> -Recurse | <span style="color:#0086b3">Where-Object</span> Extension -In <span style="color:#d14">&#34;.jpg&#34;</span>, <span style="color:#d14">&#34;.bmp&#34;</span>, <span style="color:#d14">&#34;.png&#34;</span>) {
-    <span style="color:#000;font-weight:bold">try</span> {
-        <span style="color:#008080">$image</span> = <span style="color:#0086b3">New-Object</span> System.Drawing.Bitmap <span style="color:#008080">$item</span>.FullName
-        <span style="color:#008080">$aspectRatio</span> = <span style="color:#008080">$image</span>.Width / <span style="color:#008080">$image</span>.Height
-
-        <span style="color:#000;font-weight:bold">if</span> (<span style="color:#008080">$aspectRatio</span> <span style="color:#000;font-weight:bold">-gt</span> <span style="color:#008080">$upperLimit</span> <span style="color:#000;font-weight:bold">-or</span> <span style="color:#008080">$aspectRatio</span> <span style="color:#000;font-weight:bold">-lt</span> <span style="color:#008080">$lowerLimit</span>) {
-            <span style="color:#008080">$destinationFolder</span> = <span style="color:#008080">$HOME</span> + <span style="color:#d14">&#34;\Desktop\Archive\&#34;</span> + <span style="color:#008080">$item</span>.Directory.Name
-            <span style="color:#000;font-weight:bold">if</span> (!(<span style="color:#0086b3">Test-Path</span> <span style="color:#008080">$destinationFolder</span>)) {
-                <span style="color:#0086b3">New-Item</span> <span style="color:#008080">$destinationFolder</span> -ItemType Directory -WhatIf
-            }
-            <span style="color:#0086b3">Move-Item</span> <span style="color:#008080">$item</span>.FullName <span style="color:#008080">$destinationFolder</span> -WhatIf
-        }
-    } <span style="color:#000;font-weight:bold">finally</span> {
-        <span style="color:#008080">$image</span>.Dispose()
-    }
-}</code></pre></div>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span><span style="color:#008080">$upperLimit</span> = <span style="color:#099">16</span>/<span style="color:#099">9</span> + <span style="color:#099">0.05</span>
+</span></span><span style="display:flex;"><span><span style="color:#008080">$lowerLimit</span> = <span style="color:#099">16</span>/<span style="color:#099">9</span> - <span style="color:#099">0.05</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#000;font-weight:bold">foreach</span> (<span style="color:#008080">$item</span> <span style="color:#000;font-weight:bold">in</span> <span style="color:#0086b3">Get-ChildItem</span> -Recurse | <span style="color:#0086b3">Where-Object</span> Extension -In <span style="color:#d14">&#34;.jpg&#34;</span>, <span style="color:#d14">&#34;.bmp&#34;</span>, <span style="color:#d14">&#34;.png&#34;</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#000;font-weight:bold">try</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#008080">$image</span> = <span style="color:#0086b3">New-Object</span> System.Drawing.Bitmap <span style="color:#008080">$item</span>.FullName
+</span></span><span style="display:flex;"><span>        <span style="color:#008080">$aspectRatio</span> = <span style="color:#008080">$image</span>.Width / <span style="color:#008080">$image</span>.Height
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#000;font-weight:bold">if</span> (<span style="color:#008080">$aspectRatio</span> <span style="color:#000;font-weight:bold">-gt</span> <span style="color:#008080">$upperLimit</span> <span style="color:#000;font-weight:bold">-or</span> <span style="color:#008080">$aspectRatio</span> <span style="color:#000;font-weight:bold">-lt</span> <span style="color:#008080">$lowerLimit</span>) {
+</span></span><span style="display:flex;"><span>            <span style="color:#008080">$destinationFolder</span> = <span style="color:#008080">$HOME</span> + <span style="color:#d14">&#34;\Desktop\Archive\&#34;</span> + <span style="color:#008080">$item</span>.Directory.Name
+</span></span><span style="display:flex;"><span>            <span style="color:#000;font-weight:bold">if</span> (!(<span style="color:#0086b3">Test-Path</span> <span style="color:#008080">$destinationFolder</span>)) {
+</span></span><span style="display:flex;"><span>                <span style="color:#0086b3">New-Item</span> <span style="color:#008080">$destinationFolder</span> -ItemType Directory -WhatIf
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>            <span style="color:#0086b3">Move-Item</span> <span style="color:#008080">$item</span>.FullName <span style="color:#008080">$destinationFolder</span> -WhatIf
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    } <span style="color:#000;font-weight:bold">finally</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#008080">$image</span>.Dispose()
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}</span></span></code></pre></div>
 <p>So now we construct the path to the desired folder (stored in <code>destinationFolder</code>), check if it exists, and create it if it doesn&rsquo;t. We then move the image to that folder.</p>
 <p>That&rsquo;s the plan, anyway: with the <code>-WhatIf</code>s in place, all this does is tell us what operations would be carried out. A risk-free trial run of sorts.</p>
 <hr>
@@ -190,25 +186,25 @@
 <p>Oh.</p>
 <p>At first I thought it might have been because of the <code>foreach</code>-loop, though searching online for solutions didn&rsquo;t reveal anything.</p>
 <p>Then I realised it might just be because of the <code>Bitmap</code> object. To test it out, I moved the if-statement outside the <code>try-finally</code> block:</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell"><span style="color:#008080">$upperLimit</span> = 16/9 + 0.05
-<span style="color:#008080">$lowerLimit</span> = 16/9 - 0.05
-
-<span style="color:#000;font-weight:bold">foreach</span> (<span style="color:#008080">$item</span> <span style="color:#000;font-weight:bold">in</span> <span style="color:#0086b3">Get-ChildItem</span> -Recurse | <span style="color:#0086b3">Where-Object</span> Extension -In <span style="color:#d14">&#34;.jpg&#34;</span>, <span style="color:#d14">&#34;.bmp&#34;</span>, <span style="color:#d14">&#34;.png&#34;</span>) {
-    <span style="color:#000;font-weight:bold">try</span> {
-        <span style="color:#008080">$image</span> = <span style="color:#0086b3">New-Object</span> System.Drawing.Bitmap <span style="color:#008080">$item</span>.FullName
-        <span style="color:#008080">$aspectRatio</span> = <span style="color:#008080">$image</span>.Width / <span style="color:#008080">$image</span>.Height
-    } <span style="color:#000;font-weight:bold">finally</span> {
-        <span style="color:#008080">$image</span>.Dispose()
-    }
-
-    <span style="color:#000;font-weight:bold">if</span> (<span style="color:#008080">$aspectRatio</span> <span style="color:#000;font-weight:bold">-gt</span> <span style="color:#008080">$upperLimit</span> <span style="color:#000;font-weight:bold">-or</span> <span style="color:#008080">$aspectRatio</span> <span style="color:#000;font-weight:bold">-lt</span> <span style="color:#008080">$lowerLimit</span>) {
-        <span style="color:#008080">$destinationFolder</span> = <span style="color:#008080">$HOME</span> + <span style="color:#d14">&#34;\Desktop\Archive\&#34;</span> + <span style="color:#008080">$item</span>.Directory.Name
-        <span style="color:#000;font-weight:bold">if</span> (!(<span style="color:#0086b3">Test-Path</span> <span style="color:#008080">$destinationFolder</span>)) {
-            <span style="color:#0086b3">New-Item</span> <span style="color:#008080">$destinationFolder</span> -ItemType Directory
-        }
-        <span style="color:#0086b3">Move-Item</span> <span style="color:#008080">$item</span>.FullName <span style="color:#008080">$destinationFolder</span>
-    }
-}</code></pre></div>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span><span style="color:#008080">$upperLimit</span> = <span style="color:#099">16</span>/<span style="color:#099">9</span> + <span style="color:#099">0.05</span>
+</span></span><span style="display:flex;"><span><span style="color:#008080">$lowerLimit</span> = <span style="color:#099">16</span>/<span style="color:#099">9</span> - <span style="color:#099">0.05</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#000;font-weight:bold">foreach</span> (<span style="color:#008080">$item</span> <span style="color:#000;font-weight:bold">in</span> <span style="color:#0086b3">Get-ChildItem</span> -Recurse | <span style="color:#0086b3">Where-Object</span> Extension -In <span style="color:#d14">&#34;.jpg&#34;</span>, <span style="color:#d14">&#34;.bmp&#34;</span>, <span style="color:#d14">&#34;.png&#34;</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#000;font-weight:bold">try</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#008080">$image</span> = <span style="color:#0086b3">New-Object</span> System.Drawing.Bitmap <span style="color:#008080">$item</span>.FullName
+</span></span><span style="display:flex;"><span>        <span style="color:#008080">$aspectRatio</span> = <span style="color:#008080">$image</span>.Width / <span style="color:#008080">$image</span>.Height
+</span></span><span style="display:flex;"><span>    } <span style="color:#000;font-weight:bold">finally</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#008080">$image</span>.Dispose()
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#000;font-weight:bold">if</span> (<span style="color:#008080">$aspectRatio</span> <span style="color:#000;font-weight:bold">-gt</span> <span style="color:#008080">$upperLimit</span> <span style="color:#000;font-weight:bold">-or</span> <span style="color:#008080">$aspectRatio</span> <span style="color:#000;font-weight:bold">-lt</span> <span style="color:#008080">$lowerLimit</span>) {
+</span></span><span style="display:flex;"><span>        <span style="color:#008080">$destinationFolder</span> = <span style="color:#008080">$HOME</span> + <span style="color:#d14">&#34;\Desktop\Archive\&#34;</span> + <span style="color:#008080">$item</span>.Directory.Name
+</span></span><span style="display:flex;"><span>        <span style="color:#000;font-weight:bold">if</span> (!(<span style="color:#0086b3">Test-Path</span> <span style="color:#008080">$destinationFolder</span>)) {
+</span></span><span style="display:flex;"><span>            <span style="color:#0086b3">New-Item</span> <span style="color:#008080">$destinationFolder</span> -ItemType Directory
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        <span style="color:#0086b3">Move-Item</span> <span style="color:#008080">$item</span>.FullName <span style="color:#008080">$destinationFolder</span>
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}</span></span></code></pre></div>
 <p>It worked.</p>
 <p>Sweet.</p>
 

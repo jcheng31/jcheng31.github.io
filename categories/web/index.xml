@@ -4,22 +4,16 @@
     <title>Web on ayulin.net</title>
     <link>https://ayulin.net/categories/web/</link>
     <description>Recent content in Web on ayulin.net</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <generator>Hugo</generator>
     <language>en-uk</language>
     <lastBuildDate>Mon, 18 Aug 2014 21:59:00 +0000</lastBuildDate>
-    
-	<atom:link href="https://ayulin.net/categories/web/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <atom:link href="https://ayulin.net/categories/web/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Thanks, IE.</title>
       <link>https://ayulin.net/blog/2014/ie-dev-tools/</link>
       <pubDate>Mon, 18 Aug 2014 21:59:00 +0000</pubDate>
-      
       <guid>https://ayulin.net/blog/2014/ie-dev-tools/</guid>
-      <description>&lt;p&gt;While updating &lt;a href=&#34;https://jcheng31.github.io/isitonspotify/&#34;&gt;Is it on Spotify?&lt;/a&gt; to use the new(ish)
-Spotify Web API, I ran into an issue when testing things out locally.&lt;/p&gt;</description>
+      <description>&lt;p&gt;While updating &lt;a href=&#34;https://jcheng31.github.io/isitonspotify/&#34;&gt;Is it on Spotify?&lt;/a&gt; to use the new(ish)&#xA;Spotify Web API, I ran into an issue when testing things out locally.&lt;/p&gt;</description>
     </item>
-    
   </channel>
 </rss>

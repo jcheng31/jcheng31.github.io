@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta property="fb:admins" content="jerome.cheng">
+  <title>Managing Expectations - ayulin.net</title>
+
+  <link href="https://fonts.googleapis.com/css?family=Lato:400,900" rel="stylesheet">
+  <link href="/css/typography.css" rel="stylesheet">
+  <link href="/css/common.css" rel="stylesheet">
+  <link href="/css/blog.css" rel="stylesheet">
+
+  <link rel="alternate" type="application/rss+xml" href="/blog/index.xml" title="ayulin.net" />
+
+  <link rel="shortcut icon" href="/profile.jpg">
+</head>
+
+<body>
+  <div class="wrapper">
+    <div class="header">
+  <div class="profile-pic">
+    <a href="/">
+      <img src="/profile.jpg" />
+    </a>
+  </div>
+
+  <div class="contact">
+    <p class="author">
+      <a href="/">ayulin.net</a>
+    </p>
+
+    <p>
+      <a href="/about"><small>About</small></a>
+
+      
+      <a href="https://twitter.com/Ayulin"><small>Twitter</small></a>
+      
+
+      
+      <a href="https://github.com/jcheng31"><small>GitHub</small></a>
+      
+    </p>
+  </div>
+</div>
+
+    <div class="post-header">
+  <h5 class="subtle">21 February 2021</h5>
+  <h1><strong>Managing Expectations</strong></h1>
+  <h2 class="subtitle">When should we assert expectations on a mock?</h2>
+</div>
+
+    <div class="post-body">
+      <p><strong>TL;DR:</strong></p>
+<ul>
+<li>Assert expectations when there&rsquo;s some sort of side effect of calling the
+component being mocked.
+<ul>
+<li>Calling that component is a key part of the code being tested. You want to
+check that it&rsquo;s actually being called.</li>
+</ul>
+</li>
+<li>Asserting expectations couples your test to the implementation.
+<ul>
+<li>Fine for integration tests, maybe less so for unit tests. You might want to <a href="https://ayulin.net/blog/2020/six-statements-about-testing/#5-test-behaviour-not-implementation">test behaviour, not implementation</a> for
+those.
+<ul>
+<li>Sometimes the behaviour <em>is</em> the implementation. Then you <em>should</em>
+assert expectations.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Tightly coupled tests are sensitive to implementation changes.
+<ul>
+<li>They tend to fail even if the changes made are actually correct. This
+isn&rsquo;t great.</li>
+</ul>
+</li>
+</ul>
+<p>That&rsquo;s the gist of it. But if you want to read more, let&rsquo;s get to it.</p>
+<hr>
+<p>(Not sure what a mock is? Check this footnote: <sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup>)</p>
+<p>The key use case of asserting expectations on a mock is when calling the
+component being mocked in production would have
+some side effect. For example, if you&rsquo;re testing code whose purpose is to send
+an email, you want to ensure that it would do
+so correctly. To do that, you&rsquo;d assert that the mocked emailer
+was actually called, and with the correct parameters.</p>
+<p>The purpose of a test is to ensure the code behaves the way we want it to. When that behaviour is
+explicitly to interact in some way with the component being mocked, you should
+assert expectations on that mock.</p>
+<p>Why shouldn&rsquo;t we do this all the time? Asserting expectations on a mock couples
+your test to the way your code is implemented. Tightly
+coupled tests often break when changes are made to the code, even when those new
+changes are actually correct. This leads to us needing to debug the tests
+themselves, which is both painful and not the most valuable use of time.</p>
+<div class="footnotes" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn:1">
+<p>We use mocks when testing code that relies on some component which we don&rsquo;t
+actually want to call or interact with during a test - for example, a database
+or an external service. We mock the component in order to test our own code&rsquo;s
+behaviour when that component behaves a certain way: if it fails, returns an
+unexpected response, or even when everything is okay.</p>
+<p>When using a mock framework, setting up the mock often consists of specifying
+the calls that mock is expected to receive when the test is run and how it
+should respond to each. For example, given the following (Go) interface for a datastore that we&rsquo;re mocking:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#000;font-weight:bold">type</span> UserGetter <span style="color:#000;font-weight:bold">interface</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">GetUser</span>(id uuid.UUID) (User, <span style="color:#458;font-weight:bold">error</span>)
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>We may wish to test that our code behaves correctly when the datastore returns
+an error. Using <a href="https://github.com/golang/mock/"><code>gomock</code></a>, this would look
+like:</p>
+<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#000;font-weight:bold">func</span> <span style="color:#900;font-weight:bold">TestUserError</span>(t <span style="color:#000;font-weight:bold">*</span>testing.T) {
+</span></span><span style="display:flex;"><span>  ctrl <span style="color:#000;font-weight:bold">:=</span> gomock.<span style="color:#900;font-weight:bold">NewController</span>(t)
+</span></span><span style="display:flex;"><span>  <span style="color:#000;font-weight:bold">defer</span> ctrl.<span style="color:#900;font-weight:bold">Finish</span>()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  m <span style="color:#000;font-weight:bold">:=</span> <span style="color:#900;font-weight:bold">NewMockUserGetter</span>(ctrl)
+</span></span><span style="display:flex;"><span>  m.
+</span></span><span style="display:flex;"><span>    <span style="color:#900;font-weight:bold">EXPECT</span>().
+</span></span><span style="display:flex;"><span>    <span style="color:#900;font-weight:bold">GetUser</span>(gomock.<span style="color:#900;font-weight:bold">Any</span>()).
+</span></span><span style="display:flex;"><span>    <span style="color:#900;font-weight:bold">Return</span>(User{}, errors.<span style="color:#900;font-weight:bold">New</span>(<span style="color:#d14">&#34;a test error&#34;</span>)).
+</span></span><span style="display:flex;"><span>    <span style="color:#900;font-weight:bold">AnyTimes</span>()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#998;font-style:italic">// Pass `m` to the component being tested, check its behaviour, etc.
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span>}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>In this scenario, our mock is more accurately called a <strong>stub</strong> - it provides
+some behaviour that we define for the test. A &ldquo;true&rdquo;<sup id="fnref:2"><a href="#fn:2" class="footnote-ref" role="doc-noteref">2</a></sup> mock would also check if
+the calls that we set up were actually made during the test - we&rsquo;d &ldquo;assert
+expectations&rdquo; on the mock. In other words, a mock is a stub that verifies its
+expectations are met.</p>
+<p>To do this, we&rsquo;d change our set-up code slightly:</p>
+<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;display:grid;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;display:grid;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="background-color:#e5e5e5"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span></span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;display:grid;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#000;font-weight:bold">func</span> <span style="color:#900;font-weight:bold">TestUserError</span>(t <span style="color:#000;font-weight:bold">*</span>testing.T) {
+</span></span><span style="display:flex;"><span>  ctrl <span style="color:#000;font-weight:bold">:=</span> gomock.<span style="color:#900;font-weight:bold">NewController</span>(t)
+</span></span><span style="display:flex;"><span>  <span style="color:#000;font-weight:bold">defer</span> ctrl.<span style="color:#900;font-weight:bold">Finish</span>()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  m <span style="color:#000;font-weight:bold">:=</span> <span style="color:#900;font-weight:bold">NewMockUserGetter</span>(ctrl)
+</span></span><span style="display:flex;"><span>  m.
+</span></span><span style="display:flex;"><span>    <span style="color:#900;font-weight:bold">EXPECT</span>().
+</span></span><span style="display:flex;"><span>    <span style="color:#900;font-weight:bold">GetUser</span>(gomock.<span style="color:#900;font-weight:bold">Any</span>()).
+</span></span><span style="display:flex;"><span>    <span style="color:#900;font-weight:bold">Return</span>(User{}, errors.<span style="color:#900;font-weight:bold">New</span>(<span style="color:#d14">&#34;a test error&#34;</span>))
+</span></span><span style="display:flex; background-color:#e5e5e5"><span>  <span style="color:#998;font-style:italic">// .AnyTimes() is gone.
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span>
+</span></span><span style="display:flex;"><span>  <span style="color:#998;font-style:italic">// Pass `m` to the component being tested, check its behaviour, etc.
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span>}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>When we run the test now, if <code>GetUser</code> isn&rsquo;t called one (and only one) time, the
+test now fails. <code>gomock</code> asserts this expectation during the <code>ctrl.Finish()</code>
+call that we defer at the start.</p>
+<p>In <a href="github.com/stretchr/testify/mock"><code>testify/mock</code></a> this is done through
+calling <code>AssertExpectations</code> on the mock, or another similar method. Other
+frameworks (in other languages, too) often have something similar.&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:2">
+<p>We often use the term &ldquo;mock&rdquo; to refer to both mocks and stubs pretty
+much interchangeably. I don&rsquo;t think it really matters.&#160;<a href="#fnref:2" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+</ol>
+</div>
+
+    </div>
+  </div>
+</body>
+
+</html>

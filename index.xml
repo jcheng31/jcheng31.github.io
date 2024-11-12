@@ -4,541 +4,401 @@
     <title>&#34;it&#39;s dot com!&#34; on ayulin.net</title>
     <link>https://ayulin.net/</link>
     <description>Recent content in &#34;it&#39;s dot com!&#34; on ayulin.net</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <generator>Hugo</generator>
     <language>en-uk</language>
     <lastBuildDate>Fri, 01 May 2020 10:24:01 -0700</lastBuildDate>
-    
-	<atom:link href="https://ayulin.net/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <atom:link href="https://ayulin.net/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Tips to Take Table Tests to the Top</title>
       <link>https://ayulin.net/blog/2020/tips-to-take-table-tests-to-the-top/</link>
       <pubDate>Fri, 01 May 2020 10:24:01 -0700</pubDate>
-      
       <guid>https://ayulin.net/blog/2020/tips-to-take-table-tests-to-the-top/</guid>
-      <description>I&amp;rsquo;m a huge fan of Go&amp;rsquo;s table-driven tests. They&amp;rsquo;re really well-suited for behavioural testing, which we discussed before, and they make writing tests quite easy.</description>
+      <description>&lt;p&gt;I&amp;rsquo;m a huge fan of Go&amp;rsquo;s table-driven tests. They&amp;rsquo;re really well-suited for behavioural testing, which&#xA;we discussed &lt;a href=&#34;https://ayulin.net/blog/2020/six-statements-about-testing/&#34;&gt;before&lt;/a&gt;, and they make&#xA;writing tests quite easy.&lt;/p&gt;&#xA;&lt;p&gt;As with the previous post in this series, this was written to prepare for a learning session on&#xA;tests at work; the content here is a collection of suggestions and observations based on how our&#xA;team was writing tests. Maybe you&amp;rsquo;ll find it useful too; maybe you won&amp;rsquo;t.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Six Statements About Testing</title>
       <link>https://ayulin.net/blog/2020/six-statements-about-testing/</link>
       <pubDate>Fri, 01 May 2020 10:24:00 -0700</pubDate>
-      
       <guid>https://ayulin.net/blog/2020/six-statements-about-testing/</guid>
-      <description>I volunteered to do a learning lab session on testing at work; there were some common patterns and things I noticed we were doing when writing tests which I thought we could be doing better.</description>
+      <description>&lt;p&gt;I volunteered to do a learning lab session on testing at work; there were some common patterns and&#xA;things I noticed we were doing when writing tests which I thought we could be doing better.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Running Games on EC2 with Parsec</title>
       <link>https://ayulin.net/blog/2020/running-games-on-ec2-with-parsec/</link>
       <pubDate>Mon, 27 Apr 2020 13:43:00 +0800</pubDate>
-      
       <guid>https://ayulin.net/blog/2020/running-games-on-ec2-with-parsec/</guid>
-      <description>I&amp;rsquo;m back in Singapore and away from my desktop, which has meant not being able to play any of my more demanding or Windows-only games on the computer I actually have here (a MacBook Pro).</description>
+      <description>&lt;p&gt;I&amp;rsquo;m back in Singapore and away from my desktop, which has meant not being able to play any of my&#xA;more demanding or Windows-only games on the computer I actually have here (a MacBook Pro). I gave&#xA;GeForce Now a shot, but given that they didn&amp;rsquo;t have any servers in the region, the latency made&#xA;things quite unplayable. It also didn&amp;rsquo;t look very good, most likely for the same reason.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Hello, Hugo.</title>
       <link>https://ayulin.net/blog/2020/hello-hugo./</link>
       <pubDate>Sun, 19 Apr 2020 13:38:00 +0800</pubDate>
-      
       <guid>https://ayulin.net/blog/2020/hello-hugo./</guid>
-      <description>I&amp;rsquo;ve been wanting to revamp this whole site for quite a while now, and it&amp;rsquo;s finally happened. The first commit for this iteration was made on September 24, 2018 and after an initial few days&amp;rsquo; worth of work it basically stagnated until today.</description>
+      <description>&lt;p&gt;I&amp;rsquo;ve been wanting to revamp this whole site for quite a while now, and it&amp;rsquo;s finally happened. The&#xA;first commit for this iteration was made on September 24, 2018 and after an initial few days&amp;rsquo; worth&#xA;of work it basically stagnated until today.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Typing Secrets in the Open</title>
       <link>https://ayulin.net/blog/2017/typing-secrets-in-the-open/</link>
       <pubDate>Sat, 17 Jun 2017 00:00:00 +0000</pubDate>
-      
       <guid>https://ayulin.net/blog/2017/typing-secrets-in-the-open/</guid>
-      <description>&lt;p&gt;I&amp;rsquo;ve been keeping a daily journal for quite a while now - 8 or so years? I started using OhLife,
-which was email-based, then when that shut down I moved to plain-old-Markdown files stored in a
-TrueCrypt (and now VeraCrypt) container&amp;hellip; thing.&lt;/p&gt;</description>
+      <description>&lt;p&gt;I&amp;rsquo;ve been keeping a daily journal for quite a while now - 8 or so years? I started using OhLife,&#xA;which was email-based, then when that shut down I moved to plain-old-Markdown files stored in a&#xA;TrueCrypt (and now VeraCrypt) container&amp;hellip; thing.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Working with WSL</title>
       <link>https://ayulin.net/blog/2017/working-with-wsl/</link>
       <pubDate>Wed, 10 May 2017 00:00:00 +0000</pubDate>
-      
       <guid>https://ayulin.net/blog/2017/working-with-wsl/</guid>
-      <description>&lt;p&gt;Bash on Ubuntu on Windows, or the Windows Subsystem for Linux (or WSL), is a little over one year
-old now, and still a mouthful to say. When it was announced, I tweeted:&lt;/p&gt;</description>
+      <description>&lt;p&gt;Bash on Ubuntu on Windows, or the Windows Subsystem for Linux (or WSL), is a little over one year&#xA;old now, and still a mouthful to say. When it was announced, I tweeted:&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>RIP Band 2.</title>
       <link>https://ayulin.net/blog/2017/rip-band-2/</link>
       <pubDate>Wed, 26 Apr 2017 00:00:00 +0000</pubDate>
-      
       <guid>https://ayulin.net/blog/2017/rip-band-2/</guid>
       <description>&lt;p&gt;My Microsoft Band 2 seems to have finally died on me. On the bright side, it lasted over a year.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Doing the Splits</title>
       <link>https://ayulin.net/blog/2017/tmux-splits/</link>
       <pubDate>Sat, 15 Apr 2017 00:00:00 +0000</pubDate>
-      
       <guid>https://ayulin.net/blog/2017/tmux-splits/</guid>
-      <description>&lt;p&gt;While trying to fall asleep, I ended up thinking about the key combinations used to create splits in
-tmux.&lt;/p&gt;</description>
+      <description>&lt;p&gt;While trying to fall asleep, I ended up thinking about the key combinations used to create splits in&#xA;tmux.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Fourcast v1.3 Changelog</title>
       <link>https://ayulin.net/blog/2016/fourcast-v1.3-changelog/</link>
       <pubDate>Tue, 12 Jul 2016 00:00:00 +0000</pubDate>
-      
       <guid>https://ayulin.net/blog/2016/fourcast-v1.3-changelog/</guid>
       <description>&lt;p&gt;Removed support for older OSes, fixed a crash bug, and dropped usage tracking.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Packaging Problem</title>
       <link>https://ayulin.net/blog/2015/packaging-problem/</link>
       <pubDate>Wed, 18 Nov 2015 00:00:00 +0000</pubDate>
-      
       <guid>https://ayulin.net/blog/2015/packaging-problem/</guid>
-      <description>Relatively recently, I started using the actual command-line tool for NuGet; previously, I&amp;rsquo;d been using the Package Explorer GUI to create packages for ForecastPCL. The benefit of the command-line tool is that it automagically creates packages the &amp;ldquo;proper&amp;rdquo; way - I don&amp;rsquo;t understand how things are supposed to be structured internally, with the subfolders whose names specify the platforms you&amp;rsquo;re targeting, but I don&amp;rsquo;t need to worry about that.</description>
+      <description>&lt;p&gt;Relatively recently, I started using the actual command-line tool for NuGet; previously, I&amp;rsquo;d been using the Package Explorer GUI to create packages for &lt;a href=&#34;https://github.com/jcheng31/ForecastPCL&#34;&gt;ForecastPCL&lt;/a&gt;. The benefit of the command-line tool is that it automagically creates packages the &amp;ldquo;proper&amp;rdquo; way - I don&amp;rsquo;t understand how things are supposed to be structured internally, with the subfolders whose names specify the platforms you&amp;rsquo;re targeting, but I don&amp;rsquo;t need to worry about that.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>The Invariant Culture is Your Friend</title>
       <link>https://ayulin.net/blog/2015/the-invariant-culture/</link>
       <pubDate>Sun, 19 Apr 2015 00:00:00 +0000</pubDate>
-      
       <guid>https://ayulin.net/blog/2015/the-invariant-culture/</guid>
-      <description>&lt;p&gt;Not every place in the world uses the full stop (or period) as a decimal mark. Quite a few use the
-comma instead.&lt;/p&gt;</description>
+      <description>&lt;p&gt;Not every place in the world uses the full stop (or period) as a decimal mark. Quite a few use the&#xA;comma instead.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Installing Jekyll 3 Beta on Windows</title>
       <link>https://ayulin.net/blog/2015/jekyll-3-beta-on-windows/</link>
       <pubDate>Sun, 01 Feb 2015 00:00:00 +0000</pubDate>
-      
       <guid>https://ayulin.net/blog/2015/jekyll-3-beta-on-windows/</guid>
-      <description>In a previous post I wrote about installing Jekyll 1.4.2 on Windows - at the time, the guide linked from the Jekyll site itself was way out of date.</description>
+      <description>&lt;p&gt;In a &lt;a href=&#34;https://ayulin.net/blog/2014/yet-another-how-to-install-jekyll-on-windows-post./&#34;&gt;previous post&lt;/a&gt; I wrote about installing Jekyll 1.4.2 on Windows - at the time, the guide linked from the Jekyll site itself was way out of date. Happily, they&amp;rsquo;ve since updated to link to a &lt;a href=&#34;http://jekyll-windows.juthilo.com/&#34;&gt;much better guide&lt;/a&gt;.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Installing Nokogiri on Windows, with Ruby 2.1.5</title>
       <link>https://ayulin.net/blog/2015/installing-nokogiri/</link>
       <pubDate>Sun, 01 Feb 2015 00:00:00 +0000</pubDate>
-      
       <guid>https://ayulin.net/blog/2015/installing-nokogiri/</guid>
-      <description>This is a quasi-follow-up to my previous post, where we looked at installing the new Jekyll 3 beta on Windows. I had to install the Nokogiri gem to get this site working again once that was done, and came across an issue.</description>
+      <description>&lt;p&gt;This is a quasi-follow-up to my &lt;a href=&#34;https://ayulin.net/blog/2015/jekyll-3-beta-on-windows/&#34;&gt;previous post&lt;/a&gt;, where we looked at installing the new Jekyll 3 beta on Windows. I had to install the Nokogiri gem to get this site working again once that was done, and came across an issue.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Media Keys, Colemak, and the ErgoDox</title>
       <link>https://ayulin.net/blog/2014/ergodox-media-keys/</link>
       <pubDate>Fri, 26 Dec 2014 00:00:00 +0000</pubDate>
-      
       <guid>https://ayulin.net/blog/2014/ergodox-media-keys/</guid>
-      <description>I got an ErgoDox off of Massdrop a few months ago, switching up from the Microsoft Sculpt Ergonomic Keyboard. It&amp;rsquo;s an ergonomic, truly split keyboard (the two halves are joined by a cable so you can position them almost anywhere you want), with a feature that stood out to me: it&amp;rsquo;s reprogrammable, being driven by a Teensy microcontroller.</description>
+      <description>&lt;p&gt;I got an &lt;a href=&#34;https://www.massdrop.com/buy/ergodox&#34;&gt;ErgoDox off of Massdrop&lt;/a&gt; a few months ago, switching up from the Microsoft Sculpt Ergonomic Keyboard. It&amp;rsquo;s an ergonomic, truly split keyboard (the two halves are joined by a cable so you can position them almost anywhere you want), with a feature that stood out to me: it&amp;rsquo;s reprogrammable, being driven by a &lt;a href=&#34;http://www.pjrc.com/teensy/&#34;&gt;Teensy&lt;/a&gt; microcontroller.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Building Less (CSS) in Sublime Text 3</title>
       <link>https://ayulin.net/blog/2014/building-less-css-in-sublime-text-3/</link>
       <pubDate>Tue, 23 Dec 2014 00:00:00 +0000</pubDate>
-      
       <guid>https://ayulin.net/blog/2014/building-less-css-in-sublime-text-3/</guid>
       <description>&lt;p&gt;&lt;a href=&#34;http://lesscss.org/&#34;&gt;Less&lt;/a&gt; is great. Having to manually compile it isn&amp;rsquo;t.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Of Rice and Pen</title>
       <link>https://ayulin.net/blog/2014/of-rice-and-pen/</link>
       <pubDate>Tue, 26 Aug 2014 11:29:24 +0000</pubDate>
-      
       <guid>https://ayulin.net/blog/2014/of-rice-and-pen/</guid>
-      <description>Just over a week after getting it, my Wacom Bamboo Stylus feel (which is quite a name) ended up going through the wash cycle. I&amp;rsquo;d clipped it inside one of my cargo pockets, and forgotten to take it out.</description>
+      <description>&lt;p&gt;Just over a week after getting it, my &lt;a href=&#34;http://www.wacom.com/en/us/everyday/bamboo-stylus-feel&#34;&gt;Wacom Bamboo Stylus feel&lt;/a&gt; (which is quite a name) ended up going through the wash cycle. I&amp;rsquo;d clipped it inside one of my cargo pockets, and forgotten to take it out.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Thanks, IE.</title>
       <link>https://ayulin.net/blog/2014/ie-dev-tools/</link>
       <pubDate>Mon, 18 Aug 2014 21:59:00 +0000</pubDate>
-      
       <guid>https://ayulin.net/blog/2014/ie-dev-tools/</guid>
-      <description>&lt;p&gt;While updating &lt;a href=&#34;https://jcheng31.github.io/isitonspotify/&#34;&gt;Is it on Spotify?&lt;/a&gt; to use the new(ish)
-Spotify Web API, I ran into an issue when testing things out locally.&lt;/p&gt;</description>
+      <description>&lt;p&gt;While updating &lt;a href=&#34;https://jcheng31.github.io/isitonspotify/&#34;&gt;Is it on Spotify?&lt;/a&gt; to use the new(ish)&#xA;Spotify Web API, I ran into an issue when testing things out locally.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Fourcast v1.2 Changelog</title>
       <link>https://ayulin.net/blog/2014/fourcast-1-2/</link>
       <pubDate>Sat, 07 Jun 2014 00:00:00 +0000</pubDate>
-      
       <guid>https://ayulin.net/blog/2014/fourcast-1-2/</guid>
       <description>&lt;p&gt;Another UI redesign, and long-overdue improvements to tiles.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>A Look at Fourcast</title>
       <link>https://ayulin.net/blog/2014/a-look-at-fourcast/</link>
       <pubDate>Sat, 24 May 2014 00:00:00 +0000</pubDate>
-      
       <guid>https://ayulin.net/blog/2014/a-look-at-fourcast/</guid>
-      <description>&lt;p&gt;&lt;em&gt;It&amp;rsquo;s been almost two years since Fourcast launched. I thought it&amp;rsquo;d be fun to look at how much it&amp;rsquo;s
-changed since then, and talk about how it&amp;rsquo;ll change soon.&lt;/em&gt;&lt;/p&gt;</description>
+      <description>&lt;p&gt;&lt;em&gt;It&amp;rsquo;s been almost two years since Fourcast launched. I thought it&amp;rsquo;d be fun to look at how much it&amp;rsquo;s&#xA;changed since then, and talk about how it&amp;rsquo;ll change soon.&lt;/em&gt;&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Fourcast v1.1.1 Changelog</title>
       <link>https://ayulin.net/blog/2014/fourcast-v1.1.1-changelog/</link>
       <pubDate>Sun, 11 May 2014 00:00:00 +0000</pubDate>
-      
       <guid>https://ayulin.net/blog/2014/fourcast-v1.1.1-changelog/</guid>
       <description>&lt;p&gt;Bug fixes and more useful error messages.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Windows Phone 8.1</title>
       <link>https://ayulin.net/blog/2014/windows-phone-8.1/</link>
       <pubDate>Thu, 08 May 2014 00:00:00 +0000</pubDate>
-      
       <guid>https://ayulin.net/blog/2014/windows-phone-8.1/</guid>
-      <description>Windows Phone 8.1&amp;rsquo;s been out in near-final state through the Preview for Developers program for about three weeks now. Though there&amp;rsquo;re a lot of new features and changes, I&amp;rsquo;m not going to go over all of them in detail; by now there are loads of other articles and posts available which would do a much better job.</description>
+      <description>&lt;p&gt;Windows Phone 8.1&amp;rsquo;s been out in near-final state through the &lt;a href=&#34;https://dev.windowsphone.com/en-us/develop/devpreview&#34;&gt;Preview for&#xA;Developers&lt;/a&gt; program for&#xA;about three weeks now. Though there&amp;rsquo;re a lot of new features and changes, I&amp;rsquo;m&#xA;not going to go over all of them in detail; by now there are loads of other&#xA;articles and posts available which would do a much better job. These are just my&#xA;thoughts on things I came across.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Setting the Pace</title>
       <link>https://ayulin.net/blog/2014/setting-the-pace/</link>
       <pubDate>Sun, 27 Apr 2014 00:00:00 +0000</pubDate>
-      
       <guid>https://ayulin.net/blog/2014/setting-the-pace/</guid>
-      <description>For one reason or another (read: I have no idea why, but&amp;hellip;), the few webcasts I&amp;rsquo;ve watched recently seem to work better when viewed faster than real-time.</description>
+      <description>&lt;p&gt;For one reason or another (read: I have no idea why, but&amp;hellip;), the few webcasts I&amp;rsquo;ve watched recently seem to work better when viewed faster than real-time. I’d download the MP4 version, open it up in VLC, and use the playback speed controls to speed things up anywhere from 1.1 to, on one occasion, 1.3 times the normal rate.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>The Art of Software Engineering</title>
       <link>https://ayulin.net/blog/2014/the-art-of-software-engineering/</link>
       <pubDate>Fri, 25 Apr 2014 00:00:00 +0000</pubDate>
-      
       <guid>https://ayulin.net/blog/2014/the-art-of-software-engineering/</guid>
       <description>&lt;p&gt;Well, that is one misleading title. Maybe the subtitle will make up for it?&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Is it on Spotify?</title>
       <link>https://ayulin.net/blog/2014/is-it-on-spotify/</link>
       <pubDate>Tue, 15 Apr 2014 00:00:00 +0000</pubDate>
-      
       <guid>https://ayulin.net/blog/2014/is-it-on-spotify/</guid>
-      <description>&lt;blockquote&gt;
-&lt;p&gt;&lt;strong&gt;Update (2020-04-19):&lt;/strong&gt; Is it on Spotify? is still online, though it no longer works. All of the
-links to it here have been left intact regardless.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;While at a café with some friends, I heard bits and pieces of a song over the stereo - &lt;a href=&#34;https://www.youtube.com/watch?v=-bmp4QWzHak&#34;&gt;this
-song&lt;/a&gt;. It sounded pretty nice, so after finding out
-what it was (in a roundabout manner&lt;sup id=&#34;fnref:1&#34;&gt;&lt;a href=&#34;#fn:1&#34; class=&#34;footnote-ref&#34; role=&#34;doc-noteref&#34;&gt;1&lt;/a&gt;&lt;/sup&gt;) I starred it on Spotify.&lt;/p&gt;</description>
+      <description>&lt;blockquote&gt;&#xA;&lt;p&gt;&lt;strong&gt;Update (2020-04-19):&lt;/strong&gt; Is it on Spotify? is still online, though it no longer works. All of the&#xA;links to it here have been left intact regardless.&lt;/p&gt;&#xA;&lt;/blockquote&gt;&#xA;&lt;p&gt;While at a café with some friends, I heard bits and pieces of a song over the stereo - &lt;a href=&#34;https://www.youtube.com/watch?v=-bmp4QWzHak&#34;&gt;this&#xA;song&lt;/a&gt;. It sounded pretty nice, so after finding out&#xA;what it was (in a roundabout manner&lt;sup id=&#34;fnref:1&#34;&gt;&lt;a href=&#34;#fn:1&#34; class=&#34;footnote-ref&#34; role=&#34;doc-noteref&#34;&gt;1&lt;/a&gt;&lt;/sup&gt;) I starred it on Spotify.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Yet Another &#34;How To Install Jekyll on Windows&#34; Post.</title>
       <link>https://ayulin.net/blog/2014/yet-another-how-to-install-jekyll-on-windows-post./</link>
       <pubDate>Sun, 09 Mar 2014 00:00:00 +0000</pubDate>
-      
       <guid>https://ayulin.net/blog/2014/yet-another-how-to-install-jekyll-on-windows-post./</guid>
-      <description>Update (1st Feb 2015): Jekyll 3 beta 1 is out - if you&amp;rsquo;re interested in running that instead, check out this post.
-Update (12th May 2014): I came across this linked from within an issue on Jekyll&amp;rsquo;s GitHub repository, which is much more up to date (and well-maintained) than this post.</description>
+      <description>&lt;p&gt;&lt;strong&gt;Update (1st Feb 2015):&lt;/strong&gt; Jekyll 3 beta 1 is out - if you&amp;rsquo;re interested in running that instead,&#xA;check out &lt;a href=&#34;https://ayulin.net/blog/2015/jekyll-3-beta-on-windows/&#34;&gt;this post.&lt;/a&gt;&lt;/p&gt;&#xA;&lt;p&gt;&lt;strong&gt;Update (12th May 2014):&lt;/strong&gt; I came across &lt;a href=&#34;http://jekyll-windows.juthilo.com/&#34;&gt;this&lt;/a&gt; linked from within an issue on Jekyll&amp;rsquo;s GitHub repository, which is much more up to date (and well-maintained) than this post.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Sorting Images with PowerShell</title>
       <link>https://ayulin.net/blog/2014/sorting-images-with-powershell/</link>
       <pubDate>Sat, 01 Mar 2014 20:54:56 +0000</pubDate>
-      
       <guid>https://ayulin.net/blog/2014/sorting-images-with-powershell/</guid>
-      <description>I&amp;rsquo;ve accumulated quite a number of wallpapers over the last few years; close to two thousand images totalling almost 3.5 GB and counting, in fact. They came from a whole hodgepodge of places online, in various sizes and aspect ratios, and I have them in my SkyOneDrive folder so they get synced across my desktop and laptop.</description>
+      <description>&lt;p&gt;I&amp;rsquo;ve accumulated quite a number of wallpapers over the last few years; close to two thousand images totalling almost 3.5 GB and counting, in fact. They came from a whole hodgepodge of places online, in various sizes and aspect ratios, and I have them in my &lt;del&gt;Sky&lt;/del&gt;OneDrive folder so they get synced across my desktop and laptop.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Fourcast v1.1 Changelog</title>
       <link>https://ayulin.net/blog/2014/fourcast-v1.1-changelog/</link>
       <pubDate>Fri, 14 Feb 2014 00:00:00 +0000</pubDate>
-      
       <guid>https://ayulin.net/blog/2014/fourcast-v1.1-changelog/</guid>
-      <description>Architectural improvements, and a new way of getting weather data.
- Switched from using Weather Underground&amp;rsquo;s XML API to their JSON one.  This doesn&amp;rsquo;t affect functionality, though it does bring a very small reduction in data usage.</description>
+      <description>&lt;p&gt;Architectural improvements, and a new way of getting weather data.&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Switched from using Weather Underground&amp;rsquo;s XML API to their JSON one.&#xA;&lt;ul&gt;&#xA;&lt;li&gt;This doesn&amp;rsquo;t affect functionality, though it does bring a very small reduction in data usage.&lt;/li&gt;&#xA;&lt;li&gt;Another side effect: the &amp;ldquo;Root element is missing&amp;rdquo; issue should no longer occur.&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;Rewrote the way the app stores, handles, and retrieves settings.&lt;/li&gt;&#xA;&lt;li&gt;Fixed an issue involving Live Tiles for locations with &amp;ldquo;/&amp;rdquo; in their names.&lt;/li&gt;&#xA;&lt;/ul&gt;</description>
     </item>
-    
     <item>
       <title>Version Control</title>
       <link>https://ayulin.net/blog/2014/version-control/</link>
       <pubDate>Sat, 01 Feb 2014 00:00:00 +0000</pubDate>
-      
       <guid>https://ayulin.net/blog/2014/version-control/</guid>
-      <description>I spent last December working on the narration and caption features for PowerPointLabs without actually working on the plug-in itself; everything was done in a separate project.</description>
+      <description>&lt;p&gt;I spent last December working on the narration and caption features for &lt;a href=&#34;http://www.powerpointlabs.info&#34;&gt;PowerPointLabs&lt;/a&gt; without actually working on the plug-in itself; everything was done in a separate project. Eventually, it came time to merge everything in.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Hello, 2014.</title>
       <link>https://ayulin.net/blog/2014/hello-2014./</link>
       <pubDate>Fri, 03 Jan 2014 00:00:00 +0000</pubDate>
-      
       <guid>https://ayulin.net/blog/2014/hello-2014./</guid>
       <description>&lt;p&gt;This week was interesting.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>PowerPoint 2013 CommandBar Names</title>
       <link>https://ayulin.net/blog/2013/powerpoint-2013-commandbar-names/</link>
       <pubDate>Mon, 30 Dec 2013 00:00:00 +0000</pubDate>
-      
       <guid>https://ayulin.net/blog/2013/powerpoint-2013-commandbar-names/</guid>
-      <description>You can use the name or index number to specify a menu bar or toolbar in the list of available menu bars and toolbars in the container application.</description>
+      <description>&lt;blockquote&gt;&#xA;&lt;p&gt;You can use the name or index number to specify a menu bar or toolbar in the list of available menu bars and toolbars in the container application.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>A Two-Line, Prettier PowerShell Prompt with posh-git</title>
       <link>https://ayulin.net/blog/2013/a-two-line-prettier-powershell-prompt-with-posh-git/</link>
       <pubDate>Sat, 28 Dec 2013 00:00:00 +0000</pubDate>
-      
       <guid>https://ayulin.net/blog/2013/a-two-line-prettier-powershell-prompt-with-posh-git/</guid>
-      <description>&lt;p&gt;One day, some time ago, a friend commented on how lengthy my PowerShell prompt line was. I hadn&amp;rsquo;t
-noticed it until that point, but he was completely right.&lt;/p&gt;</description>
+      <description>&lt;p&gt;One day, some time ago, a friend commented on how lengthy my PowerShell prompt line was. I hadn&amp;rsquo;t&#xA;noticed it until that point, but he was completely right.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Minecraft: A Bridge</title>
       <link>https://ayulin.net/blog/2013/minecraft-a-bridge/</link>
       <pubDate>Sat, 28 Dec 2013 00:00:00 +0000</pubDate>
-      
       <guid>https://ayulin.net/blog/2013/minecraft-a-bridge/</guid>
-      <description>  </description>
+      <description>&lt;figure&gt;&lt;img src=&#34;./images/1.png&#34;&#xA;    alt=&#34;Screenshot from Minecraft showing a bridge over some glitched water. A sign on the bridge says &amp;#34;Bridge&amp;#34; on one line and &amp;#34;Troubled Water&amp;#34; underneath, with a one-line gap between the two.&#34;&gt;&#xA;&lt;/figure&gt;</description>
     </item>
-    
     <item>
       <title>Red and Round</title>
       <link>https://ayulin.net/blog/2013/red-and-round/</link>
       <pubDate>Wed, 25 Dec 2013 00:00:00 +0000</pubDate>
-      
       <guid>https://ayulin.net/blog/2013/red-and-round/</guid>
-      <description>&lt;p&gt;Though it wasn&amp;rsquo;t an actual objective, each of our last few trips has resulted in coming home with a
-new plush animal.&lt;/p&gt;</description>
+      <description>&lt;p&gt;Though it wasn&amp;rsquo;t an actual objective, each of our last few trips has resulted in coming home with a&#xA;new plush animal.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Thoughts from a Trip: London</title>
       <link>https://ayulin.net/blog/2013/thoughts-from-a-trip-london/</link>
       <pubDate>Sun, 22 Dec 2013 00:00:00 +0000</pubDate>
-      
       <guid>https://ayulin.net/blog/2013/thoughts-from-a-trip-london/</guid>
       <description>&lt;p&gt;19:56, December 22nd 2013, London.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Graffiti, UWCSEA Style</title>
       <link>https://ayulin.net/blog/2013/graffiti-uwcsea-style/</link>
       <pubDate>Mon, 16 Dec 2013 00:00:00 +0000</pubDate>
-      
       <guid>https://ayulin.net/blog/2013/graffiti-uwcsea-style/</guid>
-      <description>&lt;p&gt;I dropped by the UWCSEA Dover Campus earlier to visit the alumni office. Passing by the English
-block, it became clear there were some&amp;hellip; &lt;em&gt;changes&lt;/em&gt;.&lt;/p&gt;</description>
+      <description>&lt;p&gt;I dropped by the UWCSEA Dover Campus earlier to visit the alumni office. Passing by the English&#xA;block, it became clear there were some&amp;hellip; &lt;em&gt;changes&lt;/em&gt;.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>The Hidden Bing Bird</title>
       <link>https://ayulin.net/blog/2013/the-hidden-bing-bird/</link>
       <pubDate>Sun, 15 Dec 2013 13:04:54 +0000</pubDate>
-      
       <guid>https://ayulin.net/blog/2013/the-hidden-bing-bird/</guid>
-      <description>&amp;hellip;but there&amp;rsquo;s only one bird here.
-*rotates phone*
-  Ah.</description>
+      <description>&lt;figure&gt;&lt;img src=&#34;./images/1.png&#34;&#xA;    alt=&#34;Portrait screenshot of the Bing app on a Windows Phone showing a single bird with a description referring to a &amp;#34;larger bird&amp;#34;.&#34;&gt;&#xA;&lt;/figure&gt;&#xA;&#xA;&lt;p&gt;&amp;hellip;but there&amp;rsquo;s only one bird here.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Fourcast v1.0 Changelog</title>
       <link>https://ayulin.net/blog/2013/fourcast-v1.0-changelog/</link>
       <pubDate>Tue, 26 Nov 2013 00:00:00 +0000</pubDate>
-      
       <guid>https://ayulin.net/blog/2013/fourcast-v1.0-changelog/</guid>
       <description>&lt;p&gt;A cleaner while still familiar main UI.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Fourcast v0.9.1 Changelog</title>
       <link>https://ayulin.net/blog/2013/fourcast-v0.9.1-changelog/</link>
       <pubDate>Fri, 04 Oct 2013 00:00:00 +0000</pubDate>
-      
       <guid>https://ayulin.net/blog/2013/fourcast-v0.9.1-changelog/</guid>
       <description>&lt;p&gt;Tweaks and fixes for the Live Tiles.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Fourcast v0.9 Changelog</title>
       <link>https://ayulin.net/blog/2013/fourcast-v0.9-changelog/</link>
       <pubDate>Fri, 19 Jul 2013 00:00:00 +0000</pubDate>
-      
       <guid>https://ayulin.net/blog/2013/fourcast-v0.9-changelog/</guid>
       <description>&lt;p&gt;Settings UI tweaks, architectural improvements, and bug fixes.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Fourcast v0.8.1 Changelog</title>
       <link>https://ayulin.net/blog/2013/fourcast-v0.8.1-changelog/</link>
       <pubDate>Thu, 24 Jan 2013 00:00:00 +0000</pubDate>
-      
       <guid>https://ayulin.net/blog/2013/fourcast-v0.8.1-changelog/</guid>
       <description>&lt;p&gt;Minor changes relating to dates and time.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Fourcast v0.8 Changelog</title>
       <link>https://ayulin.net/blog/2013/fourcast-v0.8-changelog/</link>
       <pubDate>Thu, 17 Jan 2013 00:00:00 +0000</pubDate>
-      
       <guid>https://ayulin.net/blog/2013/fourcast-v0.8-changelog/</guid>
       <description>&lt;p&gt;Fixes for a crash bug, and improved crash reporting mechanisms.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>That Fourcast Crash Bug</title>
       <link>https://ayulin.net/blog/2012/that-fourcast-crash-bug/</link>
       <pubDate>Sat, 29 Dec 2012 00:00:00 +0000</pubDate>
-      
       <guid>https://ayulin.net/blog/2012/that-fourcast-crash-bug/</guid>
-      <description>If you’ve upgraded from Fourcast v0.6 to v0.7 and
- Fourcast is set to load your Home Location on launch; OR Fourcast is set to load the previously viewed location on launch  The app will crash on launch.</description>
+      <description>&lt;p&gt;If you’ve upgraded from Fourcast v0.6 to v0.7 and&lt;/p&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;Fourcast is set to load your Home Location on launch; OR&lt;/li&gt;&#xA;&lt;li&gt;Fourcast is set to load the previously viewed location on launch&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;p&gt;The app will crash on launch. &lt;strong&gt;To fix this (without having to wait for v0.8), uninstall and reinstall the app&lt;/strong&gt; – really sorry!&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Fourcast v0.7 Changelog</title>
       <link>https://ayulin.net/blog/2012/fourcast-v0.7-changelog/</link>
       <pubDate>Sat, 15 Dec 2012 00:00:00 +0000</pubDate>
-      
       <guid>https://ayulin.net/blog/2012/fourcast-v0.7-changelog/</guid>
       <description>&lt;p&gt;Higher resolution tiles, backend architectural improvements, bug fixes, and optimisations.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>How To: Remove/Reset a Mercurial Keyring-saved Password on Windows</title>
       <link>https://ayulin.net/blog/2012/how-to-remove/reset-a-mercurial-keyring-saved-password-on-windows/</link>
       <pubDate>Wed, 31 Oct 2012 00:00:00 +0000</pubDate>
-      
       <guid>https://ayulin.net/blog/2012/how-to-remove/reset-a-mercurial-keyring-saved-password-on-windows/</guid>
-      <description>&lt;p&gt;Because I couldn&amp;rsquo;t find this ANYWHERE, and only figured it out after stumbling across a post on how
-&lt;code&gt;mercurial_keyring&lt;/code&gt; is bugged on Windows (and only stores one password).&lt;/p&gt;</description>
+      <description>&lt;p&gt;Because I couldn&amp;rsquo;t find this ANYWHERE, and only figured it out after stumbling across a post on how&#xA;&lt;code&gt;mercurial_keyring&lt;/code&gt; is bugged on Windows (and only stores one password).&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Fourcast v0.6 Changelog</title>
       <link>https://ayulin.net/blog/2012/fourcast-v0.6-changelog/</link>
       <pubDate>Thu, 23 Aug 2012 00:00:00 +0000</pubDate>
-      
       <guid>https://ayulin.net/blog/2012/fourcast-v0.6-changelog/</guid>
       <description>&lt;p&gt;What&amp;rsquo;s the Dew Point? Where exactly is the Weather Station located? Wonder no more.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Summer 2012</title>
       <link>https://ayulin.net/blog/2012/summer-2012/</link>
       <pubDate>Thu, 16 Aug 2012 00:00:00 +0000</pubDate>
-      
       <guid>https://ayulin.net/blog/2012/summer-2012/</guid>
-      <description>Chronologically,
- Made 4-bit Webther. Helped with the School of Computing Freshmen Orientation Camp. Made and released Fourcast. Discovered and watched both The Legend of Korra and Avatar: The Last Airbender.</description>
+      <description>&lt;p&gt;Chronologically,&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Made &lt;a href=&#34;&#34;&gt;4-bit Webther.&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;Helped with the School of Computing Freshmen Orientation Camp.&lt;/li&gt;&#xA;&lt;li&gt;Made and released &lt;a href=&#34;https://ayulin.net/fourcast&#34;&gt;Fourcast&lt;/a&gt;.&lt;/li&gt;&#xA;&lt;li&gt;Discovered and watched both The Legend of Korra and Avatar: The Last Airbender. (Both of which are incredibly awesome.)&lt;/li&gt;&#xA;&lt;li&gt;Took a module at school.&lt;/li&gt;&#xA;&lt;li&gt;Went on a quick family vacation.&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;That was fun.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Fourcast v0.5 Changelog</title>
       <link>https://ayulin.net/blog/2012/fourcast-v0.5-changelog/</link>
       <pubDate>Sat, 28 Jul 2012 00:00:00 +0000</pubDate>
-      
       <guid>https://ayulin.net/blog/2012/fourcast-v0.5-changelog/</guid>
-      <description>&lt;p&gt;Get your current location as a tile, jump straight into Pick a Place, and know when your forecast
-has loaded without having to stare at the screen.&lt;/p&gt;</description>
+      <description>&lt;p&gt;Get your current location as a tile, jump straight into Pick a Place, and know when your forecast&#xA;has loaded without having to stare at the screen.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Fourcast v0.4 Changelog</title>
       <link>https://ayulin.net/blog/2012/fourcast-v0.4-changelog/</link>
       <pubDate>Sat, 14 Jul 2012 00:00:00 +0000</pubDate>
-      
       <guid>https://ayulin.net/blog/2012/fourcast-v0.4-changelog/</guid>
       <description>&lt;p&gt;Tile tweaking, UI improvements, and several bug fixes relating to commas.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Fourcast v0.3 Changelog</title>
       <link>https://ayulin.net/blog/2012/fourcast-v0.3-changelog/</link>
       <pubDate>Fri, 06 Jul 2012 00:00:00 +0000</pubDate>
-      
       <guid>https://ayulin.net/blog/2012/fourcast-v0.3-changelog/</guid>
       <description>&lt;p&gt;Shiny, new tiles have landed.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Fourcast v0.2 Changelog</title>
       <link>https://ayulin.net/blog/2012/fourcast-v0.2-changelog/</link>
       <pubDate>Thu, 21 Jun 2012 00:00:00 +0000</pubDate>
-      
       <guid>https://ayulin.net/blog/2012/fourcast-v0.2-changelog/</guid>
-      <description>First release of Fourcast on the Windows Phone Marketplace.</description>
+      <description>&lt;p&gt;First release of Fourcast on the Windows Phone Marketplace.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Designing 4-bit Webther: A Retrospective</title>
       <link>https://ayulin.net/blog/2012/designing-4-bit-webther-a-retrospective/</link>
       <pubDate>Thu, 24 May 2012 00:00:00 +0000</pubDate>
-      
       <guid>https://ayulin.net/blog/2012/designing-4-bit-webther-a-retrospective/</guid>
-      <description>Update (2020-04-19): 4-bit Webther is no longer available; the Yahoo! Weather API is no more. The links to it here have been removed, but the remainder of the post&amp;rsquo;s text has been left untouched, as self-indulgent as it is.</description>
+      <description>&lt;blockquote&gt;&#xA;&lt;p&gt;&lt;strong&gt;Update (2020-04-19):&lt;/strong&gt; 4-bit Webther is no longer available; the Yahoo! Weather API is no more.&#xA;The links to it here have been removed, but the remainder of the post&amp;rsquo;s text has been left&#xA;untouched, as self-indulgent as it is.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>4-bit Webther</title>
       <link>https://ayulin.net/blog/2012/4-bit-webther/</link>
       <pubDate>Tue, 15 May 2012 00:00:00 +0000</pubDate>
-      
       <guid>https://ayulin.net/blog/2012/4-bit-webther/</guid>
-      <description>Update (2020-04-19): 4-bit Webther is no longer available; the Yahoo! Weather API is no more. The links to it here have been removed, but the remainder of the post&amp;rsquo;s text has been left untouched.</description>
+      <description>&lt;blockquote&gt;&#xA;&lt;p&gt;&lt;strong&gt;Update (2020-04-19):&lt;/strong&gt; 4-bit Webther is no longer available; the Yahoo! Weather API is no more.&#xA;The links to it here have been removed, but the remainder of the post&amp;rsquo;s text has been left&#xA;untouched.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Going Live. Ish.</title>
       <link>https://ayulin.net/blog/2012/going-live.-ish./</link>
       <pubDate>Sat, 12 May 2012 00:00:00 +0000</pubDate>
-      
       <guid>https://ayulin.net/blog/2012/going-live.-ish./</guid>
-      <description>Update: As of September 27, 2018, ISAAC is no longer available on this domain. The links to to it have been removed from the post below, though the remainder of the content has been left unchanged.</description>
+      <description>&lt;blockquote&gt;&#xA;&lt;p&gt;&lt;strong&gt;Update:&lt;/strong&gt; As of September 27, 2018, ISAAC is no longer available on this domain. The links to&#xA;to it have been removed from the post below, though the remainder of the content has&#xA;been left unchanged.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>ISAAC Release 2: Preview</title>
       <link>https://ayulin.net/blog/2012/isaac-release-2-preview/</link>
       <pubDate>Fri, 11 May 2012 00:00:00 +0000</pubDate>
-      
       <guid>https://ayulin.net/blog/2012/isaac-release-2-preview/</guid>
-      <description>Update: As of September 27, 2018, ISAAC is no longer available on this domain. The links to to it have been removed from the post below, though the remainder of the content has been left unchanged.</description>
+      <description>&lt;blockquote&gt;&#xA;&lt;p&gt;&lt;strong&gt;Update:&lt;/strong&gt; As of September 27, 2018, ISAAC is no longer available on this domain. The links to&#xA;to it have been removed from the post below, though the remainder of the content has&#xA;been left unchanged.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Introducing ISAAC</title>
       <link>https://ayulin.net/blog/2012/introducing-isaac/</link>
       <pubDate>Thu, 19 Apr 2012 00:00:00 +0000</pubDate>
-      
       <guid>https://ayulin.net/blog/2012/introducing-isaac/</guid>
-      <description>Update: As of September 27, 2018, ISAAC is no longer available on this domain. The links to to it have been removed from the post below, though the remainder of the content has been left unchanged.</description>
+      <description>&lt;blockquote&gt;&#xA;&lt;p&gt;&lt;strong&gt;Update:&lt;/strong&gt; As of September 27, 2018, ISAAC is no longer available on this domain. The links to&#xA;to it have been removed from the post below, though the remainder of the content has&#xA;been left unchanged.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>about</title>
       <link>https://ayulin.net/about/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
       <guid>https://ayulin.net/about/</guid>
-      <description>Hello. I&amp;rsquo;m a software engineer currently based in Seattle. This site is mostly a collection of my ramblings.
-By day I work on the backend side of things, usually writing Go.</description>
+      <description>&lt;h1 id=&#34;hello&#34;&gt;Hello.&lt;/h1&gt;&#xA;&lt;p&gt;I&amp;rsquo;m a software engineer currently based in Seattle. This site is mostly a collection of my&#xA;ramblings.&lt;/p&gt;&#xA;&lt;p&gt;By day I work on the backend side of things, usually writing Go. I quite like it. I&amp;rsquo;ve also used&#xA;Ruby/CoffeeScript/JavaScript in previous jobs, and C# for fun.&lt;/p&gt;</description>
     </item>
-    
   </channel>
 </rss>

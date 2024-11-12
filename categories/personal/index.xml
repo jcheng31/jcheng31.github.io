@@ -4,22 +4,16 @@
     <title>Personal on ayulin.net</title>
     <link>https://ayulin.net/categories/personal/</link>
     <description>Recent content in Personal on ayulin.net</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <generator>Hugo</generator>
     <language>en-uk</language>
     <lastBuildDate>Thu, 16 Aug 2012 00:00:00 +0000</lastBuildDate>
-    
-	<atom:link href="https://ayulin.net/categories/personal/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <atom:link href="https://ayulin.net/categories/personal/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Summer 2012</title>
       <link>https://ayulin.net/blog/2012/summer-2012/</link>
       <pubDate>Thu, 16 Aug 2012 00:00:00 +0000</pubDate>
-      
       <guid>https://ayulin.net/blog/2012/summer-2012/</guid>
-      <description>Chronologically,
- Made 4-bit Webther. Helped with the School of Computing Freshmen Orientation Camp. Made and released Fourcast. Discovered and watched both The Legend of Korra and Avatar: The Last Airbender.</description>
+      <description>&lt;p&gt;Chronologically,&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Made &lt;a href=&#34;&#34;&gt;4-bit Webther.&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;Helped with the School of Computing Freshmen Orientation Camp.&lt;/li&gt;&#xA;&lt;li&gt;Made and released &lt;a href=&#34;https://ayulin.net/fourcast&#34;&gt;Fourcast&lt;/a&gt;.&lt;/li&gt;&#xA;&lt;li&gt;Discovered and watched both The Legend of Korra and Avatar: The Last Airbender. (Both of which are incredibly awesome.)&lt;/li&gt;&#xA;&lt;li&gt;Took a module at school.&lt;/li&gt;&#xA;&lt;li&gt;Went on a quick family vacation.&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;That was fun.&lt;/p&gt;</description>
     </item>
-    
   </channel>
 </rss>

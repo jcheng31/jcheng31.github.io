@@ -35,10 +35,6 @@
       <a href="/about"><small>About</small></a>
 
       
-      <a href="https://twitter.com/Ayulin"><small>Twitter</small></a>
-      
-
-      
       <a href="https://github.com/jcheng31"><small>GitHub</small></a>
       
     </p>
@@ -58,52 +54,46 @@ comma instead.</p>
 <p>Both Fourcast and ForecastPCL involve converting latitude and longitude coordinates (with their decimal point) to or from strings. Both rely on a web service which uses these coordinates with a full stop as the decimal. And both failed when the code ran on a device in a locale where the comma is the decimal mark instead.</p>
 <p>The reason is simple: in .NET, both <a href="https://msdn.microsoft.com/en-us/library/kfsatb94%28v=vs.110%29.aspx"><code>Double.ToString()</code></a> and <a href="https://msdn.microsoft.com/en-us/library/fd84bdyt%28v=vs.110%29.aspx"><code>Double.Parse()</code></a> use the formatting conventions of the device&rsquo;s culture. So you&rsquo;re fine if your code runs on a system set to a locale with full stops as the decimal, but everything explodes elsewhere.</p>
 <p>For instance, consider this example (using <a href="http://scriptcs.net/">scriptcs</a>): we set the current thread to use <code>en-US</code>, a region where the period is the decimal mark.</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C#" data-lang="C#">&gt; <span style="color:#000;font-weight:bold">using</span> <span style="color:#555">System.Globalization</span>;
-&gt; <span style="color:#000;font-weight:bold">using</span> <span style="color:#555">System.Threading</span>;
-&gt; Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture(<span style="color:#d14">&#34;en-US&#34;</span>);
-<span style="color:#d14">&#34;en-US&#34;</span>
-&gt; Double.Parse(<span style="color:#d14">&#34;0.04&#34;</span>);
-<span style="color:#099">0.4</span>
-</code></pre></div>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C#" data-lang="C#"><span style="display:flex;"><span>&gt; <span style="color:#000;font-weight:bold">using</span> <span style="color:#555">System.Globalization</span>;
+</span></span><span style="display:flex;"><span>&gt; <span style="color:#000;font-weight:bold">using</span> <span style="color:#555">System.Threading</span>;
+</span></span><span style="display:flex;"><span>&gt; Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture(<span style="color:#d14">&#34;en-US&#34;</span>);
+</span></span><span style="display:flex;"><span><span style="color:#d14">&#34;en-US&#34;</span>
+</span></span><span style="display:flex;"><span>&gt; Double.Parse(<span style="color:#d14">&#34;0.04&#34;</span>);
+</span></span><span style="display:flex;"><span><span style="color:#099">0.4</span></span></span></code></pre></div>
 <p>But if we switch to a region which uses commas instead - say, France:</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C#" data-lang="C#">&gt; Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture(<span style="color:#d14">&#34;fr-FR&#34;</span>);
-<span style="color:#d14">&#34;fr-FR&#34;</span>
-&gt; Double.Parse(<span style="color:#d14">&#34;0.04&#34;</span>);
-Input <span style="color:#458;font-weight:bold">string</span> was not <span style="color:#000;font-weight:bold">in</span> a correct format.
-</code></pre></div>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C#" data-lang="C#"><span style="display:flex;"><span>&gt; Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture(<span style="color:#d14">&#34;fr-FR&#34;</span>);
+</span></span><span style="display:flex;"><span><span style="color:#d14">&#34;fr-FR&#34;</span>
+</span></span><span style="display:flex;"><span>&gt; Double.Parse(<span style="color:#d14">&#34;0.04&#34;</span>);
+</span></span><span style="display:flex;"><span>Input <span style="color:#458;font-weight:bold">string</span> was not <span style="color:#000;font-weight:bold">in</span> a correct format.</span></span></code></pre></div>
 <p>In a less-contrived example, we can look at (a simplified version of) the problematic code from ForecastPCL:</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C#" data-lang="C#"><span style="color:#000;font-weight:bold">public</span> <span style="color:#000;font-weight:bold">async</span> Task&lt;Forecast&gt; GetWeatherDataAsync(<span style="color:#458;font-weight:bold">double</span> latitude, <span style="color:#458;font-weight:bold">double</span> longitude)
-{
-    <span style="color:#458;font-weight:bold">string</span> baseUrl = <span style="color:#d14">&#34;/forecast/{0}/{1},{2}&#34;</span>;
-
-    <span style="color:#458;font-weight:bold">var</span> requestUrl = <span style="color:#458;font-weight:bold">string</span>.Format(baseUrl, <span style="color:#000;font-weight:bold">this</span>.apiKey, latitude, longitude);
-
-    <span style="color:#000;font-weight:bold">return</span> <span style="color:#000;font-weight:bold">await</span> <span style="color:#000;font-weight:bold">this</span>.GetForecastFromUrl(requestUrl);
-}
-</code></pre></div>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C#" data-lang="C#"><span style="display:flex;"><span><span style="color:#000;font-weight:bold">public</span> <span style="color:#000;font-weight:bold">async</span> Task&lt;Forecast&gt; GetWeatherDataAsync(<span style="color:#458;font-weight:bold">double</span> latitude, <span style="color:#458;font-weight:bold">double</span> longitude)
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#458;font-weight:bold">string</span> baseUrl = <span style="color:#d14">&#34;/forecast/{0}/{1},{2}&#34;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#458;font-weight:bold">var</span> requestUrl = <span style="color:#458;font-weight:bold">string</span>.Format(baseUrl, <span style="color:#000;font-weight:bold">this</span>.apiKey, latitude, longitude);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#000;font-weight:bold">return</span> <span style="color:#000;font-weight:bold">await</span> <span style="color:#000;font-weight:bold">this</span>.GetForecastFromUrl(requestUrl);
+</span></span><span style="display:flex;"><span>}</span></span></code></pre></div>
 <p>In this case, the formatting works - it just gives us an incorrect URL, leading to a bad request:</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C#" data-lang="C#"><span style="color:#998;font-style:italic">// Still in fr-FR.
-</span><span style="color:#998;font-style:italic"></span>&gt; <span style="color:#458;font-weight:bold">string</span>.Format(<span style="color:#d14">&#34;/forecast/{0}/{1},{2}&#34;</span>, <span style="color:#d14">&#34;apikey&#34;</span>, <span style="color:#099">37.8267</span>, -<span style="color:#099">122.423</span>);
-<span style="color:#998;font-style:italic">// Uh oh.
-</span><span style="color:#998;font-style:italic"></span><span style="color:#d14">&#34;/forecast/apikey/37,8267,-122,423&#34;</span>
-</code></pre></div>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C#" data-lang="C#"><span style="display:flex;"><span><span style="color:#998;font-style:italic">// Still in fr-FR.</span>
+</span></span><span style="display:flex;"><span>&gt; <span style="color:#458;font-weight:bold">string</span>.Format(<span style="color:#d14">&#34;/forecast/{0}/{1},{2}&#34;</span>, <span style="color:#d14">&#34;apikey&#34;</span>, <span style="color:#099">37.8267</span>, -<span style="color:#099">122.423</span>);
+</span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic">// Uh oh.</span>
+</span></span><span style="display:flex;"><span><span style="color:#d14">&#34;/forecast/apikey/37,8267,-122,423&#34;</span></span></span></code></pre></div>
 <p>The solution to all of these problems is to use the <a href="https://msdn.microsoft.com/en-us/library/system.globalization.cultureinfo.invariantculture%28v=vs.110%29.aspx">invariant culture</a> - an English-associated but non-region-specific culture that&rsquo;s useful for formatting issues like this <a href="#footnote-2">[2]</a>. <code>String.Format</code> can take in an <code>IFormatProvider</code> as its first argument, which solves our problem:</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C#" data-lang="C#"><span style="color:#998;font-style:italic">// *Still* in fr-FR...
-</span><span style="color:#998;font-style:italic"></span>&gt; <span style="color:#458;font-weight:bold">string</span>.Format(CultureInfo.InvariantCulture, <span style="color:#d14">&#34;/forecast/{0}/{1},{2}&#34;</span>, <span style="color:#d14">&#34;apikey&#34;</span>, <span style="color:#099">37.8267</span>, -<span style="color:#099">122.423</span>);
-<span style="color:#998;font-style:italic">// But now we get the result we want.
-</span><span style="color:#998;font-style:italic"></span><span style="color:#d14">&#34;/forecast/apikey/37.8267,-122.423&#34;</span>
-</code></pre></div>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C#" data-lang="C#"><span style="display:flex;"><span><span style="color:#998;font-style:italic">// *Still* in fr-FR...</span>
+</span></span><span style="display:flex;"><span>&gt; <span style="color:#458;font-weight:bold">string</span>.Format(CultureInfo.InvariantCulture, <span style="color:#d14">&#34;/forecast/{0}/{1},{2}&#34;</span>, <span style="color:#d14">&#34;apikey&#34;</span>, <span style="color:#099">37.8267</span>, -<span style="color:#099">122.423</span>);
+</span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic">// But now we get the result we want.</span>
+</span></span><span style="display:flex;"><span><span style="color:#d14">&#34;/forecast/apikey/37.8267,-122.423&#34;</span></span></span></code></pre></div>
 <p>Similarly, <code>Double.Parse</code> takes in <code>IFormatProvider</code>, though as its last argument:</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C#" data-lang="C#"><span style="color:#998;font-style:italic">// Again in fr-FR.
-</span><span style="color:#998;font-style:italic"></span>&gt; Double.Parse(<span style="color:#d14">&#34;0.04&#34;</span>);
-Input <span style="color:#458;font-weight:bold">string</span> was not <span style="color:#000;font-weight:bold">in</span> a correct format.
-&gt; Double.Parse(<span style="color:#d14">&#34;0.04&#34;</span>, CultureInfo.InvariantCulture);
-<span style="color:#099">0.04</span>
-</code></pre></div>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C#" data-lang="C#"><span style="display:flex;"><span><span style="color:#998;font-style:italic">// Again in fr-FR.</span>
+</span></span><span style="display:flex;"><span>&gt; Double.Parse(<span style="color:#d14">&#34;0.04&#34;</span>);
+</span></span><span style="display:flex;"><span>Input <span style="color:#458;font-weight:bold">string</span> was not <span style="color:#000;font-weight:bold">in</span> a correct format.
+</span></span><span style="display:flex;"><span>&gt; Double.Parse(<span style="color:#d14">&#34;0.04&#34;</span>, CultureInfo.InvariantCulture);
+</span></span><span style="display:flex;"><span><span style="color:#099">0.04</span></span></span></code></pre></div>
 <p>Pretty simple, though it does mean it gets sprinkled throughout the code. An alternative might be to change the thread to use the invariant culture before doing any parsing, then changing it back to the native one after. This strikes me as being <em>really</em> hackish and more of a workaround than an actual solution, though.</p>
 <hr>
 <p><!-- raw HTML omitted --><!-- raw HTML omitted -->[1] - I&rsquo;ve lived in two countries that use commas as the decimal mark before - Indonesia and The Netherlands - though I don&rsquo;t remember actually ever having used it myself.</p>
-<p><!-- raw HTML omitted --><!-- raw HTML omitted -->[2] - When I read the GitHub issue - <em>[the] decimal separator in czech locale&hellip; is a &ldquo;,&rdquo; [and] not &ldquo;.&quot;</em> - my immediate thought was &ldquo;oh, I should&rsquo;ve used the invariant culture.&rdquo;</p>
+<p><!-- raw HTML omitted --><!-- raw HTML omitted -->[2] - When I read the GitHub issue - <em>[the] decimal separator in czech locale&hellip; is a &ldquo;,&rdquo; [and] not &ldquo;.&rdquo;</em> - my immediate thought was &ldquo;oh, I should&rsquo;ve used the invariant culture.&rdquo;</p>
     </div>
   </div>
 </body>

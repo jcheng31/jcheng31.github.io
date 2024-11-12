@@ -1,25 +1,19 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>tmux on ayulin.net</title>
+    <title>Tmux on ayulin.net</title>
     <link>https://ayulin.net/categories/tmux/</link>
-    <description>Recent content in tmux on ayulin.net</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <description>Recent content in Tmux on ayulin.net</description>
+    <generator>Hugo</generator>
     <language>en-uk</language>
     <lastBuildDate>Sat, 15 Apr 2017 00:00:00 +0000</lastBuildDate>
-    
-	<atom:link href="https://ayulin.net/categories/tmux/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <atom:link href="https://ayulin.net/categories/tmux/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Doing the Splits</title>
       <link>https://ayulin.net/blog/2017/tmux-splits/</link>
       <pubDate>Sat, 15 Apr 2017 00:00:00 +0000</pubDate>
-      
       <guid>https://ayulin.net/blog/2017/tmux-splits/</guid>
-      <description>&lt;p&gt;While trying to fall asleep, I ended up thinking about the key combinations used to create splits in
-tmux.&lt;/p&gt;</description>
+      <description>&lt;p&gt;While trying to fall asleep, I ended up thinking about the key combinations used to create splits in&#xA;tmux.&lt;/p&gt;</description>
     </item>
-    
   </channel>
 </rss>

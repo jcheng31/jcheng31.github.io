@@ -35,10 +35,6 @@
       <a href="/about"><small>About</small></a>
 
       
-      <a href="https://twitter.com/Ayulin"><small>Twitter</small></a>
-      
-
-      
       <a href="https://github.com/jcheng31"><small>GitHub</small></a>
       
     </p>
@@ -54,12 +50,12 @@
     <div class="post-body">
       <p>This is a quasi-follow-up to my <a href="https://ayulin.net/blog/2015/jekyll-3-beta-on-windows/">previous post</a>, where we looked at installing the new Jekyll 3 beta on Windows. I had to install the Nokogiri gem to get this site working again once that was done, and came across an issue.</p>
 <p>It wasn&rsquo;t a crash or anything: after running <code>gem install nokogiri</code>, the installation seemed to go fine. It would, however, just sit at the following stage forever:</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">&gt; gem install nokogiri
-Fetching<span style="color:#a61717;background-color:#e3d2d2">:</span> mini_portile-0.6.2.gem (100%)
-Successfully installed mini_portile-0.6.2
-Temporarily enhancing PATH to include DevKit...
-Building native extensions.  This could take a <span style="color:#000;font-weight:bold">while</span>...
-</code></pre></div><p>It turns out that the version of RubyGems that comes with the Ruby 2.1.5 installer is actually pretty old! It ships with version 2.2.2, while (at the time of this writing) the latest version is 2.4.5.</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span>&gt; gem install nokogiri
+</span></span><span style="display:flex;"><span>Fetching<span style="color:#a61717;background-color:#e3d2d2">:</span> mini_portile-<span style="color:#099">0.6</span>.2.gem (<span style="color:#099">100</span>%)
+</span></span><span style="display:flex;"><span>Successfully installed mini_portile-<span style="color:#099">0.6</span>.2
+</span></span><span style="display:flex;"><span>Temporarily enhancing PATH to include DevKit...
+</span></span><span style="display:flex;"><span>Building native extensions.  This could take a <span style="color:#000;font-weight:bold">while</span>...
+</span></span></code></pre></div><p>It turns out that the version of RubyGems that comes with the Ruby 2.1.5 installer is actually pretty old! It ships with version 2.2.2, while (at the time of this writing) the latest version is 2.4.5.</p>
 <p>From Command Prompt or Powershell, just run <code>gem update --system</code> to update it. Once that&rsquo;s done, <code>gem install nokogiri</code> should complete pretty quickly.</p>
 
     </div>

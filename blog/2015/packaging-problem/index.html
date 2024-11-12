@@ -35,10 +35,6 @@
       <a href="/about"><small>About</small></a>
 
       
-      <a href="https://twitter.com/Ayulin"><small>Twitter</small></a>
-      
-
-      
       <a href="https://github.com/jcheng31"><small>GitHub</small></a>
       
     </p>
@@ -61,12 +57,12 @@
 </blockquote>
 <p>This <strong>is</strong> stated in the documentation. How to fix it is also given there. I didn&rsquo;t see it, though, which meant that when someone tried to actually use the package in an app, <a href="https://github.com/jcheng31/ForecastPCL/issues/12">it failed certification</a> because the package had included the binary built in Debug mode, and not Release.</p>
 <p>The NuGet documentation gives two ways of addressing this. The first is to specify the build configuration you want to use when running the tool:
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">nuget pack &lt;project&gt;.csproj -Prop Configuration=Release</code></pre></div></p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span>nuget pack &lt;project&gt;.csproj -Prop Configuration=Release</span></span></code></pre></div></p>
 <p>The downside to this is you need to remember to do it every time, which I&rsquo;d definitely forget. You could stick it in a build script, of course.</p>
 <p>The other method is to modify the <code>.csproj</code> file and just change the default configuration there. That&rsquo;s easily done by opening it in a text editor and changing the line that looks like this:</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml"><span style="color:#000080">&lt;Configuration</span> <span style="color:#008080">Condition=</span><span style="color:#d14">&#34; &#39;$(Configuration)&#39; == &#39;&#39; &#34;</span><span style="color:#000080">&gt;</span>Debug<span style="color:#000080">&lt;/Configuration&gt;</span></code></pre></div>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-xml" data-lang="xml"><span style="display:flex;"><span><span style="color:#000080">&lt;Configuration</span> <span style="color:#008080">Condition=</span><span style="color:#d14">&#34; &#39;$(Configuration)&#39; == &#39;&#39; &#34;</span><span style="color:#000080">&gt;</span>Debug<span style="color:#000080">&lt;/Configuration&gt;</span></span></span></code></pre></div>
 <p>To this:</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml"><span style="color:#000080">&lt;Configuration</span> <span style="color:#008080">Condition=</span><span style="color:#d14">&#34; &#39;$(Configuration)&#39; == &#39;&#39; &#34;</span><span style="color:#000080">&gt;</span>Release<span style="color:#000080">&lt;/Configuration&gt;</span></code></pre></div>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-xml" data-lang="xml"><span style="display:flex;"><span><span style="color:#000080">&lt;Configuration</span> <span style="color:#008080">Condition=</span><span style="color:#d14">&#34; &#39;$(Configuration)&#39; == &#39;&#39; &#34;</span><span style="color:#000080">&gt;</span>Release<span style="color:#000080">&lt;/Configuration&gt;</span></span></span></code></pre></div>
 <p>And that&rsquo;s that.</p>
 
     </div>

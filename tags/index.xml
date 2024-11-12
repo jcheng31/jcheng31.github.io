@@ -4,11 +4,8 @@
     <title>Tags on ayulin.net</title>
     <link>https://ayulin.net/tags/</link>
     <description>Recent content in Tags on ayulin.net</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <generator>Hugo</generator>
     <language>en-uk</language>
-    
-	<atom:link href="https://ayulin.net/tags/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <atom:link href="https://ayulin.net/tags/index.xml" rel="self" type="application/rss+xml" />
   </channel>
 </rss>

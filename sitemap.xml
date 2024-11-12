@@ -1,378 +1,228 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
-  
   <url>
     <loc>https://ayulin.net/</loc>
-    <lastmod>2020-05-01T10:24:01-07:00</lastmod>
-  </url>
-  
-  <url>
+    <lastmod>2021-02-21T12:36:00-07:00</lastmod>
+  </url><url>
     <loc>https://ayulin.net/blog/</loc>
-    <lastmod>2020-05-01T10:24:01-07:00</lastmod>
-  </url>
-  
-  <url>
+    <lastmod>2021-02-21T12:36:00-07:00</lastmod>
+  </url><url>
     <loc>https://ayulin.net/blog/2020/tips-to-take-table-tests-to-the-top/</loc>
     <lastmod>2020-05-01T10:24:01-07:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://ayulin.net/blog/2020/six-statements-about-testing/</loc>
     <lastmod>2020-05-01T10:24:00-07:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://ayulin.net/blog/2020/running-games-on-ec2-with-parsec/</loc>
     <lastmod>2020-04-27T13:43:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://ayulin.net/blog/2020/hello-hugo./</loc>
     <lastmod>2020-04-19T13:38:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://ayulin.net/categories/.net-core/</loc>
     <lastmod>2017-06-17T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://ayulin.net/categories/c#/</loc>
+  </url><url>
+    <loc>https://ayulin.net/categories/c%23/</loc>
     <lastmod>2017-06-17T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://ayulin.net/categories/</loc>
     <lastmod>2017-06-17T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://ayulin.net/categories/colemakconverter/</loc>
     <lastmod>2017-06-17T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://ayulin.net/categories/projects/</loc>
     <lastmod>2017-06-17T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://ayulin.net/blog/2017/typing-secrets-in-the-open/</loc>
     <lastmod>2017-06-17T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://ayulin.net/categories/bash-on-windows/</loc>
     <lastmod>2017-05-10T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://ayulin.net/categories/linux/</loc>
     <lastmod>2017-05-10T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://ayulin.net/blog/2017/working-with-wsl/</loc>
     <lastmod>2017-05-10T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://ayulin.net/categories/wsl/</loc>
     <lastmod>2017-05-10T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://ayulin.net/blog/2017/rip-band-2/</loc>
     <lastmod>2017-04-26T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://ayulin.net/blog/2017/tmux-splits/</loc>
     <lastmod>2017-04-15T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://ayulin.net/categories/tmux/</loc>
     <lastmod>2017-04-15T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://ayulin.net/categories/fourcast/</loc>
     <lastmod>2016-07-12T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://ayulin.net/categories/fourcast-patches/</loc>
     <lastmod>2016-07-12T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://ayulin.net/blog/2016/fourcast-v1.3-changelog/</loc>
     <lastmod>2016-07-12T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://ayulin.net/blog/2015/packaging-problem/</loc>
     <lastmod>2015-11-18T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://ayulin.net/blog/2015/the-invariant-culture/</loc>
     <lastmod>2015-04-19T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://ayulin.net/blog/2015/jekyll-3-beta-on-windows/</loc>
     <lastmod>2015-02-01T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://ayulin.net/blog/2015/installing-nokogiri/</loc>
     <lastmod>2015-02-01T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://ayulin.net/blog/2014/ergodox-media-keys/</loc>
     <lastmod>2014-12-26T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://ayulin.net/blog/2014/building-less-css-in-sublime-text-3/</loc>
     <lastmod>2014-12-23T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://ayulin.net/blog/2014/of-rice-and-pen/</loc>
     <lastmod>2014-08-26T11:29:24+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://ayulin.net/categories/development/</loc>
     <lastmod>2014-08-18T21:59:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://ayulin.net/blog/2014/ie-dev-tools/</loc>
     <lastmod>2014-08-18T21:59:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://ayulin.net/categories/web/</loc>
     <lastmod>2014-08-18T21:59:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://ayulin.net/blog/2014/fourcast-1-2/</loc>
     <lastmod>2014-06-07T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://ayulin.net/blog/2014/a-look-at-fourcast/</loc>
     <lastmod>2014-05-24T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://ayulin.net/blog/2014/fourcast-v1.1.1-changelog/</loc>
     <lastmod>2014-05-11T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://ayulin.net/blog/2014/windows-phone-8.1/</loc>
     <lastmod>2014-05-08T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://ayulin.net/blog/2014/setting-the-pace/</loc>
     <lastmod>2014-04-27T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://ayulin.net/blog/2014/the-art-of-software-engineering/</loc>
     <lastmod>2014-04-25T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://ayulin.net/blog/2014/is-it-on-spotify/</loc>
     <lastmod>2014-04-15T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://ayulin.net/blog/2014/yet-another-how-to-install-jekyll-on-windows-post./</loc>
     <lastmod>2014-03-09T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://ayulin.net/blog/2014/sorting-images-with-powershell/</loc>
     <lastmod>2014-03-01T20:54:56+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://ayulin.net/blog/2014/fourcast-v1.1-changelog/</loc>
     <lastmod>2014-02-14T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://ayulin.net/blog/2014/version-control/</loc>
     <lastmod>2014-02-01T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://ayulin.net/blog/2014/hello-2014./</loc>
     <lastmod>2014-01-03T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://ayulin.net/blog/2013/powerpoint-2013-commandbar-names/</loc>
     <lastmod>2013-12-30T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://ayulin.net/blog/2013/a-two-line-prettier-powershell-prompt-with-posh-git/</loc>
     <lastmod>2013-12-28T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://ayulin.net/blog/2013/minecraft-a-bridge/</loc>
     <lastmod>2013-12-28T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://ayulin.net/blog/2013/red-and-round/</loc>
     <lastmod>2013-12-25T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://ayulin.net/blog/2013/thoughts-from-a-trip-london/</loc>
     <lastmod>2013-12-22T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://ayulin.net/blog/2013/graffiti-uwcsea-style/</loc>
     <lastmod>2013-12-16T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://ayulin.net/blog/2013/the-hidden-bing-bird/</loc>
     <lastmod>2013-12-15T13:04:54+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://ayulin.net/blog/2013/fourcast-v1.0-changelog/</loc>
     <lastmod>2013-11-26T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://ayulin.net/blog/2013/fourcast-v0.9.1-changelog/</loc>
     <lastmod>2013-10-04T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://ayulin.net/blog/2013/fourcast-v0.9-changelog/</loc>
     <lastmod>2013-07-19T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://ayulin.net/blog/2013/fourcast-v0.8.1-changelog/</loc>
     <lastmod>2013-01-24T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://ayulin.net/blog/2013/fourcast-v0.8-changelog/</loc>
     <lastmod>2013-01-17T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://ayulin.net/blog/2012/that-fourcast-crash-bug/</loc>
     <lastmod>2012-12-29T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://ayulin.net/blog/2012/fourcast-v0.7-changelog/</loc>
     <lastmod>2012-12-15T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://ayulin.net/blog/2012/how-to-remove/reset-a-mercurial-keyring-saved-password-on-windows/</loc>
     <lastmod>2012-10-31T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://ayulin.net/blog/2012/fourcast-v0.6-changelog/</loc>
     <lastmod>2012-08-23T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://ayulin.net/categories/personal/</loc>
     <lastmod>2012-08-16T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://ayulin.net/blog/2012/summer-2012/</loc>
     <lastmod>2012-08-16T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://ayulin.net/blog/2012/fourcast-v0.5-changelog/</loc>
     <lastmod>2012-07-28T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://ayulin.net/blog/2012/fourcast-v0.4-changelog/</loc>
     <lastmod>2012-07-14T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://ayulin.net/blog/2012/fourcast-v0.3-changelog/</loc>
     <lastmod>2012-07-06T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://ayulin.net/blog/2012/fourcast-v0.2-changelog/</loc>
     <lastmod>2012-06-21T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://ayulin.net/blog/2012/designing-4-bit-webther-a-retrospective/</loc>
     <lastmod>2012-05-24T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://ayulin.net/categories/ramblings/</loc>
     <lastmod>2012-05-24T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://ayulin.net/blog/2012/4-bit-webther/</loc>
     <lastmod>2012-05-15T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://ayulin.net/blog/2012/going-live.-ish./</loc>
     <lastmod>2012-05-12T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://ayulin.net/categories/isaac/</loc>
     <lastmod>2012-05-12T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://ayulin.net/blog/2012/isaac-release-2-preview/</loc>
     <lastmod>2012-05-11T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://ayulin.net/blog/2012/introducing-isaac/</loc>
     <lastmod>2012-04-19T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://ayulin.net/about/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://ayulin.net/tags/</loc>
   </url>
-  
 </urlset>

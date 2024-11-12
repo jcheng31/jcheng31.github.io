@@ -35,10 +35,6 @@
       <a href="/about"><small>About</small></a>
 
       
-      <a href="https://twitter.com/Ayulin"><small>Twitter</small></a>
-      
-
-      
       <a href="https://github.com/jcheng31"><small>GitHub</small></a>
       
     </p>
@@ -73,76 +69,76 @@ which can also be integrated into your alternative editor of choice.</p>
 
 
 <figure>
-  <img src="/blog/2020/tips-to-take-table-tests-to-the-top/images/generate-unit-tests_huda3becc6a9930d2844916c3f656651fa_583276_0x400_resize_q100_box_2.png" width="324" height="400" alt="Screenshot of the VS Code right-click context menu, with the Generate Unit Tests For Function option highlighted.">
+  <img src="/blog/2020/tips-to-take-table-tests-to-the-top/images/generate-unit-tests_hu5882178760285222194.png" width="324" height="400" alt="Screenshot of the VS Code right-click context menu, with the Generate Unit Tests For Function option highlighted.">
 
   
 </figure>
 <p>Selecting this results in a test file being created (if necessary) and an empty test table generated
 for the function.</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#000;font-weight:bold">func</span> <span style="color:#900;font-weight:bold">TestIsUserActive</span>(t <span style="color:#000;font-weight:bold">*</span>testing.T) {
-	<span style="color:#000;font-weight:bold">type</span> args <span style="color:#000;font-weight:bold">struct</span> {
-		u User
-	}
-	tests <span style="color:#000;font-weight:bold">:=</span> []<span style="color:#000;font-weight:bold">struct</span> {
-		name <span style="color:#458;font-weight:bold">string</span>
-		args args
-		want <span style="color:#458;font-weight:bold">bool</span>
-	}{
-		<span style="color:#998;font-style:italic">// TODO: Add test cases.
-</span><span style="color:#998;font-style:italic"></span>	}
-	<span style="color:#000;font-weight:bold">for</span> _, tt <span style="color:#000;font-weight:bold">:=</span> <span style="color:#000;font-weight:bold">range</span> tests {
-		t.<span style="color:#900;font-weight:bold">Run</span>(tt.name, <span style="color:#000;font-weight:bold">func</span>(t <span style="color:#000;font-weight:bold">*</span>testing.T) {
-			<span style="color:#000;font-weight:bold">if</span> got <span style="color:#000;font-weight:bold">:=</span> <span style="color:#900;font-weight:bold">IsUserActive</span>(tt.args.u); got <span style="color:#000;font-weight:bold">!=</span> tt.want {
-				t.<span style="color:#900;font-weight:bold">Errorf</span>(<span style="color:#d14">&#34;IsUserActive() = %v, want %v&#34;</span>, got, tt.want)
-			}
-		})
-	}
-}
-</code></pre></div><p>Note the use of an argument struct here - we&rsquo;ll revisit this later on.</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#000;font-weight:bold">func</span> <span style="color:#900;font-weight:bold">TestIsUserActive</span>(t <span style="color:#000;font-weight:bold">*</span>testing.T) {
+</span></span><span style="display:flex;"><span>	<span style="color:#000;font-weight:bold">type</span> args <span style="color:#000;font-weight:bold">struct</span> {
+</span></span><span style="display:flex;"><span>		u User
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>	tests <span style="color:#000;font-weight:bold">:=</span> []<span style="color:#000;font-weight:bold">struct</span> {
+</span></span><span style="display:flex;"><span>		name <span style="color:#458;font-weight:bold">string</span>
+</span></span><span style="display:flex;"><span>		args args
+</span></span><span style="display:flex;"><span>		want <span style="color:#458;font-weight:bold">bool</span>
+</span></span><span style="display:flex;"><span>	}{
+</span></span><span style="display:flex;"><span>		<span style="color:#998;font-style:italic">// TODO: Add test cases.
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span>	}
+</span></span><span style="display:flex;"><span>	<span style="color:#000;font-weight:bold">for</span> _, tt <span style="color:#000;font-weight:bold">:=</span> <span style="color:#000;font-weight:bold">range</span> tests {
+</span></span><span style="display:flex;"><span>		t.<span style="color:#900;font-weight:bold">Run</span>(tt.name, <span style="color:#000;font-weight:bold">func</span>(t <span style="color:#000;font-weight:bold">*</span>testing.T) {
+</span></span><span style="display:flex;"><span>			<span style="color:#000;font-weight:bold">if</span> got <span style="color:#000;font-weight:bold">:=</span> <span style="color:#900;font-weight:bold">IsUserActive</span>(tt.args.u); got <span style="color:#000;font-weight:bold">!=</span> tt.want {
+</span></span><span style="display:flex;"><span>				t.<span style="color:#900;font-weight:bold">Errorf</span>(<span style="color:#d14">&#34;IsUserActive() = %v, want %v&#34;</span>, got, tt.want)
+</span></span><span style="display:flex;"><span>			}
+</span></span><span style="display:flex;"><span>		})
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Note the use of an argument struct here - we&rsquo;ll revisit this later on.</p>
 <p>This isn&rsquo;t limited to just functions, too - methods on structs with fields are handled nicely as
 well<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup>:</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#000;font-weight:bold">type</span> User <span style="color:#000;font-weight:bold">struct</span> {
-	Name         <span style="color:#458;font-weight:bold">string</span>
-	EmailAddress <span style="color:#458;font-weight:bold">string</span>
-	Birthday     time.Time <span style="color:#998;font-style:italic">// TODO: display on profile.
-</span><span style="color:#998;font-style:italic"></span>}
-
-<span style="color:#998;font-style:italic">// CalculateAge calculates the user&#39;s age.
-</span><span style="color:#998;font-style:italic"></span><span style="color:#000;font-weight:bold">func</span> (u User) <span style="color:#900;font-weight:bold">CalculateAge</span>() <span style="color:#458;font-weight:bold">int</span> {
-	<span style="color:#998;font-style:italic">// Implementation here.
-</span><span style="color:#998;font-style:italic"></span>}
-</code></pre></div><hr>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#000;font-weight:bold">func</span> <span style="color:#900;font-weight:bold">TestUser_CalculateAge</span>(t <span style="color:#000;font-weight:bold">*</span>testing.T) {
-	<span style="color:#000;font-weight:bold">type</span> fields <span style="color:#000;font-weight:bold">struct</span> {
-		Name         <span style="color:#458;font-weight:bold">string</span>
-		EmailAddress <span style="color:#458;font-weight:bold">string</span>
-		Birthday     time.Time
-	}
-	tests <span style="color:#000;font-weight:bold">:=</span> []<span style="color:#000;font-weight:bold">struct</span> {
-		name   <span style="color:#458;font-weight:bold">string</span>
-		fields fields
-		want   <span style="color:#458;font-weight:bold">int</span>
-	}{
-		<span style="color:#998;font-style:italic">// TODO: Add test cases.
-</span><span style="color:#998;font-style:italic"></span>	}
-	<span style="color:#000;font-weight:bold">for</span> _, tt <span style="color:#000;font-weight:bold">:=</span> <span style="color:#000;font-weight:bold">range</span> tests {
-		t.<span style="color:#900;font-weight:bold">Run</span>(tt.name, <span style="color:#000;font-weight:bold">func</span>(t <span style="color:#000;font-weight:bold">*</span>testing.T) {
-			u <span style="color:#000;font-weight:bold">:=</span> User{
-				Name:         tt.fields.Name,
-				EmailAddress: tt.fields.EmailAddress,
-				Birthday:     tt.fields.Birthday,
-			}
-			<span style="color:#000;font-weight:bold">if</span> got <span style="color:#000;font-weight:bold">:=</span> u.<span style="color:#900;font-weight:bold">CalculateAge</span>(); !reflect.<span style="color:#900;font-weight:bold">DeepEqual</span>(got, tt.want) {
-				t.<span style="color:#900;font-weight:bold">Errorf</span>(<span style="color:#d14">&#34;User.CalculateAge() = %v, want %v&#34;</span>, got, tt.want)
-			}
-		})
-	}
-}
-</code></pre></div><p>We now have a <code>fields</code> struct which lets us easily initialise the struct to be tested. If we had
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#000;font-weight:bold">type</span> User <span style="color:#000;font-weight:bold">struct</span> {
+</span></span><span style="display:flex;"><span>	Name         <span style="color:#458;font-weight:bold">string</span>
+</span></span><span style="display:flex;"><span>	EmailAddress <span style="color:#458;font-weight:bold">string</span>
+</span></span><span style="display:flex;"><span>	Birthday     time.Time <span style="color:#998;font-style:italic">// TODO: display on profile.
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic">// CalculateAge calculates the user&#39;s age.
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span><span style="color:#000;font-weight:bold">func</span> (u User) <span style="color:#900;font-weight:bold">CalculateAge</span>() <span style="color:#458;font-weight:bold">int</span> {
+</span></span><span style="display:flex;"><span>	<span style="color:#998;font-style:italic">// Implementation here.
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span>}
+</span></span></code></pre></div><hr>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#000;font-weight:bold">func</span> <span style="color:#900;font-weight:bold">TestUser_CalculateAge</span>(t <span style="color:#000;font-weight:bold">*</span>testing.T) {
+</span></span><span style="display:flex;"><span>	<span style="color:#000;font-weight:bold">type</span> fields <span style="color:#000;font-weight:bold">struct</span> {
+</span></span><span style="display:flex;"><span>		Name         <span style="color:#458;font-weight:bold">string</span>
+</span></span><span style="display:flex;"><span>		EmailAddress <span style="color:#458;font-weight:bold">string</span>
+</span></span><span style="display:flex;"><span>		Birthday     time.Time
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>	tests <span style="color:#000;font-weight:bold">:=</span> []<span style="color:#000;font-weight:bold">struct</span> {
+</span></span><span style="display:flex;"><span>		name   <span style="color:#458;font-weight:bold">string</span>
+</span></span><span style="display:flex;"><span>		fields fields
+</span></span><span style="display:flex;"><span>		want   <span style="color:#458;font-weight:bold">int</span>
+</span></span><span style="display:flex;"><span>	}{
+</span></span><span style="display:flex;"><span>		<span style="color:#998;font-style:italic">// TODO: Add test cases.
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span>	}
+</span></span><span style="display:flex;"><span>	<span style="color:#000;font-weight:bold">for</span> _, tt <span style="color:#000;font-weight:bold">:=</span> <span style="color:#000;font-weight:bold">range</span> tests {
+</span></span><span style="display:flex;"><span>		t.<span style="color:#900;font-weight:bold">Run</span>(tt.name, <span style="color:#000;font-weight:bold">func</span>(t <span style="color:#000;font-weight:bold">*</span>testing.T) {
+</span></span><span style="display:flex;"><span>			u <span style="color:#000;font-weight:bold">:=</span> User{
+</span></span><span style="display:flex;"><span>				Name:         tt.fields.Name,
+</span></span><span style="display:flex;"><span>				EmailAddress: tt.fields.EmailAddress,
+</span></span><span style="display:flex;"><span>				Birthday:     tt.fields.Birthday,
+</span></span><span style="display:flex;"><span>			}
+</span></span><span style="display:flex;"><span>			<span style="color:#000;font-weight:bold">if</span> got <span style="color:#000;font-weight:bold">:=</span> u.<span style="color:#900;font-weight:bold">CalculateAge</span>(); !reflect.<span style="color:#900;font-weight:bold">DeepEqual</span>(got, tt.want) {
+</span></span><span style="display:flex;"><span>				t.<span style="color:#900;font-weight:bold">Errorf</span>(<span style="color:#d14">&#34;User.CalculateAge() = %v, want %v&#34;</span>, got, tt.want)
+</span></span><span style="display:flex;"><span>			}
+</span></span><span style="display:flex;"><span>		})
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>We now have a <code>fields</code> struct which lets us easily initialise the struct to be tested. If we had
 arguments to the method, there&rsquo;d be an <code>args</code> struct as well, just as we saw earlier.</p>
 <p>This gives us a good launching point to start writing tests quickly. I use this feature all the time
 to get the outline up, then make changes - we use
-<a href="https://github.com/stretchr/testify"><code>stretchr/testify</code></a>&lsquo;s <code>assert</code> package to do assertions, so
+<a href="https://github.com/stretchr/testify"><code>stretchr/testify</code></a>&rsquo;s <code>assert</code> package to do assertions, so
 I&rsquo;d rip out the <code>if</code> statement the tool generates and replace it with the appropriate calls. You
 could also prune out any fields which aren&rsquo;t strictly necessary - in our example here, it seems
 unlikely that <code>CalculateAge</code> is going to use <code>Name</code> or <code>EmailAddress</code>, so you could drop them.</p>
@@ -153,71 +149,71 @@ of cores available to do so. But tests themselves won&rsquo;t magically run in p
 <code>t.Parallel()</code> to them.</p>
 <p>This is pretty easy for a regular test - just throw it at the start of the test func - but for a
 table-driven one there&rsquo;s a little bit more that you have to do:</p>
-<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
-</span><span style="display:block;width:100%;background-color:#e5e5e5"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
-</span></span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
-</span><span style="display:block;width:100%;background-color:#e5e5e5"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
-</span></span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
-</span><span style="display:block;width:100%;background-color:#e5e5e5"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
-</span></span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">28
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">29
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">30
+<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;display:grid;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;display:grid;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="background-color:#e5e5e5"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span></span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="background-color:#e5e5e5"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span></span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span><span style="background-color:#e5e5e5"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+</span></span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">28
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">29
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">30
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#000;font-weight:bold">func</span> <span style="color:#900;font-weight:bold">TestUser_CalculateAge</span>(t <span style="color:#000;font-weight:bold">*</span>testing.T) {
-<span style="display:block;width:100%;background-color:#e5e5e5">	t.<span style="color:#900;font-weight:bold">Parallel</span>()
-</span>
-	<span style="color:#000;font-weight:bold">type</span> fields <span style="color:#000;font-weight:bold">struct</span> {
-		Name         <span style="color:#458;font-weight:bold">string</span>
-		EmailAddress <span style="color:#458;font-weight:bold">string</span>
-		Birthday     time.Time
-	}
-	tests <span style="color:#000;font-weight:bold">:=</span> []<span style="color:#000;font-weight:bold">struct</span> {
-		name   <span style="color:#458;font-weight:bold">string</span>
-		fields fields
-		want   <span style="color:#458;font-weight:bold">int</span>
-	}{
-		<span style="color:#998;font-style:italic">// TODO: Add test cases.
-</span><span style="color:#998;font-style:italic"></span>	}
-	<span style="color:#000;font-weight:bold">for</span> _, tt <span style="color:#000;font-weight:bold">:=</span> <span style="color:#000;font-weight:bold">range</span> tests {
-<span style="display:block;width:100%;background-color:#e5e5e5">		tt <span style="color:#000;font-weight:bold">:=</span> tt
-</span>		t.<span style="color:#900;font-weight:bold">Run</span>(tt.name, <span style="color:#000;font-weight:bold">func</span>(t <span style="color:#000;font-weight:bold">*</span>testing.T) {
-<span style="display:block;width:100%;background-color:#e5e5e5">			t.<span style="color:#900;font-weight:bold">Parallel</span>()
-</span>			u <span style="color:#000;font-weight:bold">:=</span> User{
-				Name:         tt.fields.Name,
-				EmailAddress: tt.fields.EmailAddress,
-				Birthday:     tt.fields.Birthday,
-			}
-			<span style="color:#000;font-weight:bold">if</span> got <span style="color:#000;font-weight:bold">:=</span> u.<span style="color:#900;font-weight:bold">CalculateAge</span>(); !reflect.<span style="color:#900;font-weight:bold">DeepEqual</span>(got, tt.want) {
-				t.<span style="color:#900;font-weight:bold">Errorf</span>(<span style="color:#d14">&#34;User.CalculateAge() = %v, want %v&#34;</span>, got, tt.want)
-			}
-		})
-	}
-}
-</code></pre></td></tr></table>
+<pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;display:grid;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#000;font-weight:bold">func</span> <span style="color:#900;font-weight:bold">TestUser_CalculateAge</span>(t <span style="color:#000;font-weight:bold">*</span>testing.T) {
+</span></span><span style="display:flex; background-color:#e5e5e5"><span>	t.<span style="color:#900;font-weight:bold">Parallel</span>()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#000;font-weight:bold">type</span> fields <span style="color:#000;font-weight:bold">struct</span> {
+</span></span><span style="display:flex;"><span>		Name         <span style="color:#458;font-weight:bold">string</span>
+</span></span><span style="display:flex;"><span>		EmailAddress <span style="color:#458;font-weight:bold">string</span>
+</span></span><span style="display:flex;"><span>		Birthday     time.Time
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>	tests <span style="color:#000;font-weight:bold">:=</span> []<span style="color:#000;font-weight:bold">struct</span> {
+</span></span><span style="display:flex;"><span>		name   <span style="color:#458;font-weight:bold">string</span>
+</span></span><span style="display:flex;"><span>		fields fields
+</span></span><span style="display:flex;"><span>		want   <span style="color:#458;font-weight:bold">int</span>
+</span></span><span style="display:flex;"><span>	}{
+</span></span><span style="display:flex;"><span>		<span style="color:#998;font-style:italic">// TODO: Add test cases.
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span>	}
+</span></span><span style="display:flex;"><span>	<span style="color:#000;font-weight:bold">for</span> _, tt <span style="color:#000;font-weight:bold">:=</span> <span style="color:#000;font-weight:bold">range</span> tests {
+</span></span><span style="display:flex; background-color:#e5e5e5"><span>		tt <span style="color:#000;font-weight:bold">:=</span> tt
+</span></span><span style="display:flex;"><span>		t.<span style="color:#900;font-weight:bold">Run</span>(tt.name, <span style="color:#000;font-weight:bold">func</span>(t <span style="color:#000;font-weight:bold">*</span>testing.T) {
+</span></span><span style="display:flex; background-color:#e5e5e5"><span>			t.<span style="color:#900;font-weight:bold">Parallel</span>()
+</span></span><span style="display:flex;"><span>			u <span style="color:#000;font-weight:bold">:=</span> User{
+</span></span><span style="display:flex;"><span>				Name:         tt.fields.Name,
+</span></span><span style="display:flex;"><span>				EmailAddress: tt.fields.EmailAddress,
+</span></span><span style="display:flex;"><span>				Birthday:     tt.fields.Birthday,
+</span></span><span style="display:flex;"><span>			}
+</span></span><span style="display:flex;"><span>			<span style="color:#000;font-weight:bold">if</span> got <span style="color:#000;font-weight:bold">:=</span> u.<span style="color:#900;font-weight:bold">CalculateAge</span>(); !reflect.<span style="color:#900;font-weight:bold">DeepEqual</span>(got, tt.want) {
+</span></span><span style="display:flex;"><span>				t.<span style="color:#900;font-weight:bold">Errorf</span>(<span style="color:#d14">&#34;User.CalculateAge() = %v, want %v&#34;</span>, got, tt.want)
+</span></span><span style="display:flex;"><span>			}
+</span></span><span style="display:flex;"><span>		})
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>We have to add <code>t.Parallel()</code> to the overall test function itself (line 2) as well as each
 sub-test (line 17). More importantly, though, we also need to alias <code>tt</code> to itself on line 19 -
@@ -256,60 +252,60 @@ related to a particular test instance in a single place. This is lost if you end
 outside the test itself, though.</p>
 <p>One of the biggest reasons I&rsquo;d end up doing or seeing this happen early on was that an argument or
 field value needed to be an interface or pointer, and you couldn&rsquo;t just initialise those in-line:</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#998;font-style:italic">// Assuming a Nickname *string field on our user...
-</span><span style="color:#998;font-style:italic"></span>
-<span style="color:#000;font-weight:bold">type</span> fields <span style="color:#000;font-weight:bold">struct</span> {
-	Nickname     <span style="color:#000;font-weight:bold">*</span><span style="color:#458;font-weight:bold">string</span>
-}
-
-tests <span style="color:#000;font-weight:bold">:=</span> []<span style="color:#000;font-weight:bold">struct</span> {
-	name   <span style="color:#458;font-weight:bold">string</span>
-	fields fields
-	want   <span style="color:#458;font-weight:bold">bool</span>
-}{
-	{
-		<span style="color:#d14">&#34;returns true if a nickname is set&#34;</span>,
-		fields{
-<span style="display:block;width:100%;background-color:#e5e5e5">			Nickname: <span style="color:#000;font-weight:bold">&amp;</span><span style="color:#d14">&#34;Ayulin&#34;</span>, <span style="color:#998;font-style:italic">// This isn&#39;t valid!
-</span></span><span style="color:#998;font-style:italic"></span>		},
-		<span style="color:#000;font-weight:bold">true</span>,
-	},
-}
-</code></pre></div><p>So we&rsquo;d end up defining the value before the test table instead.</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="display:block;width:100%;background-color:#e5e5e5">nickname <span style="color:#000;font-weight:bold">:=</span> <span style="color:#d14">&#34;Ayulin&#34;</span>
-</span>
-tests <span style="color:#000;font-weight:bold">:=</span> []<span style="color:#000;font-weight:bold">struct</span> {
-	name   <span style="color:#458;font-weight:bold">string</span>
-	fields fields
-	want   <span style="color:#458;font-weight:bold">bool</span>
-}{
-	{
-		<span style="color:#d14">&#34;returns true if the user has a nickname set&#34;</span>,
-		fields{
-<span style="display:block;width:100%;background-color:#e5e5e5">			Nickname: <span style="color:#000;font-weight:bold">&amp;</span>nickname,
-</span>		},
-		<span style="color:#000;font-weight:bold">true</span>,
-	},
-}
-</code></pre></div><p>You&rsquo;d see similar with mocked interfaces, too - the mock is declared above the start of the table
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;display:grid;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#998;font-style:italic">// Assuming a Nickname *string field on our user...
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span>
+</span></span><span style="display:flex;"><span><span style="color:#000;font-weight:bold">type</span> fields <span style="color:#000;font-weight:bold">struct</span> {
+</span></span><span style="display:flex;"><span>	Nickname     <span style="color:#000;font-weight:bold">*</span><span style="color:#458;font-weight:bold">string</span>
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>tests <span style="color:#000;font-weight:bold">:=</span> []<span style="color:#000;font-weight:bold">struct</span> {
+</span></span><span style="display:flex;"><span>	name   <span style="color:#458;font-weight:bold">string</span>
+</span></span><span style="display:flex;"><span>	fields fields
+</span></span><span style="display:flex;"><span>	want   <span style="color:#458;font-weight:bold">bool</span>
+</span></span><span style="display:flex;"><span>}{
+</span></span><span style="display:flex;"><span>	{
+</span></span><span style="display:flex;"><span>		<span style="color:#d14">&#34;returns true if a nickname is set&#34;</span>,
+</span></span><span style="display:flex;"><span>		fields{
+</span></span><span style="display:flex; background-color:#e5e5e5"><span>			Nickname: <span style="color:#000;font-weight:bold">&amp;</span><span style="color:#d14">&#34;Ayulin&#34;</span>, <span style="color:#998;font-style:italic">// This isn&#39;t valid!
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span>		},
+</span></span><span style="display:flex;"><span>		<span style="color:#000;font-weight:bold">true</span>,
+</span></span><span style="display:flex;"><span>	},
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>So we&rsquo;d end up defining the value before the test table instead.</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;display:grid;"><code class="language-go" data-lang="go"><span style="display:flex; background-color:#e5e5e5"><span>nickname <span style="color:#000;font-weight:bold">:=</span> <span style="color:#d14">&#34;Ayulin&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>tests <span style="color:#000;font-weight:bold">:=</span> []<span style="color:#000;font-weight:bold">struct</span> {
+</span></span><span style="display:flex;"><span>	name   <span style="color:#458;font-weight:bold">string</span>
+</span></span><span style="display:flex;"><span>	fields fields
+</span></span><span style="display:flex;"><span>	want   <span style="color:#458;font-weight:bold">bool</span>
+</span></span><span style="display:flex;"><span>}{
+</span></span><span style="display:flex;"><span>	{
+</span></span><span style="display:flex;"><span>		<span style="color:#d14">&#34;returns true if the user has a nickname set&#34;</span>,
+</span></span><span style="display:flex;"><span>		fields{
+</span></span><span style="display:flex; background-color:#e5e5e5"><span>			Nickname: <span style="color:#000;font-weight:bold">&amp;</span>nickname,
+</span></span><span style="display:flex;"><span>		},
+</span></span><span style="display:flex;"><span>		<span style="color:#000;font-weight:bold">true</span>,
+</span></span><span style="display:flex;"><span>	},
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>You&rsquo;d see similar with mocked interfaces, too - the mock is declared above the start of the table
 and referenced inside.</p>
 <p>This now requires us to bounce back and forth between the test instance in the table and the code
 above the table, though, and that &ldquo;foreword&rdquo; section often ends up pretty long and cluttered. You
 can get around this and do everything in-line by using anonymous functions instead:</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go">tests <span style="color:#000;font-weight:bold">:=</span> []<span style="color:#000;font-weight:bold">struct</span> {
-	name   <span style="color:#458;font-weight:bold">string</span>
-	fields fields
-	want   <span style="color:#458;font-weight:bold">bool</span>
-}{
-	{
-		<span style="color:#d14">&#34;returns true if the user has a nickname set&#34;</span>,
-		fields{
-<span style="display:block;width:100%;background-color:#e5e5e5">			Nickname: <span style="color:#000;font-weight:bold">func</span>() <span style="color:#000;font-weight:bold">*</span><span style="color:#458;font-weight:bold">string</span> { s <span style="color:#000;font-weight:bold">:=</span> <span style="color:#d14">&#34;Ayulin&#34;</span>; <span style="color:#000;font-weight:bold">return</span> <span style="color:#000;font-weight:bold">&amp;</span>s },
-</span>		},
-		<span style="color:#000;font-weight:bold">true</span>,
-	},
-}
-</code></pre></div><p>Longer, more involved initialisations are a lot more readable if they&rsquo;re split onto multiple lines.</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;display:grid;"><code class="language-go" data-lang="go"><span style="display:flex;"><span>tests <span style="color:#000;font-weight:bold">:=</span> []<span style="color:#000;font-weight:bold">struct</span> {
+</span></span><span style="display:flex;"><span>	name   <span style="color:#458;font-weight:bold">string</span>
+</span></span><span style="display:flex;"><span>	fields fields
+</span></span><span style="display:flex;"><span>	want   <span style="color:#458;font-weight:bold">bool</span>
+</span></span><span style="display:flex;"><span>}{
+</span></span><span style="display:flex;"><span>	{
+</span></span><span style="display:flex;"><span>		<span style="color:#d14">&#34;returns true if the user has a nickname set&#34;</span>,
+</span></span><span style="display:flex;"><span>		fields{
+</span></span><span style="display:flex; background-color:#e5e5e5"><span>			Nickname: <span style="color:#000;font-weight:bold">func</span>() <span style="color:#000;font-weight:bold">*</span><span style="color:#458;font-weight:bold">string</span> { s <span style="color:#000;font-weight:bold">:=</span> <span style="color:#d14">&#34;Ayulin&#34;</span>; <span style="color:#000;font-weight:bold">return</span> <span style="color:#000;font-weight:bold">&amp;</span>s },
+</span></span><span style="display:flex;"><span>		},
+</span></span><span style="display:flex;"><span>		<span style="color:#000;font-weight:bold">true</span>,
+</span></span><span style="display:flex;"><span>	},
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Longer, more involved initialisations are a lot more readable if they&rsquo;re split onto multiple lines.</p>
 <p>This technique keeps everything in one place - the test is entirely self-contained and doesn&rsquo;t
 require referencing things defined elsewhere. The downside here is that the test instance itself
 ends up being longer (and some would say more cluttered), especially if there&rsquo;re mock definitions
@@ -326,18 +322,18 @@ function defined in a test file.</p>
 itself. This is an exception to the previous point about not putting stuff in the preamble of your
 test function, before the table.</p>
 <p>That is, instead of:</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#000;font-weight:bold">func</span> <span style="color:#900;font-weight:bold">initMockUserDatabase</span>(&lt;some parameters&gt;) user.Database {
-	<span style="color:#998;font-style:italic">// &lt;implementation to prepare and return a mock&gt;
-</span><span style="color:#998;font-style:italic"></span>}
-</code></pre></div><p>Put this inside the test function instead:</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#000;font-weight:bold">func</span> <span style="color:#900;font-weight:bold">TestGateway_GetUser</span>(t <span style="color:#000;font-weight:bold">*</span>testing.T) {
-	initMockUserDatabase <span style="color:#000;font-weight:bold">:=</span> <span style="color:#000;font-weight:bold">func</span>(&lt;some parameters&gt;) user.Database {
-		<span style="color:#998;font-style:italic">// &lt;implementation to prepare and return a mock&gt;
-</span><span style="color:#998;font-style:italic"></span>	}
-
-	<span style="color:#998;font-style:italic">// Test tables below.
-</span><span style="color:#998;font-style:italic"></span>}
-</code></pre></div><p>This does somewhat go against what we just said, about doing everything within the test instance
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#000;font-weight:bold">func</span> <span style="color:#900;font-weight:bold">initMockUserDatabase</span>(&lt;some parameters&gt;) user.Database {
+</span></span><span style="display:flex;"><span>	<span style="color:#998;font-style:italic">// &lt;implementation to prepare and return a mock&gt;
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span>}
+</span></span></code></pre></div><p>Put this inside the test function instead:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#000;font-weight:bold">func</span> <span style="color:#900;font-weight:bold">TestGateway_GetUser</span>(t <span style="color:#000;font-weight:bold">*</span>testing.T) {
+</span></span><span style="display:flex;"><span>	initMockUserDatabase <span style="color:#000;font-weight:bold">:=</span> <span style="color:#000;font-weight:bold">func</span>(&lt;some parameters&gt;) user.Database {
+</span></span><span style="display:flex;"><span>		<span style="color:#998;font-style:italic">// &lt;implementation to prepare and return a mock&gt;
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span>	}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#998;font-style:italic">// Test tables below.
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span>}
+</span></span></code></pre></div><p>This does somewhat go against what we just said, about doing everything within the test instance
 itself, though for cases where a helper does make things clearer this strategy can be useful.</p>
 <p>Of course, if you&rsquo;re operating within a separate <code>_test</code> package, this isn&rsquo;t really necessary.</p>
 <h2 id="use-structs-to-handle-both-arguments-and-expectations">Use structs to handle both arguments and expectations.</h2>
@@ -345,23 +341,23 @@ itself, though for cases where a helper does make things clearer this strategy c
 it doesn&rsquo;t create one for expected return values. I think doing so is a little clearer and better
 than using the <code>want</code> prefix that gets used quite frequently.</p>
 <p>So turn this:</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go">tests <span style="color:#000;font-weight:bold">:=</span> []<span style="color:#000;font-weight:bold">struct</span> {
-	name <span style="color:#458;font-weight:bold">string</span>
-	args
-	want User
-	wantErr <span style="color:#458;font-weight:bold">bool</span>
-}{}
-</code></pre></div><p>Into:</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#000;font-weight:bold">type</span> want <span style="color:#000;font-weight:bold">struct</span> {
-	user User
-	err <span style="color:#458;font-weight:bold">bool</span>
-}
-tests <span style="color:#000;font-weight:bold">:=</span> []<span style="color:#000;font-weight:bold">struct</span> {
-	name <span style="color:#458;font-weight:bold">string</span>
-	args
-	want
-}{}
-</code></pre></div><p>With just a single return value this isn&rsquo;t too useful, though if you happen to have multiple or want
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span>tests <span style="color:#000;font-weight:bold">:=</span> []<span style="color:#000;font-weight:bold">struct</span> {
+</span></span><span style="display:flex;"><span>	name <span style="color:#458;font-weight:bold">string</span>
+</span></span><span style="display:flex;"><span>	args
+</span></span><span style="display:flex;"><span>	want User
+</span></span><span style="display:flex;"><span>	wantErr <span style="color:#458;font-weight:bold">bool</span>
+</span></span><span style="display:flex;"><span>}{}
+</span></span></code></pre></div><p>Into:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#000;font-weight:bold">type</span> want <span style="color:#000;font-weight:bold">struct</span> {
+</span></span><span style="display:flex;"><span>	user User
+</span></span><span style="display:flex;"><span>	err <span style="color:#458;font-weight:bold">bool</span>
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>tests <span style="color:#000;font-weight:bold">:=</span> []<span style="color:#000;font-weight:bold">struct</span> {
+</span></span><span style="display:flex;"><span>	name <span style="color:#458;font-weight:bold">string</span>
+</span></span><span style="display:flex;"><span>	args
+</span></span><span style="display:flex;"><span>	want
+</span></span><span style="display:flex;"><span>}{}
+</span></span></code></pre></div><p>With just a single return value this isn&rsquo;t too useful, though if you happen to have multiple or want
 to be more descriptive about what the return value is, this helps there. I&rsquo;m also not a fan in
 general of the <code>want</code> prefix. YMMV.</p>
 <h2 id="dont-check-error-messages-unless-theyre-part-of-your-contract-and-avoid-having-that-too">Don&rsquo;t check error messages unless they&rsquo;re part of your contract (and avoid having that too!)</h2>
@@ -377,53 +373,53 @@ messages at all.</p>
 <p>If you really need to be able to have code take different actions depending on the sort of error
 that was encountered, keep using a Boolean <code>wantErr</code> and instead introduce an &ldquo;error checker&rdquo; func
 that&rsquo;ll check if the error implements a specific interface:</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#000;font-weight:bold">type</span> retryable <span style="color:#000;font-weight:bold">interface</span> {
-	<span style="color:#900;font-weight:bold">IsRetryable</span>() <span style="color:#458;font-weight:bold">bool</span>
-}
-
-<span style="color:#000;font-weight:bold">func</span> <span style="color:#900;font-weight:bold">IsRetryable</span>(err <span style="color:#458;font-weight:bold">error</span>) <span style="color:#458;font-weight:bold">bool</span> {
-	re, ok <span style="color:#000;font-weight:bold">:=</span> err.(retryable)
-	<span style="color:#000;font-weight:bold">return</span> ok <span style="color:#000;font-weight:bold">&amp;&amp;</span> re.<span style="color:#900;font-weight:bold">IsRetryable</span>()
-}
-
-<span style="color:#998;font-style:italic">// ...
-</span><span style="color:#998;font-style:italic"></span>
-<span style="color:#000;font-weight:bold">type</span> want <span style="color:#000;font-weight:bold">struct</span> {
-	err <span style="color:#458;font-weight:bold">bool</span>
-	isCorrectErr <span style="color:#000;font-weight:bold">func</span>(<span style="color:#458;font-weight:bold">error</span>) <span style="color:#458;font-weight:bold">bool</span>
-}
-
-tests <span style="color:#000;font-weight:bold">:=</span> []<span style="color:#000;font-weight:bold">struct</span>{
-	name <span style="color:#458;font-weight:bold">string</span>
-	args
-	want
-}{
-	{
-		<span style="color:#d14">&#34;returns a retryable error if blah&#34;</span>,
-		args{
-			<span style="color:#998;font-style:italic">// something or another
-</span><span style="color:#998;font-style:italic"></span>		},
-		want{
-			err: <span style="color:#000;font-weight:bold">true</span>,
-			isCorrectErr: IsRetryable,
-		},
-	},
-}
-</code></pre></div><p>This type of test still verifies that the correct behaviour is met - the code is returning the
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#000;font-weight:bold">type</span> retryable <span style="color:#000;font-weight:bold">interface</span> {
+</span></span><span style="display:flex;"><span>	<span style="color:#900;font-weight:bold">IsRetryable</span>() <span style="color:#458;font-weight:bold">bool</span>
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#000;font-weight:bold">func</span> <span style="color:#900;font-weight:bold">IsRetryable</span>(err <span style="color:#458;font-weight:bold">error</span>) <span style="color:#458;font-weight:bold">bool</span> {
+</span></span><span style="display:flex;"><span>	re, ok <span style="color:#000;font-weight:bold">:=</span> err.(retryable)
+</span></span><span style="display:flex;"><span>	<span style="color:#000;font-weight:bold">return</span> ok <span style="color:#000;font-weight:bold">&amp;&amp;</span> re.<span style="color:#900;font-weight:bold">IsRetryable</span>()
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic">// ...
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span>
+</span></span><span style="display:flex;"><span><span style="color:#000;font-weight:bold">type</span> want <span style="color:#000;font-weight:bold">struct</span> {
+</span></span><span style="display:flex;"><span>	err <span style="color:#458;font-weight:bold">bool</span>
+</span></span><span style="display:flex;"><span>	isCorrectErr <span style="color:#000;font-weight:bold">func</span>(<span style="color:#458;font-weight:bold">error</span>) <span style="color:#458;font-weight:bold">bool</span>
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>tests <span style="color:#000;font-weight:bold">:=</span> []<span style="color:#000;font-weight:bold">struct</span>{
+</span></span><span style="display:flex;"><span>	name <span style="color:#458;font-weight:bold">string</span>
+</span></span><span style="display:flex;"><span>	args
+</span></span><span style="display:flex;"><span>	want
+</span></span><span style="display:flex;"><span>}{
+</span></span><span style="display:flex;"><span>	{
+</span></span><span style="display:flex;"><span>		<span style="color:#d14">&#34;returns a retryable error if blah&#34;</span>,
+</span></span><span style="display:flex;"><span>		args{
+</span></span><span style="display:flex;"><span>			<span style="color:#998;font-style:italic">// something or another
+</span></span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"></span>		},
+</span></span><span style="display:flex;"><span>		want{
+</span></span><span style="display:flex;"><span>			err: <span style="color:#000;font-weight:bold">true</span>,
+</span></span><span style="display:flex;"><span>			isCorrectErr: IsRetryable,
+</span></span><span style="display:flex;"><span>		},
+</span></span><span style="display:flex;"><span>	},
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>This type of test still verifies that the correct behaviour is met - the code is returning the
 correct sort of error under certain circumstances - while not coupling it to an error message that
 can change frequently. Dave Cheney goes into the idea of using interfaces for error behaviours
 <a href="https://dave.cheney.net/2016/04/27/dont-just-check-errors-handle-them-gracefully">in more detail here</a>.</p>
-<section class="footnotes" role="doc-endnotes">
+<div class="footnotes" role="doc-endnotes">
 <hr>
 <ol>
-<li id="fn:1" role="doc-endnote">
+<li id="fn:1">
 <p>If you were actually implementing this method, you&rsquo;d have to have some sort of way to
 stub out the clock in order to actually test this; the signature would probably look different as a
 result. This is just an example, though (and honestly, I forgot about that complication when
-initially writing it), so we&rsquo;re not doing that here. <a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+initially writing it), so we&rsquo;re not doing that here.&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
 </li>
 </ol>
-</section>
+</div>
 
     </div>
   </div>
